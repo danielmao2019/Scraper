@@ -9,6 +9,7 @@ from papers_old_list import old_list
 from papers_XAI import XAI
 from papers_diffusion import diffusion
 from papers_NERF import NERF
+from papers_finance import finance
 
 
 import logging
