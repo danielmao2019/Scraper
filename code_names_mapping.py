@@ -13,4 +13,11 @@ mapping = {
     "Denoising Diffusion Probabilistic Models": "DDPM",
     "Denoising Diffusion Implicit Models": "DDIM",
     "UnitBox: An Advanced Object Detection Network": "UnitBox",
+    "Show, Attend and Tell: Neural Image Caption Generation with Visual Attention": "Show, Attend and Tell",
+    "Attentional Bottleneck: Towards an Interpretable Deep Driving Network": "Attentional Bottleneck",
+    "Learning Deep Features for Discriminative Localization": "CAM",
+    "VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection": "VoxelNet",
+    "PointPillars: Fast Encoders for Object Detection from Point Clouds": "PointPillars",
+    "Deep Variational Information Bottleneck": "Deep VIB",
+    "InfoBot: Transfer and Exploration via the Information Bottleneck": "InfoBot",
 }
