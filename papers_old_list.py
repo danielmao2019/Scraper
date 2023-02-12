@@ -29,4 +29,6 @@ old_list = {
     #     "Sumit Chopra, Raia Hadsell, Yann LeCun, Learning a Similarity Metric Discriminatively, with Application to Face Verification",
     #     "Kihyuk Sohn, Improved Deep Metric Learning with Multi-class N-pair Loss Objective",
     # ],
+    # 'multi_task': [
+    # ]
 }

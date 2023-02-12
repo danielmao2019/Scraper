@@ -1,8 +1,13 @@
 XAI = {
     # 'survey': [
-    #     "https://arxiv.org/abs/2103.05154",  # Explanations in Autonomous Driving
-    #     "https://arxiv.org/abs/2101.05307",  # Explainability of Deep Vision-Based Autonomous Driving Systems: Review and Challenges
-    #     "https://arxiv.org/abs/1910.10045",  # Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI
+    #     [R2] Explanations in Autonomous Driving: A Survey
+    #     "https://arxiv.org/abs/2103.05154",
+    #     [R5] A Systematic Review of Explainable Artificial Intelligence in Terms of Different Application Domains and Tasks
+    #     "https://www.mdpi.com/2076-3417/12/3/1353"
+    #     [R7] Explainability of Deep Vision-Based Autonomous Driving Systems: Review and Challenges
+    #     "https://arxiv.org/abs/2101.05307",
+    #     [R8] Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI
+    #     "https://arxiv.org/abs/1910.10045",
     #     "https://ieeexplore.ieee.org/document/8466590",
     # ],
     # 'perception': [
@@ -13,8 +18,6 @@ XAI = {
     # 'saliency': [
     #     [R22] VisualBackProp: Efficient Visualization of CNNs for Autonomous Driving
     #     "https://ieeexplore.ieee.org/document/8461053",
-    #     [R34] Raising context awareness in motion forecasting
-    #     "https://arxiv.org/abs/2109.08048",  # how is this related to explainability???
     #     [R37] Explaining How a Deep Neural Network Trained with End-to-End Learning Steers a Car
     #     "https://arxiv.org/abs/1704.07911",
     #     [R42] OD-XAI: Explainable AI-Based Semantic Object Detection for Autonomous Vehicles
@@ -23,6 +26,8 @@ XAI = {
     #     "https://www.mdpi.com/1424-8220/22/24/9677",
     #     [R47] Adaptation of Grad-CAM Method to Neural Network Architecture for LiDAR Pointcloud Object Detection
     #     "https://www.mdpi.com/1996-1073/15/13/4681",
+    #     [R34] Raising context awareness in motion forecasting
+    #     "https://arxiv.org/abs/2109.08048",  # how is this related to explainability???
     #     [R48] Conditional Affordance Learning for Driving in Urban Environments
     #     "https://arxiv.org/abs/1806.06498",
     #     [R49] Deep learning-based robust positioning for all-weather autonomous driving
@@ -33,17 +38,17 @@ XAI = {
     #     "https://arxiv.org/abs/1703.10631",
     #     [R21] Attentional Bottleneck: Towards an Interpretable Deep Driving Network
     #     "https://arxiv.org/abs/2005.04298",
-    #     [R27]
-    #     "https://onlinelibrary.wiley.com/doi/full/10.1002/ail2.56",
-    #     [R28] Advisable Learning for Self-Driving Vehicles by Internalizing Observation-to-Action Rules
-    #     "https://ieeexplore.ieee.org/abstract/document/9157238",
-    #     [R35] Towards Explainable Motion Prediction using Heterogeneous Graph Representations
-    #     "https://arxiv.org/abs/2212.03806",
     #     [R38] Explaining Autonomous Driving by Learning End-to-End Visual Attention
     #     "https://arxiv.org/abs/2006.03347",
     #     [R39] Visual Explanation by Attention Branch Network for End-to-end Learning-based Self-driving
     #     "https://ieeexplore.ieee.org/document/8813900",
     #     [R41] Deep Object-Centric Policies for Autonomous Driving
     #     "https://arxiv.org/abs/1811.05432",
+    #     [R28] Advisable Learning for Self-Driving Vehicles by Internalizing Observation-to-Action Rules
+    #     "https://ieeexplore.ieee.org/abstract/document/9157238",
+    #     [R35] Towards Explainable Motion Prediction using Heterogeneous Graph Representations
+    #     "https://arxiv.org/abs/2212.03806",
+    #     [R27]
+    #     "https://onlinelibrary.wiley.com/doi/full/10.1002/ail2.56",
     # ],
 }
