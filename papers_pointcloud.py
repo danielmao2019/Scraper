@@ -1,4 +1,0 @@
-pointcloud = {
-    # 'pointcloud': [
-    # ]
-}

@@ -5,13 +5,7 @@ import requests
 import argparse
 
 from code_names_mapping import mapping
-from papers_old_list import old_list
-from papers_pointcloud import pointcloud
-from papers_XAI import XAI
-from papers_VAE import VAE
-from papers_diffusion import diffusion
-from papers_NERF import NERF
-from papers_finance import finance
+from papers_tmp import papers_tmp
 
 
 import logging
@@ -126,16 +120,21 @@ def main(url_dict, src=None, dst=None):
             url_list = url_dict[group]
             logging.info(f"Processing group '{group}'." + (
                 " Nothing given." if len(url_list) == 0 else f" {len(url_list)} urls found."))
-            url_set = set(url_list)
-            if len(url_set) != len(url_list):
-                logging.info(f"Provided list contains duplicates. Reduced to {len(url_set)} papers.")
-            dst = f"temp_{group}.md"
+            # get unique urls and preserve original order
+            url_list_unique = []
+            for url in url_list:
+                if url not in url_list_unique:
+                    url_list_unique.append(url)
+            if len(url_list_unique) != len(url_list):
+                logging.info(f"Provided list contains duplicates. Reduced to {len(url_list_unique)} papers.")
+            # iterate through unique url list and scrape each
+            dst = f"scraped_papers_{group}.md"
             with open(dst, mode='w', encoding='utf8') as f:
-                for idx, url in enumerate(url_set):
-                    logging.info(f"[{idx+1}/{len(url_set)}] Scraping {url}")
+                for idx, url in enumerate(url_list_unique):
+                    logging.info(f"[{idx+1}/{len(url_list_unique)}] Scraping {url}")
                     f.write(scrape_single(url))
     logging.info(f"Process terminated.")
 
 
 if __name__ == "__main__":
-    main(url_dict=old_list)
+    main(url_dict=papers_tmp)

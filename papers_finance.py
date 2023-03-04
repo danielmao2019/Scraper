@@ -1,4 +1,0 @@
-finance = {
-    # 'delta_hedging': [
-    # ],
-}

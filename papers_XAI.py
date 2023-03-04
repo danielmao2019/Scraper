@@ -48,7 +48,53 @@ XAI = {
     #     "https://ieeexplore.ieee.org/abstract/document/9157238",
     #     [R35] Towards Explainable Motion Prediction using Heterogeneous Graph Representations
     #     "https://arxiv.org/abs/2212.03806",
-    #     [R27]
+    #     [R27] Toward explainable and advisable model for self-driving cars
     #     "https://onlinelibrary.wiley.com/doi/full/10.1002/ail2.56",
+    # Explainable and Advisable Learning for Self-driving Vehicles
+    # "https://escholarship.org/uc/item/1b97h2dg"
+    # Pay Attention via Binarization: Enhancing Explainability of Neural Networks via Binarization of Activation
+    # "https://ieeexplore.ieee.org/document/9937289"
+    # Explainable Deep Driving by Visualizing Causal Attention
+    # "https://link.springer.com/chapter/10.1007/978-3-319-98131-4_8"
+    # Pay Attention via Quantization: Enhancing Explainability of Neural Networks via Quantized Activation
+    # "https://ieeexplore.ieee.org/document/10092762"
     # ],
+    # 'evaluation_methods': [
+    # Leakage-Adjusted Simulatability: Can Models Generate Non-Trivial Explanations of Their Behavior in Natural Language?
+    # "https://arxiv.org/abs/2010.04119",
+    # A Benchmark for Interpretability Methods in Deep Neural Networks
+    # "https://arxiv.org/abs/1806.10758",
+    # Evaluating the visualization of what a Deep Neural Network has learned
+    # "https://arxiv.org/abs/1509.06321",
+    # Notions of explainability and evaluation approaches for explainable artificial intelligence
+    # "https://www.sciencedirect.com/science/article/pii/S1566253521001093",
+    # An Evaluation of the Human-Interpretability of Explanation
+    # "https://arxiv.org/abs/1902.00006",
+    # Understanding the decisions of CNNs: An in-model approach
+    # "https://www.sciencedirect.com/science/article/pii/S0167865520301240",
+    # Measuring the Quality of Explanations: The System Causability Scale (SCS). Comparing Human and Machine Explanations
+    # "https://arxiv.org/abs/1912.09024",
+    # Evaluation Metrics in Explainable Artificial Intelligence (XAI)
+    # "https://link.springer.com/chapter/10.1007/978-3-031-20319-0_30",
+    # XAI Evaluation: Evaluating Black-Box Model Explanations for Prediction
+    # "https://ieeexplore.ieee.org/document/9472817",
+    # Evaluating human understanding in XAI systems
+    # "https://hfast.mie.utoronto.ca/wp-content/uploads/HCXAI2021_paper_25.pdf",
+    # Better Metrics for Evaluating Explainable Artificial Intelligence
+    # "https://www.ifaamas.org/Proceedings/aamas2021/pdfs/p45.pdf",
+    # A Trustworthy View on XAI Method Evaluation
+    # "https://www.techrxiv.org/articles/preprint/A_Trustworthy_View_on_XAI_Method_Evaluation/21067438",
+    # The Effects of Meaningful and Meaningless Explanations on Trust and Perceived System Accuracy in Intelligent Systems
+    # "https://ojs.aaai.org/index.php/HCOMP/article/view/5284",
+    # ],
+    # 'evaluation_surveys': [
+    # From Anecdotal Evidence to Quantitative Evaluation Methods: A Systematic Review on Evaluating Explainable AI
+    # "https://arxiv.org/abs/2201.08164",
+    # A Multidisciplinary Survey and Framework for Design and Evaluation of Explainable AI Systems
+    # "https://arxiv.org/abs/1811.11839",
+    # XAI Systems Evaluation: A Review of Human and Computer-Centred Methods
+    # "https://www.mdpi.com/2076-3417/12/19/9423",
+    # Evaluating the Quality of Machine Learning Explanations: A Survey on Methods and Metrics
+    # "https://www.mdpi.com/2079-9292/10/5/593",
+    # ]
 }
