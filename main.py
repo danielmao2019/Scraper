@@ -61,6 +61,34 @@ def scrape_arxiv(url):
     return string
 
 
+def scrape_openaccess(url):
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+    soup = BeautifulSoup(html, "html.parser")
+    # generate links
+    idx = url.split('/')[-1].split('.')[0]
+    url_pdf = f"https://openaccess.thecvf.com/content/CVPR2023/papers/{idx}.pdf"
+    # get title
+    title = soup.find("div", id="papertitle").text.strip()
+    # get year
+    year = idx.split('_')[-2]
+    assert 2000 <= int(year) <= 2030
+    year = f"`{year}`"
+    # get authors
+    authors = soup.find("div", id="authors").text.strip().split(';')[0]
+    # get abstract
+    abstract = soup.find("div", id="abstract").text.strip()
+    # define string
+    string = ""
+    string += f"* [[{mapping.get(title, title)}]({url})]" + '\n'
+    string += INDENT + f"[[pdf]({url_pdf})]" + '\n'
+    string += INDENT + "* Title: " + title + '\n'
+    string += INDENT + "* Year: " + year + '\n'
+    string += INDENT + "* Authors: " + authors + '\n'
+    string += INDENT + "* Abstract: " + abstract + '\n'
+    return string
+
+
 def scrape_mdpi(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -95,6 +123,8 @@ def scrape_mdpi(url):
 def scrape_single(url):
     if url.startswith("https://arxiv.org"):
         return scrape_arxiv(url)
+    if url.startswith("https://openaccess.thecvf.com"):
+        return scrape_openaccess(url)
     if url.startswith("https://www.mdpi.com/"):
         return scrape_mdpi(url)
     else:
