@@ -109,6 +109,38 @@ mapping_diffusion = {
     "Class-Balancing Diffusion Models": "Class-Balancing Diffusion Models (CBDM)",
 }
 
+mapping_mtl = {
+    # gradient manipulation
+    "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
+    # task balancing
+    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
+    # architectural solutions
+    "Cross-stitch Networks for Multi-task Learning": "Cross-stitch Networks",
+    "Latent Multi-task Architecture Learning": "Sluice Networks",
+    "NDDR-CNN: Layerwise Feature Fusing in Multi-Task CNNs by Neural Discriminative Dimensionality Reduction": "Neural Discriminative Dimensionality Reduction (NDDR)",
+    "Deep Cross Residual Learning for Multitask Visual Recognition": "Cross-Residual Learning (CRL)",
+    "Integrated perception with recurrent multi-task neural networks": "MultiNet",
+    "Recon: Reducing Conflicting Gradients from the Root for Multi-Task Learning": "Recon",
+    "Pattern-Affinitive Propagation across Depth, Surface Normal and Semantic Segmentation": "Pattern-Affinitive Propagation (PAP)",
+    "PAD-Net: Multi-Tasks Guided Prediction-and-Distillation Network for Simultaneous Depth Estimation and Scene Parsing": "PAD-Net",
+    "Joint Task-Recursive Learning for Semantic Segmentation and Depth Estimation": "Task-Recursive Learning (TRL)",
+    "MTI-Net: Multi-Scale Task Interaction Networks for Multi-Task Learning": "MTI-Net",
+    "Stochastic Filter Groups for Multi-Task CNNs: Learning Specialist and Generalist Convolution Kernels": "Stochastic Filter Groups (SFG)",
+    # others
+    "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
+    "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
+    "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
+    "Just Pick a Sign: Optimizing Deep Multitask Models with Gradient Sign Dropout": "Gradient Sign Dropout (GradDrop)",
+    "Gradient Surgery for Multi-Task Learning": "PCGrad",
+    "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
+    "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
+    "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
+    "FAMO: Fast Adaptive Multitask Optimization": "FAMO",
+    "Distral: Robust Multitask Reinforcement Learning": "Distral",
+    "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning": "Actor-Mimic",
+    "End-to-End Multi-Task Learning with Attention": "Multi-Task Attention Network (MTAN)",
+}
+
 mapping = {
     # Convolutional Neural Networks
     "InceptionNeXt: When Inception Meets ConvNeXt": "InceptionNeXt",
@@ -197,24 +229,9 @@ mapping = {
     # Neural Networks Optimization
     "ADADELTA: An Adaptive Learning Rate Method": "ADADELTA",
     "Adam: A Method for Stochastic Optimization": "Adam",
-    # Multi-Task Learning
-    "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
-    "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
-    "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
-    "Cross-stitch Networks for Multi-task Learning": "Cross-stitch Networks",
-    "Recon: Reducing Conflicting Gradients from the Root for Multi-Task Learning": "Recon",
-    "Just Pick a Sign: Optimizing Deep Multitask Models with Gradient Sign Dropout": "Gradient Sign Dropout (GradDrop)",
-    "Gradient Surgery for Multi-Task Learning": "PCGrad",
-    "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
-    "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
-    "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
-    "FAMO: Fast Adaptive Multitask Optimization": "FAMO",
-    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
-    "Distral: Robust Multitask Reinforcement Learning": "Distral",
-    "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning": "Actor-Mimic",
-    "End-to-End Multi-Task Learning with Attention": "Multi-Task Attention Network (MTAN)",
 }
 
 mapping.update(mapping_segmentation)
 mapping.update(mapping_gan)
 mapping.update(mapping_diffusion)
+mapping.update(mapping_mtl)
