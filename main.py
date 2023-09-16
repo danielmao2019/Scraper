@@ -89,6 +89,36 @@ def scrape_openaccess(url):
     return string
 
 
+def scrape_neurips(url):
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+    soup = BeautifulSoup(html, "html.parser")
+    # get title
+    title = str(soup.findAll(name="h4")[0])[4:-5]
+    # get year
+    year = re.findall(pattern="/\d\d\d\d/", string=url)
+    assert len(year) == 1
+    year = f"`{year[0][1:-1]}`"
+    # get authors
+    authors = str(soup.findAll(name="p")[1])[6:-8]
+    # get abstract
+    abstract = str(soup.findAll(name="p")[3])[3:-4]
+    # get pdf url
+    pdf_url = url
+    pdf_url = re.sub(pattern="hash", repl="file", string=pdf_url)
+    pdf_url = re.sub(pattern="Abstract", repl="Paper", string=pdf_url)
+    pdf_url = re.sub(pattern=".html", repl=".pdf", string=pdf_url)
+    # define string
+    string = ""
+    string += f"* [[{mapping.get(title, title)}]({url})]" + '\n'
+    string += INDENT + f"[[pdf]({pdf_url})]" + '\n'
+    string += INDENT + "* Title: " + title + '\n'
+    string += INDENT + "* Year: " + year + '\n'
+    string += INDENT + "* Authors: " + authors + '\n'
+    string += INDENT + "* Abstract: " + abstract + '\n'
+    return string
+
+
 def scrape_mdpi(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -125,6 +155,8 @@ def scrape_single(url):
         return scrape_arxiv(url)
     if url.startswith("https://openaccess.thecvf.com"):
         return scrape_openaccess(url)
+    if url.startswith("https://papers.nips.cc"):
+        return scrape_neurips(url)
     if url.startswith("https://www.mdpi.com/"):
         return scrape_mdpi(url)
     else:
