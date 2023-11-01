@@ -1,11 +1,25 @@
+from typing import List
 import os
 from urllib.request import urlopen
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
+import re
 import argparse
 
 
 class GetPaperList:
+
+    papers_count_cvpr = {
+        2018: 367 + 370 + 242,
+        2019: 431 + 432 + 431,
+        2020: 483 + 480 + 503,
+        2022: 2074,
+    }
+
+    papers_count_iccv = {
+        2019: 294 + 153 + 318 + 310,
+        2023: 2156,
+    }
 
     papers_count_neurips = {
         2012: 370,
@@ -21,17 +35,68 @@ class GetPaperList:
         2022: 2834,
     }
 
-    paper_lists_root = "/home/d6mao/repos/Machine-Learning-Knowledge-Base/papers-cv/_paper_lists_"
+    # assume this file is located under a directory ("Scraper") that is in paralle to "Machine-Learning-Knowledge-Base"
+    paper_lists_root = "../Machine-Learning-Knowledge-Base/papers-cv/_paper_lists_"
 
-    @staticmethod
-    def get_papers_neurips(year: int = None):
-        url = f"https://papers.nips.cc/paper_files/paper/{year}"
+    def get_urls_cvf(
+        self,
+        conference: str = None,
+        year: int = None,
+    ) -> List[str]:
+        base_url = f"https://openaccess.thecvf.com/{conference.upper()}{year}"
+        if conference == "wacv":
+            return [base_url]
+        page = urlopen(base_url)
+        html = page.read().decode("utf-8")
+        soup = BeautifulSoup(html, "html.parser")
+        content = soup.find(name='div', id="content")
+        urls = content.findAll('a')
+        if "day=all" in urls[-1]['href']:
+            urls = urls[-1:]
+        urls = [re.sub(pattern=".py", repl="", string=url['href']) for url in urls]
+        return [urljoin(base_url, url) for url in urls]
+
+    def get_url_neurips(self, year: int = None):
+        return f"https://papers.nips.cc/paper_files/paper/{year}"
+
+    def get_papers_cvf(
+        self,
+        conference: str = None,
+        year: int = None,
+    ) -> None:
+        urls = self.get_urls_cvf(conference, year)
+        papers = []
+        for url in urls:
+            page = urlopen(url)
+            html = page.read().decode("utf-8")
+            soup = BeautifulSoup(html, "html.parser")
+            papers += soup.findAll(name='dt', class_="ptitle")
+        assert len(papers) == getattr(self, f"papers_count_{conference}")[year], f"{len(papers)=}"
+        filepath = os.path.join(self.paper_lists_root, f"{conference}/{conference}{year}.txt")
+        with open(filepath, mode='w') as f:
+            for dt in papers:
+                a = dt.find('a')
+                f.write(a.text.strip() + '\n')
+                f.write(urljoin("https://openaccess.thecvf.com", a['href']) + '\n')
+                f.write('\n')
+
+    def get_papers_cvpr(self, year: int = None):
+        self.get_papers_cvf("cvpr", year)
+
+    def get_papers_iccv(self, year: int = None):
+        self.get_papers_cvf("iccv", year)
+
+    def get_papers_wacv(self, year: int = None):
+        self.get_papers_cvf("wacv", year)
+
+    def get_papers_neurips(self, year: int = None):
+        url = self.get_url_neurips(year)
         page = urlopen(url)
         html = page.read().decode("utf-8")
         soup = BeautifulSoup(html, "html.parser")
         papers = soup.findAll(name='a', title="paper title")
-        assert len(papers) == GetPaperList.papers_count_neurips[year], f"{len(papers)=}"
-        filepath = os.path.join(GetPaperList.paper_lists_root, f"neurips/neurips{year}.txt")
+        assert len(papers) == self.papers_count_neurips[year], f"{len(papers)=}"
+        filepath = os.path.join(self.paper_lists_root, f"neurips/neurips{year}.txt")
         with open(filepath, mode='w') as f:
             for a in papers:
                 f.write(a.text.strip() + '\n')
@@ -44,5 +109,6 @@ if __name__ == "__main__":
     parser.add_argument('-c', '--conference', type=str)
     parser.add_argument('-y', '--year', type=int)
     args = parser.parse_args()
-    method = getattr(GetPaperList, f"get_papers_{args.conference}")
+    getter = GetPaperList()
+    method = getattr(getter, f"get_papers_{args.conference}")
     method(args.year)

@@ -27,8 +27,10 @@ mapping_segmentation = {
 mapping_mtl = {
     # gradient manipulation
     "Multi-Task Learning as Multi-Objective Optimization": "Multiple Gradient Descent Algorithm (MGDA)",
+    "Gradient Surgery for Multi-Task Learning": "PCGrad",
     "Gradient Vaccine: Investigating and Improving Multi-task Optimization in Massively Multilingual Models": "Gradient Vaccine (GradVac)",
     "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
+    "Conflict-Averse Gradient Descent for Multi-task learning": "CAGrad",
     # task balancing
     "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
     "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
@@ -41,8 +43,10 @@ mapping_mtl = {
     "Latent Multi-task Architecture Learning": "Sluice Networks",
     "NDDR-CNN: Layerwise Feature Fusing in Multi-Task CNNs by Neural Discriminative Dimensionality Reduction": "Neural Discriminative Dimensionality Reduction (NDDR)",
     "CrossInfoNet: Multi-Task Information Sharing Based Hand Pose Estimation": "CrossInfoNet",
-    ## feature selection
+    ## self-attention
+    ## cross-attention
     "Exploring Relational Context for Multi-Task Dense Prediction": "Adaptive Task-Relational Context (ATRC)",
+    "Cross-Task Attention Mechanism for Dense Multi-Task Learning": "Cross-Task Attention Mechanism (xTAM), Multi-Task Exchange Block (mTEB)",
     ## others
     "Deep Cross Residual Learning for Multitask Visual Recognition": "Cross-Residual Learning (CRL)",
     "Integrated perception with recurrent multi-task neural networks": "MultiNet",

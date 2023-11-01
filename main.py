@@ -145,15 +145,18 @@ def scrape_eccv(url):
 
 
 def scrape_neurips(url):
-    page = urlopen(url)
+    try:
+        page = urlopen(url)
+    except:
+        raise RuntimeError(f"[ERROR] Exceptions raised when opening {url}.")
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     # get title
     title = str(soup.findAll(name="h4")[0])[4:-5]
     # get year
-    year = re.findall(pattern="/\d\d\d\d/", string=url)
+    year = re.findall(pattern="/(\d\d\d\d)/", string=url)
     assert len(year) == 1
-    year = f"`{year[0][1:-1]}`"
+    year = year[0]
     # get authors
     authors = str(soup.findAll(name="p")[1])[6:-8]
     # get abstract
@@ -165,12 +168,13 @@ def scrape_neurips(url):
     pdf_url = re.sub(pattern=".html", repl=".pdf", string=pdf_url)
     # define string
     string = ""
-    string += f"* [[{mapping.get(title, title)}]({url})]" + '\n'
-    string += INDENT + f"[[pdf]({pdf_url})]" + '\n'
-    string += INDENT + "* Title: " + title + '\n'
-    string += INDENT + "* Year: " + year + '\n'
-    string += INDENT + "* Authors: " + authors + '\n'
-    string += INDENT + "* Abstract: " + abstract + '\n'
+    string += f"* {mapping.get(title, title)}\n"
+    string += f"{INDENT}[[abs-NeurIPS]({url})]\n"
+    string += f"{INDENT}[[pdf-NeurIPS]({pdf_url})]\n"
+    string += f"{INDENT}* Title: {title}\n"
+    string += f"{INDENT}* Year: `{year}`\n"
+    string += f"{INDENT}* Authors: {authors}\n"
+    string += f"{INDENT}* Abstract: {abstract}\n"
     return string
 
 
