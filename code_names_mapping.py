@@ -1,3 +1,8 @@
+mapping_cnns = {
+    "Perturbative Neural Networks": "Perturbative Neural Networks (PNNs)",
+    "FOSNet: An End-to-End Trainable Deep Neural Network for Scene Recognition": "FOS, SCL",
+}
+
 mapping_segmentation = {
     # DeepLab Family
     "Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs": "DeepLab-v1",
@@ -19,7 +24,65 @@ mapping_segmentation = {
     "SegDiff: Image Segmentation with Diffusion Probabilistic Models": "SegDiff",
 }
 
-mapping_gan = {
+mapping_mtl = {
+    # gradient manipulation
+    "Multi-Task Learning as Multi-Objective Optimization": "Multiple Gradient Descent Algorithm (MGDA)",
+    "Gradient Vaccine: Investigating and Improving Multi-task Optimization in Massively Multilingual Models": "Gradient Vaccine (GradVac)",
+    "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
+    # task balancing
+    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
+    "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
+    # architectural solutions
+    ## architecture design
+    "HyperFace: A Deep Multi-task Learning Framework for Face Detection, Landmark Localization, Pose Estimation, and Gender Recognition": "HyperFace",
+    "MT-ORL: Multi-Task Occlusion Relationship Learning": "Occlusion-shared and Path-separated Network (OPNet)",
+    ## feature fusion
+    "Cross-stitch Networks for Multi-task Learning": "Cross-stitch Networks",
+    "Latent Multi-task Architecture Learning": "Sluice Networks",
+    "NDDR-CNN: Layerwise Feature Fusing in Multi-Task CNNs by Neural Discriminative Dimensionality Reduction": "Neural Discriminative Dimensionality Reduction (NDDR)",
+    "CrossInfoNet: Multi-Task Information Sharing Based Hand Pose Estimation": "CrossInfoNet",
+    ## feature selection
+    "Exploring Relational Context for Multi-Task Dense Prediction": "Adaptive Task-Relational Context (ATRC)",
+    ## others
+    "Deep Cross Residual Learning for Multitask Visual Recognition": "Cross-Residual Learning (CRL)",
+    "Integrated perception with recurrent multi-task neural networks": "MultiNet",
+    "Recon: Reducing Conflicting Gradients from the Root for Multi-Task Learning": "Recon",
+    ## task information distillation
+    "PAD-Net: Multi-Tasks Guided Prediction-and-Distillation Network for Simultaneous Depth Estimation and Scene Parsing": "Prediction-and-Distillation (PAD) Networks",
+    "Joint Task-Recursive Learning for Semantic Segmentation and Depth Estimation": "Task-Recursive Learning (TRL)",
+    "Pattern-Affinitive Propagation across Depth, Surface Normal and Semantic Segmentation": "Pattern-Affinitive Propagation (PAP)",
+    "MTI-Net: Multi-Scale Task Interaction Networks for Multi-Task Learning": "Multi-Scale Task Interaction (MTI) Networks",
+    ## knowledge distillation
+    "TaskExpert: Dynamically Assembling Multi-Task Representations with Memorial Mixture-of-Experts": "Memorial Mixture-of-Experts (MMoE)",
+    ## others
+    "Stochastic Filter Groups for Multi-Task CNNs: Learning Specialist and Generalist Convolution Kernels": "Stochastic Filter Groups (SFG)",
+    "Mitigating Task Interference in Multi-Task Learning via Explicit Task Routing with Non-Learnable Primitives": "ETR-NLP",
+    "Many Task Learning with Task Routing": "Many Task Learning (MaTL), Task Routing Layer (TRL)",
+    "Mitigating Task Interference in Multi-Task Learning via Explicit Task Routing with Non-Learnable Primitives": "Explicit Task Routing (ETR), Non-Learnable Primitives (NLPs)",
+    # architecture search
+    "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
+    # others
+    "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
+    "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
+    "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
+    "Just Pick a Sign: Optimizing Deep Multitask Models with Gradient Sign Dropout": "Gradient Sign Dropout (GradDrop)",
+    "Gradient Surgery for Multi-Task Learning": "PCGrad",
+    "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
+    "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
+    "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
+    "FAMO: Fast Adaptive Multitask Optimization": "FAMO",
+    "Distral: Robust Multitask Reinforcement Learning": "Distral",
+    "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning": "Actor-Mimic",
+    "End-to-End Multi-Task Learning with Attention": "Multi-Task Attention Network (MTAN)",
+    "Independent Component Alignment for Multi-Task Learning": "Aligned-MTL",
+    "Learning Multiple Tasks with Multilinear Relationship Networks": "Multilinear Relationship Networks (MRN)",
+    "Decoupled Multi-task Learning with Cyclical Self-Regulation for Face Parsing": "DML-CSR",
+    # continual learning
+    "Learning to Learn without Forgetting by Maximizing Transfer and Minimizing Interference": "Meta-Experience Replay (MER)",
+    "Batch Model Consolidation: A Multi-Task Model Consolidation Framework": "Batch Model Consolidation (BMC)",
+}
+
+mapping_gan_2D = {
     # GAN Inversion
     "Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?": "Image2StyleGAN",
     "Image2StyleGAN++: How to Edit the Embedded Images?": "Image2StyleGAN++",
@@ -50,10 +113,14 @@ mapping_gan = {
     "Classification Accuracy Score for Conditional Generative Models": "Classification Accuracy Score (CAS)",
 }
 
-mapping_diffusion = {
+mapping_gan_3D = {
+    "3D-aware Image Synthesis via Learning Structural and Textural Representations": "VolumeGAN",
+}
+
+mapping_diffusion_2D = {
     # Denoising Diffusion Probabilistic Models (DDPMs)
     "Denoising Diffusion Probabilistic Models": "DDPM",
-    "Denoising Diffusion Implicit Models": "DDIM",
+    "Denoising Diffusion Implicit Models": "Denoising Diffusion Implicit Models (DDIM)",
     "gDDIM: Generalized denoising diffusion implicit models": "gDDIM",
     "ILVR: Conditioning Method for Denoising Diffusion Probabilistic Models": "ILVR",
     "Improved Denoising Diffusion Probabilistic Models": "Improved DDPM",
@@ -63,6 +130,8 @@ mapping_diffusion = {
     "High-Resolution Image Synthesis with Latent Diffusion Models": "Stable Diffusion",
     "Learning Fast Samplers for Diffusion Models by Differentiating Through Sample Quality": "Differentiable Diffusion Sampler Search",
     # conditional generation
+    "Diffusion Models Beat GANs on Image Synthesis": "Classifier Guidance",
+    "Classifier-Free Diffusion Guidance": "Classifier-Free Guidance",
     "BBDM: Image-to-image Translation with Brownian Bridge Diffusion Models": "Brownian Bridge Diffusion Model (BBDM)",
     # discrete latent space
     "Neural Discrete Representation Learning": "Vector Quantised-Variational AutoEncoder (VQ-VAE)",
@@ -109,36 +178,64 @@ mapping_diffusion = {
     "Class-Balancing Diffusion Models": "Class-Balancing Diffusion Models (CBDM)",
 }
 
-mapping_mtl = {
-    # gradient manipulation
-    "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
-    # task balancing
-    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
-    # architectural solutions
-    "Cross-stitch Networks for Multi-task Learning": "Cross-stitch Networks",
-    "Latent Multi-task Architecture Learning": "Sluice Networks",
-    "NDDR-CNN: Layerwise Feature Fusing in Multi-Task CNNs by Neural Discriminative Dimensionality Reduction": "Neural Discriminative Dimensionality Reduction (NDDR)",
-    "Deep Cross Residual Learning for Multitask Visual Recognition": "Cross-Residual Learning (CRL)",
-    "Integrated perception with recurrent multi-task neural networks": "MultiNet",
-    "Recon: Reducing Conflicting Gradients from the Root for Multi-Task Learning": "Recon",
-    "Pattern-Affinitive Propagation across Depth, Surface Normal and Semantic Segmentation": "Pattern-Affinitive Propagation (PAP)",
-    "PAD-Net: Multi-Tasks Guided Prediction-and-Distillation Network for Simultaneous Depth Estimation and Scene Parsing": "PAD-Net",
-    "Joint Task-Recursive Learning for Semantic Segmentation and Depth Estimation": "Task-Recursive Learning (TRL)",
-    "MTI-Net: Multi-Scale Task Interaction Networks for Multi-Task Learning": "MTI-Net",
-    "Stochastic Filter Groups for Multi-Task CNNs: Learning Specialist and Generalist Convolution Kernels": "Stochastic Filter Groups (SFG)",
-    # others
-    "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
-    "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
-    "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
-    "Just Pick a Sign: Optimizing Deep Multitask Models with Gradient Sign Dropout": "Gradient Sign Dropout (GradDrop)",
-    "Gradient Surgery for Multi-Task Learning": "PCGrad",
-    "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
-    "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
-    "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
-    "FAMO: Fast Adaptive Multitask Optimization": "FAMO",
-    "Distral: Robust Multitask Reinforcement Learning": "Distral",
-    "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning": "Actor-Mimic",
-    "End-to-End Multi-Task Learning with Attention": "Multi-Task Attention Network (MTAN)",
+mapping_diffusion_3D = {
+    "Unconstrained Scene Generation with Locally Conditioned Radiance Fields": "Generative Scene Networks (GSN)",
+    "3D Shape Generation and Completion through Point-Voxel Diffusion": "Point-Voxel Diffusion (PVD)",
+}
+
+mapping_nerf = {
+    # NeRF
+    "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis": "NeRF",
+    "Stable View Synthesis": "Stable View Synthesis (SVS)",
+    ## Dynamic Scene
+    "Non-Rigid Neural Radiance Fields: Reconstruction and Novel View Synthesis of a Dynamic Scene From Monocular Video": "NR-NeRF",
+    "NeX: Real-time View Synthesis with Neural Basis Expansion": "NeX",
+    "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections": "NeRF in the Wild",
+    "GRAF: Generative Radiance Fields for 3D-Aware Image Synthesis": "GRAF",
+    "Neural Volumes: Learning Dynamic Renderable Volumes from Images": "Neural Volumes",
+    "AtlasNet: A Papier-Mâché Approach to Learning 3D Surface Generation": "AtlasNet",
+    "DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation": "DeepSDF",
+    "NeRF--: Neural Radiance Fields Without Known Camera Parameters": "NeRF--",
+    "TensoRF: Tensorial Radiance Fields": "TensoRF",
+    "Neural Sparse Voxel Fields": "NSVF",
+    # NeRF - Fundamentals
+    "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields": "Mip-NeRF",
+    "Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields": "Mip-NeRF 360",
+    # NeRF - Performance
+    "Point-NeRF: Point-based Neural Radiance Fields": "Point-NeRF",
+    "Plenoxels: Radiance Fields without Neural Networks": "Plenoxels",
+    "PlenOctrees for Real-time Rendering of Neural Radiance Fields": "PlenOctrees",
+    "Fourier PlenOctrees for Dynamic Radiance Field Rendering in Real-time": "Fourier PlenOctrees",
+    "EfficientNeRF: Efficient Neural Radiance Fields": "EfficientNeRF",
+    "Direct Voxel Grid Optimization: Super-fast Convergence for Radiance Fields Reconstruction": "DVGO",
+    "FastNeRF: High-Fidelity Neural Rendering at 200FPS": "FastNeRF",
+    # NeRF - Others
+    "MobileNeRF: Exploiting the Polygon Rasterization Pipeline for Efficient Neural Field Rendering on Mobile Architectures": "MobileNeRF",
+    "NeRF++: Analyzing and Improving Neural Radiance Fields": "NeRF++",
+    "GeoNeRF: Generalizing NeRF with Geometry Priors": "GeoNeRF",
+    "NAN: Noise-Aware NeRFs for Burst-Denoising": "NAN",
+    "NeRFusion: Fusing Radiance Fields for Large-Scale Scene Reconstruction": "NeRFusion",
+    "Depth-supervised NeRF: Fewer Views and Faster Training for Free": "Depth-supervised NeRF",
+    "InfoNeRF: Ray Entropy Minimization for Few-Shot Neural Volume Rendering": "InfoNeRF",
+    "Ray Priors through Reprojection: Improving Neural Radiance Fields for Novel View Extrapolation": "RapNeRF",
+    "RegNeRF: Regularizing Neural Radiance Fields for View Synthesis from Sparse Inputs": "RegNeRF",
+    "Aug-NeRF: Training Stronger Neural Radiance Fields with Triple-Level Physically-Grounded Augmentations": "Aug-NeRF",
+    "Deblur-NeRF: Neural Radiance Fields from Blurry Images": "Deblur-NeRF",
+    "DIVeR: Real-time and Accurate Neural Radiance Fields with Deterministic Integration for Volume Rendering": "DIVeR",
+    "Hallucinated Neural Radiance Fields in the Wild": "Ha-NeRF",
+    "HDR-NeRF: High Dynamic Range Neural Radiance Fields": "HDR-NeRF",
+    "NeRF in the Dark: High Dynamic Range View Synthesis from Noisy Raw Images": "NeRF in the Dark",
+    "NeRFReN: Neural Radiance Fields with Reflections": "NeRFReN",
+    "Neural Rays for Occlusion-aware Image-based Rendering": "NeuRay",
+    "Ref-NeRF: Structured View-Dependent Appearance for Neural Radiance Fields": "Ref-NeRF",
+    "Scene Representation Transformer: Geometry-Free Novel View Synthesis Through Set-Latent Scene Representations": "SRT",
+    "Mega-NeRF: Scalable Construction of Large-Scale NeRFs for Virtual Fly-Throughs": "Mega-NeRF",
+    "Block-NeRF: Scalable Large Scene Neural View Synthesis": "Block-NeRF",
+}
+
+mapping_geometric = {
+    "Learning Deformable Tetrahedral Meshes for 3D Reconstruction": "Deformable Tetrahedral Meshes (DefTet)",
+    "Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis": "Deep Marching Tetrahedra (DMTet)",
 }
 
 mapping = {
@@ -182,56 +279,17 @@ mapping = {
     "SmoothGrad: removing noise by adding noise": "SmoothGrad",
     "Attention Branch Network: Learning of Attention Mechanism for Visual Explanation": "Attention Branch Network",
     "VisualBackProp: efficient visualization of CNNs": "VisualBackProp",
-    # NeRF
-    "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis": "NeRF",
-    "NeX: Real-time View Synthesis with Neural Basis Expansion": "NeX",
-    "NeRF in the Wild: Neural Radiance Fields for Unconstrained Photo Collections": "NeRF in the Wild",
-    "GRAF: Generative Radiance Fields for 3D-Aware Image Synthesis": "GRAF",
-    "Neural Volumes: Learning Dynamic Renderable Volumes from Images": "Neural Volumes",
-    "AtlasNet: A Papier-Mâché Approach to Learning 3D Surface Generation": "AtlasNet",
-    "DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation": "DeepSDF",
-    "NeRF--: Neural Radiance Fields Without Known Camera Parameters": "NeRF--",
-    "TensoRF: Tensorial Radiance Fields": "TensoRF",
-    "Neural Sparse Voxel Fields": "NSVF",
-    # NeRF - Fundamentals
-    "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields": "Mip-NeRF",
-    "Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields": "Mip-NeRF 360",
-    # NeRF - Performance
-    "Point-NeRF: Point-based Neural Radiance Fields": "Point-NeRF",
-    "Plenoxels: Radiance Fields without Neural Networks": "Plenoxels",
-    "PlenOctrees for Real-time Rendering of Neural Radiance Fields": "PlenOctrees",
-    "Fourier PlenOctrees for Dynamic Radiance Field Rendering in Real-time": "Fourier PlenOctrees",
-    "EfficientNeRF: Efficient Neural Radiance Fields": "EfficientNeRF",
-    "Direct Voxel Grid Optimization: Super-fast Convergence for Radiance Fields Reconstruction": "DVGO",
-    "FastNeRF: High-Fidelity Neural Rendering at 200FPS": "FastNeRF",
-    # NeRF - Others
-    "MobileNeRF: Exploiting the Polygon Rasterization Pipeline for Efficient Neural Field Rendering on Mobile Architectures": "MobileNeRF",
-    "NeRF++: Analyzing and Improving Neural Radiance Fields": "NeRF++",
-    "GeoNeRF: Generalizing NeRF with Geometry Priors": "GeoNeRF",
-    "NAN: Noise-Aware NeRFs for Burst-Denoising": "NAN",
-    "NeRFusion: Fusing Radiance Fields for Large-Scale Scene Reconstruction": "NeRFusion",
-    "Depth-supervised NeRF: Fewer Views and Faster Training for Free": "Depth-supervised NeRF",
-    "InfoNeRF: Ray Entropy Minimization for Few-Shot Neural Volume Rendering": "InfoNeRF",
-    "Ray Priors through Reprojection: Improving Neural Radiance Fields for Novel View Extrapolation": "RapNeRF",
-    "RegNeRF: Regularizing Neural Radiance Fields for View Synthesis from Sparse Inputs": "RegNeRF",
-    "Aug-NeRF: Training Stronger Neural Radiance Fields with Triple-Level Physically-Grounded Augmentations": "Aug-NeRF",
-    "Deblur-NeRF: Neural Radiance Fields from Blurry Images": "Deblur-NeRF",
-    "DIVeR: Real-time and Accurate Neural Radiance Fields with Deterministic Integration for Volume Rendering": "DIVeR",
-    "Hallucinated Neural Radiance Fields in the Wild": "Ha-NeRF",
-    "HDR-NeRF: High Dynamic Range Neural Radiance Fields": "HDR-NeRF",
-    "NeRF in the Dark: High Dynamic Range View Synthesis from Noisy Raw Images": "NeRF in the Dark",
-    "NeRFReN: Neural Radiance Fields with Reflections": "NeRFReN",
-    "Neural Rays for Occlusion-aware Image-based Rendering": "NeuRay",
-    "Ref-NeRF: Structured View-Dependent Appearance for Neural Radiance Fields": "Ref-NeRF",
-    "Scene Representation Transformer: Geometry-Free Novel View Synthesis Through Set-Latent Scene Representations": "SRT",
-    "Mega-NeRF: Scalable Construction of Large-Scale NeRFs for Virtual Fly-Throughs": "Mega-NeRF",
-    "Block-NeRF: Scalable Large Scene Neural View Synthesis": "Block-NeRF",
     # Neural Networks Optimization
     "ADADELTA: An Adaptive Learning Rate Method": "ADADELTA",
     "Adam: A Method for Stochastic Optimization": "Adam",
 }
 
+mapping.update(mapping_cnns)
 mapping.update(mapping_segmentation)
-mapping.update(mapping_gan)
-mapping.update(mapping_diffusion)
 mapping.update(mapping_mtl)
+mapping.update(mapping_gan_2D)
+mapping.update(mapping_gan_3D)
+mapping.update(mapping_diffusion_2D)
+mapping.update(mapping_diffusion_3D)
+mapping.update(mapping_nerf)
+mapping.update(mapping_geometric)
