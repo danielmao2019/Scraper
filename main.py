@@ -1,6 +1,7 @@
 import re
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+from urllib.parse import urljoin
 import requests
 import argparse
 
@@ -12,7 +13,7 @@ import logging
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
 
 
-INDENT = "    "
+INDENT = ' ' * 4
 
 
 def get_all_urls(src):
@@ -30,7 +31,6 @@ def scrape_arxiv(url):
     idx = url.split('/')[-1]
     url_abs = url
     url_pdf = f"https://arxiv.org/pdf/{idx}.pdf"
-    url_van = f"https://www.arxiv-vanity.com/papers/{idx}/"
     # get title
     title = soup.find("h1", class_="title mathjax").text.strip()
     title = re.sub(pattern=r"Title: *", repl="", string=title)
@@ -51,9 +51,9 @@ def scrape_arxiv(url):
     abstract = re.sub(pattern=r"\n+", repl=" ", string=abstract)
     # define string
     string = ""
-    string += f"* [[{mapping.get(title, title)}]({url_abs})]" + '\n'
-    string += INDENT + f"[[pdf]({url_pdf})]" + '\n'
-    string += INDENT + f"[[vanity]({url_van})]" + '\n'
+    string += f"* {mapping.get(title, title)}" + '\n'
+    string += INDENT + f"[[abs-arXiv]({url_abs})]" + '\n'
+    string += INDENT + f"[[pdf-arXiv]({url_pdf})]" + '\n'
     string += INDENT + "* Title: " + title + '\n'
     string += INDENT + "* Year: " + year + '\n'
     string += INDENT + "* Authors: " + authors + '\n'
@@ -61,27 +61,82 @@ def scrape_arxiv(url):
     return string
 
 
+def _abs2pdf_(
+    abs_url: str = None,
+    soup: BeautifulSoup = None,
+) -> str:
+    path = soup.find("a", string="pdf")['href']
+    pdf_url = urljoin(base=abs_url, url=path)
+    # check if new url exists
+    r = requests.get(pdf_url)
+    assert r.status_code == 200, f"{r.status_code=}, {abs_url=}, {pdf_url=}"
+    return pdf_url
+
+
 def scrape_openaccess(url):
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     # generate links
-    idx = url.split('/')[-1].split('.')[0]
-    url_pdf = f"https://openaccess.thecvf.com/content/CVPR2023/papers/{idx}.pdf"
+    url_pdf = _abs2pdf_(url, soup)
     # get title
     title = soup.find("div", id="papertitle").text.strip()
     # get year
-    year = idx.split('_')[-2]
+    conf_string = url.split('/')[-3]
+    conf_name = re.findall(pattern="(cvpr|iccv|wacv)", string=conf_string.lower())
+    assert len(conf_name) == 1
+    conf_name = conf_name[0].upper()
+    year = re.findall(pattern=r"\d\d\d\d", string=conf_string)
+    assert len(year) == 1, f"{conference=}, {year=}"
+    year = year[0]
     assert 2000 <= int(year) <= 2030
-    year = f"`{year}`"
     # get authors
     authors = soup.find("div", id="authors").text.strip().split(';')[0]
     # get abstract
     abstract = soup.find("div", id="abstract").text.strip()
+    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
     # define string
     string = ""
-    string += f"* [[{mapping.get(title, title)}]({url})]" + '\n'
-    string += INDENT + f"[[pdf]({url_pdf})]" + '\n'
+    string += f"* {mapping.get(title, title)}\n"
+    string += f"{INDENT}[[abs-{conf_name}]({url})]\n"
+    string += f"{INDENT}[[pdf-{conf_name}]({url_pdf})]\n"
+    string += f"{INDENT}* Title: {title}\n"
+    string += f"{INDENT}* Year: `{year}`\n"
+    string += f"{INDENT}* Authors: {authors}\n"
+    string += f"{INDENT}* Abstract: {abstract}\n"
+    return string
+
+
+def scrape_eccv(url):
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+    soup = BeautifulSoup(html, "html.parser")
+    # generate links
+    url_pdf = _abs2pdf_(url, soup)
+    # get title
+    title = soup.find("div", id="papertitle").text.strip()
+    # get year
+    pattern = "eccv_(\d\d\d\d)"
+    year = re.findall(pattern=pattern, string=url)
+    assert len(year) == 1, f"{url=}, {pattern=}, {year=}"
+    year = year[0]
+    assert 2000 <= int(year) <= 2030
+    year = f"`{year}`"
+    # get authors
+    authors = soup.find("div", id="authors").text.strip()
+    authors = re.sub(pattern='\n', repl="", string=authors)
+    # get abstract
+    abstract = soup.find("div", id="abstract").text.strip()
+    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
+    if abstract.startswith('\"'):
+        abstract = abstract[1:]
+    if abstract.endswith('\"'):
+        abstract = abstract[:-1]
+    # define string
+    string = ""
+    string += f"* {mapping.get(title, title)}\n"
+    string += INDENT + f"[[abs-ECCV]({url})]" + '\n'
+    string += INDENT + f"[[pdf-ECCV]({url_pdf})]" + '\n'
     string += INDENT + "* Title: " + title + '\n'
     string += INDENT + "* Year: " + year + '\n'
     string += INDENT + "* Authors: " + authors + '\n'
@@ -155,9 +210,11 @@ def scrape_single(url):
         return scrape_arxiv(url)
     if url.startswith("https://openaccess.thecvf.com"):
         return scrape_openaccess(url)
+    if url.startswith("https://www.ecva.net"):
+        return scrape_eccv(url)
     if url.startswith("https://papers.nips.cc"):
         return scrape_neurips(url)
-    if url.startswith("https://www.mdpi.com/"):
+    if url.startswith("https://www.mdpi.com"):
         return scrape_mdpi(url)
     else:
         logging.error(f"No scraper implemented for {url}.")
