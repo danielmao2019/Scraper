@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from urllib.parse import urljoin
 import requests
-import argparse
 
 from code_names_mapping import mapping
 from papers_tmp import papers_tmp
@@ -61,16 +60,62 @@ def scrape_arxiv(url):
     return string
 
 
-def _abs2pdf_(
+def _get_pdf_url_(
     abs_url: str = None,
-    soup: BeautifulSoup = None,
+    rel_pdf_url: str = None,
 ) -> str:
-    path = soup.find("a", string="pdf")['href']
-    pdf_url = urljoin(base=abs_url, url=path)
+    pdf_url = urljoin(base=abs_url, url=rel_pdf_url)
     # check if new url exists
     r = requests.get(pdf_url)
     assert r.status_code == 200, f"{r.status_code=}, {abs_url=}, {pdf_url=}"
     return pdf_url
+
+
+def _parse_conference_(conference):
+    r"""
+    Args:
+        conference (str)
+    Returns:
+        conf_name (str): name of conference.
+        conf_year (int): year of conference.
+    """
+    # get name
+    conf_name = re.findall(pattern="(cvpr|iccv|wacv|iclr)", string=conference.lower())
+    assert len(conf_name) == 1
+    conf_name = conf_name[0].upper()
+    # get year
+    conf_year = re.findall(pattern=r"\d\d\d\d", string=conference)
+    assert len(conf_year) == 1, f"{conference=}, {conf_year=}"
+    conf_year = int(conf_year[0])
+    return conf_name, conf_year
+
+
+def _remove_quotes_(string):
+    if string.startswith('\"'):
+        string = string[1:]
+    if string.endswith('\"'):
+        string = string[:-1]
+    return string
+
+
+def _compile_markdown_(
+    title: str = None,
+    abs_url: str = None,
+    pdf_url: str = None,
+    conf_name: str = None,
+    conf_year: int = None,
+    authors: str = None,
+    abstract: str = None,
+) -> str:
+    string = ""
+    string += f"* {mapping.get(title, title)}\n"
+    string += f"{INDENT}[[abs-{conf_name}]({abs_url})]\n"
+    string += f"{INDENT}[[pdf-{conf_name}]({pdf_url})]\n"
+    string += f"{INDENT}* Title: {title}\n"
+    string += f"{INDENT}* Year: `{conf_year}`\n"
+    string += f"{INDENT}* Authors: {authors}\n"
+    string += f"{INDENT}* Abstract: {abstract}\n"
+    return string
 
 
 def scrape_openaccess(url):
@@ -78,33 +123,43 @@ def scrape_openaccess(url):
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     # generate links
-    url_pdf = _abs2pdf_(url, soup)
+    rel_pdf_url = soup.find("a", string="pdf")['href']
+    pdf_url = _get_pdf_url_(url, rel_pdf_url)
     # get title
     title = soup.find("div", id="papertitle").text.strip()
-    # get year
-    conf_string = url.split('/')[-3]
-    conf_name = re.findall(pattern="(cvpr|iccv|wacv)", string=conf_string.lower())
-    assert len(conf_name) == 1
-    conf_name = conf_name[0].upper()
-    year = re.findall(pattern=r"\d\d\d\d", string=conf_string)
-    assert len(year) == 1, f"{conference=}, {year=}"
-    year = year[0]
-    assert 2000 <= int(year) <= 2030
+    # get conference
+    conference = url.split('/')[-3]
+    conf_name, conf_year = _parse_conference_(conference)
     # get authors
     authors = soup.find("div", id="authors").text.strip().split(';')[0]
     # get abstract
     abstract = soup.find("div", id="abstract").text.strip()
     abstract = re.sub(pattern='\n', repl=" ", string=abstract)
-    # define string
-    string = ""
-    string += f"* {mapping.get(title, title)}\n"
-    string += f"{INDENT}[[abs-{conf_name}]({url})]\n"
-    string += f"{INDENT}[[pdf-{conf_name}]({url_pdf})]\n"
-    string += f"{INDENT}* Title: {title}\n"
-    string += f"{INDENT}* Year: `{year}`\n"
-    string += f"{INDENT}* Authors: {authors}\n"
-    string += f"{INDENT}* Abstract: {abstract}\n"
-    return string
+    # compile markdown
+    markdown = _compile_markdown_(title, url, pdf_url, conf_name, conf_year, authors, abstract)
+    return markdown
+
+
+def scrape_openreview(url):
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+    soup = BeautifulSoup(html, "html.parser")
+    # generate links
+    rel_pdf_url = soup.find('a', title="Download PDF")['href']
+    pdf_url = _get_pdf_url_(url, rel_pdf_url)
+    # get title
+    title = soup.find('h2', class_="note_content_title citation_title").text.strip()
+    # get conference
+    conference = soup.findAll('div', class_="meta_row")[1].findAll('span', class_="item")[1].text.strip()
+    conf_name, conf_year = _parse_conference_(conference)
+    # get authors
+    authors = soup.find('h3', class_="signatures author").findAll('a')
+    authors = ", ".join([a.text.strip() for a in authors])
+    # get abstract
+    abstract = soup.findAll('span', class_="note-content-value")[1].text.strip()
+    # compile markdown
+    markdown = _compile_markdown_(title, url, pdf_url, conf_name, conf_year, authors, abstract)
+    return markdown
 
 
 def scrape_eccv(url):
@@ -112,7 +167,8 @@ def scrape_eccv(url):
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     # generate links
-    url_pdf = _abs2pdf_(url, soup)
+    rel_pdf_url = soup.find("a", string="pdf")['href']
+    pdf_url = _get_pdf_url_(url, rel_pdf_url)
     # get title
     title = soup.find("div", id="papertitle").text.strip()
     # get year
@@ -128,15 +184,12 @@ def scrape_eccv(url):
     # get abstract
     abstract = soup.find("div", id="abstract").text.strip()
     abstract = re.sub(pattern='\n', repl=" ", string=abstract)
-    if abstract.startswith('\"'):
-        abstract = abstract[1:]
-    if abstract.endswith('\"'):
-        abstract = abstract[:-1]
+    abstract = _remove_quotes_(abstract)
     # define string
     string = ""
     string += f"* {mapping.get(title, title)}\n"
     string += INDENT + f"[[abs-ECCV]({url})]" + '\n'
-    string += INDENT + f"[[pdf-ECCV]({url_pdf})]" + '\n'
+    string += INDENT + f"[[pdf-ECCV]({pdf_url})]" + '\n'
     string += INDENT + "* Title: " + title + '\n'
     string += INDENT + "* Year: " + year + '\n'
     string += INDENT + "* Authors: " + authors + '\n'
@@ -160,7 +213,9 @@ def scrape_neurips(url):
     # get authors
     authors = str(soup.findAll(name="p")[1])[6:-8]
     # get abstract
-    abstract = str(soup.findAll(name="p")[3])[3:-4]
+    p_idx = 2 + (soup.findAll(name="p")[2].text.strip() == "")
+    abstract = soup.findAll(name="p")[p_idx].text.strip()
+    abstract = _remove_quotes_(abstract)
     # get pdf url
     pdf_url = url
     pdf_url = re.sub(pattern="hash", repl="file", string=pdf_url)
@@ -214,6 +269,8 @@ def scrape_single(url):
         return scrape_arxiv(url)
     if url.startswith("https://openaccess.thecvf.com"):
         return scrape_openaccess(url)
+    if url.startswith("https://openreview.net"):
+        return scrape_openreview(url)
     if url.startswith("https://www.ecva.net"):
         return scrape_eccv(url)
     if url.startswith("https://papers.nips.cc"):

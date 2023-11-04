@@ -17,6 +17,7 @@ class GetPaperList:
     }
 
     papers_count_iccv = {
+        2017: 621,
         2019: 294 + 153 + 318 + 310,
         2023: 2156,
     }
@@ -35,7 +36,7 @@ class GetPaperList:
         2022: 2834,
     }
 
-    # assume this file is located under a directory ("Scraper") that is in paralle to "Machine-Learning-Knowledge-Base"
+    # assume this file is located under a directory ("Scraper") that is in parallel to "Machine-Learning-Knowledge-Base"
     paper_lists_root = "../Machine-Learning-Knowledge-Base/papers-cv/_paper_lists_"
 
     def get_urls_cvf(
@@ -44,10 +45,10 @@ class GetPaperList:
         year: int = None,
     ) -> List[str]:
         base_url = f"https://openaccess.thecvf.com/{conference.upper()}{year}"
-        if conference == "wacv":
-            return [base_url]
         page = urlopen(base_url)
         html = page.read().decode("utf-8")
+        if ".pdf" in html:
+            return [base_url]
         soup = BeautifulSoup(html, "html.parser")
         content = soup.find(name='div', id="content")
         urls = content.findAll('a')
