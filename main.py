@@ -162,39 +162,28 @@ def scrape_openreview(url):
     return markdown
 
 
-def scrape_eccv(url):
+def scrape_ieee(url):
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
-    # generate links
-    rel_pdf_url = soup.find("a", string="pdf")['href']
-    pdf_url = _get_pdf_url_(url, rel_pdf_url)
-    # get title
-    title = soup.find("div", id="papertitle").text.strip()
-    # get year
-    pattern = "eccv_(\d\d\d\d)"
-    year = re.findall(pattern=pattern, string=url)
-    assert len(year) == 1, f"{url=}, {pattern=}, {year=}"
-    year = year[0]
-    assert 2000 <= int(year) <= 2030
-    year = f"`{year}`"
-    # get authors
-    authors = soup.find("div", id="authors").text.strip()
-    authors = re.sub(pattern='\n', repl="", string=authors)
-    # get abstract
-    abstract = soup.find("div", id="abstract").text.strip()
-    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
-    abstract = _remove_quotes_(abstract)
-    # define string
-    string = ""
-    string += f"* {mapping.get(title, title)}\n"
-    string += INDENT + f"[[abs-ECCV]({url})]" + '\n'
-    string += INDENT + f"[[pdf-ECCV]({pdf_url})]" + '\n'
-    string += INDENT + "* Title: " + title + '\n'
-    string += INDENT + "* Year: " + year + '\n'
-    string += INDENT + "* Authors: " + authors + '\n'
-    string += INDENT + "* Abstract: " + abstract + '\n'
-    return string
+    script = [s for s in soup.findAll('script', type="text/javascript") if "xplGlobal.document.metadata" in str(s)]
+    assert len(script) == 1
+    script = script[0]
+    def find_in_script(var_name):
+        result = re.findall(pattern="\""+var_name+r"\":\"([^\"]{5,}|\d\d\d\d)\"", string=str(script))
+        if len(result) != 1:
+            assert var_name in ["publicationYear", "pdfPath"], f"{var_name=}, {result=}"
+            assert len(result) == 2 and result[0] == result[1], f"{result=}"
+        else:
+            assert len(result) == 1
+        return result[0]
+    pdf_url = urljoin(url, find_in_script("pdfPath"))
+    title = find_in_script("title")
+    year = find_in_script("publicationYear")
+    authors = find_in_script("authorNames")
+    abstract = find_in_script("abstract")
+    markdown = _compile_markdown_(title, url, pdf_url, "IEEE", year, authors, abstract)
+    return markdown
 
 
 def scrape_neurips(url):
@@ -230,6 +219,41 @@ def scrape_neurips(url):
     string += f"{INDENT}* Year: `{year}`\n"
     string += f"{INDENT}* Authors: {authors}\n"
     string += f"{INDENT}* Abstract: {abstract}\n"
+    return string
+
+
+def scrape_eccv(url):
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+    soup = BeautifulSoup(html, "html.parser")
+    # generate links
+    rel_pdf_url = soup.find("a", string="pdf")['href']
+    pdf_url = _get_pdf_url_(url, rel_pdf_url)
+    # get title
+    title = soup.find("div", id="papertitle").text.strip()
+    # get year
+    pattern = "eccv_(\d\d\d\d)"
+    year = re.findall(pattern=pattern, string=url)
+    assert len(year) == 1, f"{url=}, {pattern=}, {year=}"
+    year = year[0]
+    assert 2000 <= int(year) <= 2030
+    year = f"`{year}`"
+    # get authors
+    authors = soup.find("div", id="authors").text.strip()
+    authors = re.sub(pattern='\n', repl="", string=authors)
+    # get abstract
+    abstract = soup.find("div", id="abstract").text.strip()
+    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
+    abstract = _remove_quotes_(abstract)
+    # define string
+    string = ""
+    string += f"* {mapping.get(title, title)}\n"
+    string += INDENT + f"[[abs-ECCV]({url})]" + '\n'
+    string += INDENT + f"[[pdf-ECCV]({pdf_url})]" + '\n'
+    string += INDENT + "* Title: " + title + '\n'
+    string += INDENT + "* Year: " + year + '\n'
+    string += INDENT + "* Authors: " + authors + '\n'
+    string += INDENT + "* Abstract: " + abstract + '\n'
     return string
 
 
@@ -271,10 +295,12 @@ def scrape_single(url):
         return scrape_openaccess(url)
     if url.startswith("https://openreview.net"):
         return scrape_openreview(url)
-    if url.startswith("https://www.ecva.net"):
-        return scrape_eccv(url)
+    if url.startswith("https://ieeexplore.ieee.org"):
+        return scrape_ieee(url)
     if url.startswith("https://papers.nips.cc"):
         return scrape_neurips(url)
+    if url.startswith("https://www.ecva.net"):
+        return scrape_eccv(url)
     if url.startswith("https://www.mdpi.com"):
         return scrape_mdpi(url)
     else:

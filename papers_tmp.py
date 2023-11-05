@@ -32,5 +32,13 @@ papers_tmp = {
         "https://arxiv.org/abs/2305.00441",
         "https://arxiv.org/abs/2110.00874",
         "https://arxiv.org/abs/2006.07438",
+        "https://ieeexplore.ieee.org/abstract/document/9679014",
+        "https://ieeexplore.ieee.org/abstract/document/9906429",
+        "https://ieeexplore.ieee.org/abstract/document/10256146",
+        "https://ieeexplore.ieee.org/abstract/document/10269139",
+        "https://ieeexplore.ieee.org/abstract/document/9859706",
+        "https://ieeexplore.ieee.org/abstract/document/10036455",
+        "https://ieeexplore.ieee.org/abstract/document/9994979",
+        "https://ieeexplore.ieee.org/abstract/document/9956614",
     ],
 }
