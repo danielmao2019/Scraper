@@ -1,4 +1,5 @@
 import re
+import json
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from urllib.parse import urljoin
@@ -166,23 +167,40 @@ def scrape_ieee(url):
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
-    script = [s for s in soup.findAll('script', type="text/javascript") if "xplGlobal.document.metadata" in str(s)]
-    assert len(script) == 1
-    script = script[0]
-    def find_in_script(var_name):
-        result = re.findall(pattern="\""+var_name+r"\":\"([^\"]{5,}|\d\d\d\d)\"", string=str(script))
-        if len(result) != 1:
-            assert var_name in ["publicationYear", "pdfPath"], f"{var_name=}, {result=}"
-            assert len(result) == 2 and result[0] == result[1], f"{result=}"
-        else:
-            assert len(result) == 1
-        return result[0]
-    pdf_url = urljoin(url, find_in_script("pdfPath"))
-    title = find_in_script("title")
-    year = find_in_script("publicationYear")
-    authors = find_in_script("authorNames")
-    abstract = find_in_script("abstract")
+    # construct json
+    json_str = re.findall(pattern="xplGlobal.document.metadata=[^;]+;", string=str(soup))
+    assert len(json_str) == 1
+    json_str = json_str[0]
+    json_dict = json.loads(json_str)
+    # extract from json
+    title = json_dict['title']
+    pdf_url = urljoin(url, json_dict['pdfUrl'])
+    year = json_dict['publicationYear']
+    authors = ", ".join([a['name'] for a in json_dict['authors']])
+    abstract = json_dict['abstract']
     markdown = _compile_markdown_(title, url, pdf_url, "IEEE", year, authors, abstract)
+    return markdown
+
+
+def scrape_springer(url):
+    page = urlopen(url)
+    html = page.read().decode("utf-8")
+    soup = BeautifulSoup(html, "html.parser")
+    # construct json
+    json_str = soup.findAll('script', type="application/ld+json")
+    assert len(json_str) == 1
+    json_str = json_str[0].text.strip()
+    json_dict = json.loads(json_str)
+    # extract from json
+    title = json_dict['headline']
+    pdf_url = re.findall(pattern="content=\"https://link.springer.com/content/pdf/.*\.pdf\"", string=str(soup))
+    assert len(pdf_url) == 1
+    pdf_url = pdf_url[0]
+    pdf_url = _get_pdf_url_(url, pdf_url)
+    authors = ", ".join(a['name'] for a in json_dict['author'])
+    year = json_dict['datePublished']
+    abstract = json_dict['description']
+    markdown = _compile_markdown_(title, url, pdf_url, "Springer", year, authors, abstract)
     return markdown
 
 
@@ -297,6 +315,8 @@ def scrape_single(url):
         return scrape_openreview(url)
     if url.startswith("https://ieeexplore.ieee.org"):
         return scrape_ieee(url)
+    if url.startswith("https://link.springer.com"):
+        return scrape_springer(url)
     if url.startswith("https://papers.nips.cc"):
         return scrape_neurips(url)
     if url.startswith("https://www.ecva.net"):
