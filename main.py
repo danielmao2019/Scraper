@@ -1,3 +1,4 @@
+from typing import List, Tuple, Union
 import re
 import json
 from bs4 import BeautifulSoup
@@ -61,6 +62,14 @@ def scrape_arxiv(url):
     return string
 
 
+def _get_value_(item):
+    if type(item) == dict:
+        return item['value']
+    else:
+        assert type(item) in [str, list]
+        return item
+
+
 def _get_pdf_url_(
     abs_url: str = None,
     rel_pdf_url: str = None,
@@ -68,27 +77,57 @@ def _get_pdf_url_(
     pdf_url = urljoin(base=abs_url, url=rel_pdf_url)
     # check if new url exists
     r = requests.get(pdf_url)
-    assert r.status_code == 200, f"{r.status_code=}, {abs_url=}, {pdf_url=}"
+    assert r.status_code == 200, f"{r.status_code=}, {abs_url=}, {rel_pdf_url=}"
     return pdf_url
 
 
-def _parse_conference_(conference):
+def _parse_conference_(string):
     r"""
     Args:
-        conference (str)
+        string (str): a string that contains the name and year of the conference.
     Returns:
-        conf_name (str): name of conference.
-        conf_year (int): year of conference.
+        name (str): name of conference.
+        year (str): year of conference.
     """
     # get name
-    conf_name = re.findall(pattern="(cvpr|iccv|wacv|iclr)", string=conference.lower())
-    assert len(conf_name) == 1
-    conf_name = conf_name[0].upper()
+    name = re.findall(pattern="(cvpr|iccv|wacv|iclr)w?", string=string.lower())
+    assert len(name) == 1, f"{string=}, {name=}"
+    name = name[0].upper()
     # get year
-    conf_year = re.findall(pattern=r"\d\d\d\d", string=conference)
-    assert len(conf_year) == 1, f"{conference=}, {conf_year=}"
-    conf_year = int(conf_year[0])
-    return conf_name, conf_year
+    year = re.findall(pattern=r"\d\d\d\d", string=string)
+    assert len(year) == 1, f"{string=}, {year=}"
+    year = year[0]
+    return name, year
+
+
+def _parse_journal_(string):
+    r"""
+    Args:
+        string (str): a string that contains the name and year of the journal.
+    Returns:
+        name (str): name of journal.
+        year (str): an empty string.
+    """
+    # get name
+    name = re.findall(pattern="(tmlr)", string=string.lower())
+    assert len(name) == 1, f"{string=}, {name=}"
+    name = name[0].upper()
+    return name, ""
+
+
+def _parse_writers_(
+    value: Union[str, List[str]],
+) -> Tuple[str]:
+    if type(value) == list:
+        assert len(value) == 1
+        value = value[0]
+    try:
+        return _parse_conference_(value)
+    except:
+        try:
+            return _parse_journal_(value)
+        except:
+            raise ValueError(f"[ERROR] Cannot parse writers.")
 
 
 def _remove_quotes_(string):
@@ -103,17 +142,17 @@ def _compile_markdown_(
     title: str = None,
     abs_url: str = None,
     pdf_url: str = None,
-    conf_name: str = None,
-    conf_year: int = None,
+    pub_name: str = None,
+    pub_year: str = None,
     authors: str = None,
     abstract: str = None,
 ) -> str:
     string = ""
     string += f"* {mapping.get(title, title)}\n"
-    string += f"{INDENT}[[abs-{conf_name}]({abs_url})]\n"
-    string += f"{INDENT}[[pdf-{conf_name}]({pdf_url})]\n"
+    string += f"{INDENT}[[abs-{pub_name}]({abs_url})]\n"
+    string += f"{INDENT}[[pdf-{pub_name}]({pdf_url})]\n"
     string += f"{INDENT}* Title: {title}\n"
-    string += f"{INDENT}* Year: `{conf_year}`\n"
+    string += f"{INDENT}* Year: `{pub_year}`\n"
     string += f"{INDENT}* Authors: {authors}\n"
     string += f"{INDENT}* Abstract: {abstract}\n"
     return string
@@ -129,8 +168,7 @@ def scrape_openaccess(url):
     # get title
     title = soup.find("div", id="papertitle").text.strip()
     # get conference
-    conference = url.split('/')[-3]
-    conf_name, conf_year = _parse_conference_(conference)
+    conf_name, conf_year = _parse_writers_(url.split('/')[-1])
     # get authors
     authors = soup.find("div", id="authors").text.strip().split(';')[0]
     # get abstract
@@ -145,21 +183,19 @@ def scrape_openreview(url):
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
-    # generate links
-    rel_pdf_url = soup.find('a', title="Download PDF")['href']
-    pdf_url = _get_pdf_url_(url, rel_pdf_url)
-    # get title
-    title = soup.find('h2', class_="note_content_title citation_title").text.strip()
-    # get conference
-    conference = soup.findAll('div', class_="meta_row")[1].findAll('span', class_="item")[1].text.strip()
-    conf_name, conf_year = _parse_conference_(conference)
-    # get authors
-    authors = soup.find('h3', class_="signatures author").findAll('a')
-    authors = ", ".join([a.text.strip() for a in authors])
-    # get abstract
-    abstract = soup.findAll('span', class_="note-content-value")[1].text.strip()
-    # compile markdown
-    markdown = _compile_markdown_(title, url, pdf_url, conf_name, conf_year, authors, abstract)
+    # construct json
+    json_str = soup.findAll('script', type="application/json")
+    assert len(json_str) == 1
+    json_str = json_str[0].text.strip()
+    json_dict = json.loads(json_str)
+    json_dict = json_dict['props']['pageProps']['forumNote']
+    # extract from json
+    title = _get_value_(json_dict['content']['title'])
+    pdf_url = _get_pdf_url_(url, soup.find('a', title="Download PDF")['href'])
+    pub_name, pub_year = _parse_writers_(json_dict['writers'])
+    authors = ", ".join(_get_value_(json_dict['content']['authors']))
+    abstract = _get_value_(json_dict['content']['abstract'])
+    markdown = _compile_markdown_(title, url, pdf_url, pub_name, pub_year, authors, abstract)
     return markdown
 
 
@@ -168,7 +204,7 @@ def scrape_ieee(url):
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     # construct json
-    json_str = re.findall(pattern="xplGlobal.document.metadata=[^;]+;", string=str(soup))
+    json_str = re.findall(pattern="xplGlobal.document.metadata=(.*);\n", string=str(soup))
     assert len(json_str) == 1
     json_str = json_str[0]
     json_dict = json.loads(json_str)
@@ -193,13 +229,14 @@ def scrape_springer(url):
     json_dict = json.loads(json_str)
     # extract from json
     title = json_dict['headline']
-    pdf_url = re.findall(pattern="content=\"https://link.springer.com/content/pdf/.*\.pdf\"", string=str(soup))
+    pdf_url = re.findall(pattern="content=\"(https://link.springer.com/content/pdf/.*\.pdf)\"", string=str(soup))
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]
-    pdf_url = _get_pdf_url_(url, pdf_url)
+    r = requests.get(pdf_url)
+    assert r.status_code == 200, f"{r.status_code=}, {pdf_url=}"
     authors = ", ".join(a['name'] for a in json_dict['author'])
     year = json_dict['datePublished']
-    abstract = json_dict['description']
+    abstract = json_dict['description'].strip()
     markdown = _compile_markdown_(title, url, pdf_url, "Springer", year, authors, abstract)
     return markdown
 
