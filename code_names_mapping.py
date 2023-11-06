@@ -3,6 +3,10 @@ mapping_cnns = {
     "FOSNet: An End-to-End Trainable Deep Neural Network for Scene Recognition": "FOS, SCL",
 }
 
+mapping_detection = {
+    "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks": "Faster R-CNN, Region Proposal Network (RPN)",
+}
+
 mapping_segmentation = {
     # DeepLab Family
     "Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs": "DeepLab-v1",
@@ -290,6 +294,7 @@ mapping = {
 }
 
 mapping.update(mapping_cnns)
+mapping.update(mapping_detection)
 mapping.update(mapping_segmentation)
 mapping.update(mapping_mtl)
 mapping.update(mapping_gan_2D)

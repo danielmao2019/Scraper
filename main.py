@@ -15,6 +15,8 @@ logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logg
 
 
 INDENT = ' ' * 4
+g_recognized_conferences = ['cvpr', 'iccv', 'eccv', 'accv', 'wacv', 'iclr']
+g_recognized_journals = ['tmlr']
 
 
 def get_all_urls(src):
@@ -90,7 +92,7 @@ def _parse_conference_(string):
         year (str): year of conference.
     """
     # get name
-    name = re.findall(pattern="(cvpr|iccv|wacv|iclr)w?", string=string.lower())
+    name = re.findall(pattern=f"({'|'.join(g_recognized_conferences)})w?", string=string.lower())
     assert len(name) == 1, f"{string=}, {name=}"
     name = name[0].upper()
     # get year
@@ -109,7 +111,7 @@ def _parse_journal_(string):
         year (str): an empty string.
     """
     # get name
-    name = re.findall(pattern="(tmlr)", string=string.lower())
+    name = re.findall(pattern=f"({'|'.join(g_recognized_journals)})", string=string.lower())
     assert len(name) == 1, f"{string=}, {name=}"
     name = name[0].upper()
     return name, ""
@@ -130,12 +132,14 @@ def _parse_writers_(
             raise ValueError(f"[ERROR] Cannot parse writers.")
 
 
-def _remove_quotes_(string):
-    if string.startswith('\"'):
-        string = string[1:]
-    if string.endswith('\"'):
-        string = string[:-1]
-    return string
+def _post_process_abstract_(abstract):
+    if abstract.startswith('\"'):
+        abstract = abstract[1:]
+    if abstract.endswith('\"'):
+        abstract = abstract[:-1]
+    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
+    abstract = re.sub(pattern=" {2,}", repl=" ", string=abstract)
+    return abstract
 
 
 def _compile_markdown_(
@@ -159,27 +163,22 @@ def _compile_markdown_(
 
 
 def scrape_openaccess(url):
+    # initialize
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
-    # generate links
-    rel_pdf_url = soup.find("a", string="pdf")['href']
-    pdf_url = _get_pdf_url_(url, rel_pdf_url)
-    # get title
+    # extract
     title = soup.find("div", id="papertitle").text.strip()
-    # get conference
+    pdf_url = _get_pdf_url_(url, soup.find("a", string="pdf")['href'])
     conf_name, conf_year = _parse_writers_(url.split('/')[-1])
-    # get authors
     authors = soup.find("div", id="authors").text.strip().split(';')[0]
-    # get abstract
-    abstract = soup.find("div", id="abstract").text.strip()
-    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
-    # compile markdown
+    abstract = _post_process_abstract_(soup.find("div", id="abstract").text.strip())
     markdown = _compile_markdown_(title, url, pdf_url, conf_name, conf_year, authors, abstract)
     return markdown
 
 
 def scrape_openreview(url):
+    # initialize
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
@@ -258,8 +257,7 @@ def scrape_neurips(url):
     authors = str(soup.findAll(name="p")[1])[6:-8]
     # get abstract
     p_idx = 2 + (soup.findAll(name="p")[2].text.strip() == "")
-    abstract = soup.findAll(name="p")[p_idx].text.strip()
-    abstract = _remove_quotes_(abstract)
+    abstract = _post_process_abstract_(soup.findAll(name="p")[p_idx].text.strip())
     # get pdf url
     pdf_url = url
     pdf_url = re.sub(pattern="hash", repl="file", string=pdf_url)
@@ -297,9 +295,7 @@ def scrape_eccv(url):
     authors = soup.find("div", id="authors").text.strip()
     authors = re.sub(pattern='\n', repl="", string=authors)
     # get abstract
-    abstract = soup.find("div", id="abstract").text.strip()
-    abstract = re.sub(pattern='\n', repl=" ", string=abstract)
-    abstract = _remove_quotes_(abstract)
+    abstract = _post_process_abstract_(soup.find("div", id="abstract").text.strip())
     # define string
     string = ""
     string += f"* {mapping.get(title, title)}\n"

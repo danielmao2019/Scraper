@@ -10,16 +10,28 @@ import argparse
 class GetPaperList:
 
     papers_count_cvpr = {
+        2016: 643,
+        2017: 783,
         2018: 367 + 370 + 242,
         2019: 431 + 432 + 431,
         2020: 483 + 480 + 503,
         2022: 2074,
+        2023: 2353,
     }
 
     papers_count_iccv = {
         2017: 621,
         2019: 294 + 153 + 318 + 310,
         2023: 2156,
+    }
+
+    papers_count_eccv = {
+        2018: 776,
+    }
+
+    papers_count_accv = {
+        2020: 254,
+        2022: 277,
     }
 
     papers_count_neurips = {
@@ -86,6 +98,12 @@ class GetPaperList:
 
     def get_papers_iccv(self, year: int = None):
         self.get_papers_cvf("iccv", year)
+
+    def get_papers_eccv(self, year: int = None):
+        self.get_papers_cvf("eccv", year)
+
+    def get_papers_accv(self, year: int = None):
+        self.get_papers_cvf("accv", year)
 
     def get_papers_wacv(self, year: int = None):
         self.get_papers_cvf("wacv", year)
