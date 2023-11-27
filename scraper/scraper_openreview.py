@@ -5,7 +5,6 @@ from . import utils
 
 
 def scrape_openreview(url: str) -> dict:
-    # initialize
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")

@@ -4,7 +4,6 @@ from . import utils
 
 
 def scrape_openaccess(url: str) -> dict:
-    # initialize
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")

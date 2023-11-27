@@ -5,10 +5,7 @@ from . import utils
 
 
 def scrape_neurips(url):
-    try:
-        page = urlopen(url)
-    except:
-        raise RuntimeError(f"[ERROR] Exceptions raised when opening {url}.")
+    page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
     # get title
