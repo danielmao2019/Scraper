@@ -10,11 +10,14 @@ import argparse
 class GetPaperList:
 
     papers_count_cvpr = {
+        2013: 471,
+        2014: 540,
         2016: 643,
         2017: 783,
         2018: 367 + 370 + 242,
         2019: 431 + 432 + 431,
         2020: 483 + 480 + 503,
+        2021: 1660,
         2022: 2074,
         2023: 2353,
     }
@@ -22,11 +25,17 @@ class GetPaperList:
     papers_count_iccv = {
         2017: 621,
         2019: 294 + 153 + 318 + 310,
+        2021: 1612,
         2023: 2156,
     }
 
     papers_count_eccv = {
         2018: 776,
+    }
+
+    papers_count_wacv = {
+        2020: 378,
+        2021: 406,
     }
 
     papers_count_accv = {
@@ -49,7 +58,7 @@ class GetPaperList:
     }
 
     # assume this file is located under a directory ("Scraper") that is in parallel to "Machine-Learning-Knowledge-Base"
-    paper_lists_root = "../Machine-Learning-Knowledge-Base/papers-cv/_paper_lists_"
+    paper_lists_root = "../Machine-Learning-Knowledge-Base/paper-collections/papers-cv/_paper_lists_"
 
     def get_urls_cvf(
         self,

@@ -1,13 +1,16 @@
 mapping_cnns = {
+    "Deep Residual Learning for Image Recognition": "ResNet-v1",
+    "Identity Mappings in Deep Residual Networks": "ResNet-v2",
     "Perturbative Neural Networks": "Perturbative Neural Networks (PNNs)",
     "FOSNet: An End-to-End Trainable Deep Neural Network for Scene Recognition": "FOS, SCL",
 }
 
 mapping_detection = {
     "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks": "Faster R-CNN, Region Proposal Network (RPN)",
+    "End-to-End Object Detection with Transformers": "DEtection TRansformer (DETR)",
 }
 
-mapping_segmentation = {
+mapping_semantic_segmentation = {
     # DeepLab Family
     "Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs": "DeepLab-v1",
     "DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs": "DeepLab-v2",
@@ -28,17 +31,30 @@ mapping_segmentation = {
     "SegDiff: Image Segmentation with Diffusion Probabilistic Models": "SegDiff",
 }
 
+mapping_instance_segmentation = {
+    # Two-stage
+    "Learning to Segment Object Candidates": "DeepMask",
+    "Learning to Refine Object Segments": "SharpMask",
+    # Single-stage
+    "Explicit Shape Encoding for Real-Time Instance Segmentation": "Explicit Shape Encoding (ESE-Seg)",
+}
+
+mapping_transformer = {
+    "AutoFocusFormer: Image Segmentation off the Grid": "AutoFocusFormer (AFF)",
+}
+
 mapping_mtl = {
     # gradient manipulation
     "Multi-Task Learning as Multi-Objective Optimization": "Multiple Gradient Descent Algorithm (MGDA)",
-    "Gradient Surgery for Multi-Task Learning": "PCGrad",
+    "Gradient Surgery for Multi-Task Learning": "Projecting Conflicting Gradients (PCGrad)",
     "Gradient Vaccine: Investigating and Improving Multi-task Optimization in Massively Multilingual Models": "Gradient Vaccine (GradVac)",
     "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
-    "Conflict-Averse Gradient Descent for Multi-task learning": "CAGrad",
+    "Conflict-Averse Gradient Descent for Multi-task learning": "Conflict-Averse Gradient Descent (CAGrad)",
     "Measuring and Harnessing Transference in Multi-Task Learning": "Transference, Increased Transfer MTL (IT-MTL)",
-    # task balancing
+    # gradient balancing
     "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
     "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
+    "Self-Paced Multi-Task Learning": "Self-Paced Multi-Task Learning (SPMTL)",
     # architectural solutions
     ## architecture design
     "HyperFace: A Deep Multi-task Learning Framework for Face Detection, Landmark Localization, Pose Estimation, and Gender Recognition": "HyperFace",
@@ -71,6 +87,7 @@ mapping_mtl = {
     # architecture search
     "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
     # others
+    "Facial Landmark Detection by Deep Multi-task Learning": "Tasks-Constrained Learning",
     "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
     "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
     "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
@@ -89,6 +106,8 @@ mapping_mtl = {
     # continual learning
     "Learning to Learn without Forgetting by Maximizing Transfer and Minimizing Interference": "Meta-Experience Replay (MER)",
     "Batch Model Consolidation: A Multi-Task Model Consolidation Framework": "Batch Model Consolidation (BMC)",
+    # federated learning
+    "Towards Hetero-Client Federated Multi-Task Learning": "Hetero-Client Federated Multi-Task Learning (HC-FMTL), Hyper Conflict-Averse, Hyper Cross Attention (HCA$^2$)",
 }
 
 mapping_gan_2D = {
@@ -207,6 +226,10 @@ mapping_nerf = {
     "NeRF--: Neural Radiance Fields Without Known Camera Parameters": "NeRF--",
     "TensoRF: Tensorial Radiance Fields": "TensoRF",
     "Neural Sparse Voxel Fields": "NSVF",
+    # generalizability
+    "Is Attention All That NeRF Needs?": "Generalizable NeRF Transformer (GNT)",
+    # bundle adjustment & camera pose prior
+    "SiNeRF: Sinusoidal Neural Radiance Fields for Joint Pose Estimation and Scene Reconstruction": "Sinusoidal Neural Radiance Fields (SiNeRF)",
     # NeRF - Fundamentals
     "Mip-NeRF: A Multiscale Representation for Anti-Aliasing Neural Radiance Fields": "Mip-NeRF",
     "Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields": "Mip-NeRF 360",
@@ -235,16 +258,33 @@ mapping_nerf = {
     "HDR-NeRF: High Dynamic Range Neural Radiance Fields": "HDR-NeRF",
     "NeRF in the Dark: High Dynamic Range View Synthesis from Noisy Raw Images": "NeRF in the Dark",
     "NeRFReN: Neural Radiance Fields with Reflections": "NeRFReN",
-    "Neural Rays for Occlusion-aware Image-based Rendering": "NeuRay",
+    "Neural Rays for Occlusion-aware Image-based Rendering": "Neural Ray (NeuRay)",
     "Ref-NeRF: Structured View-Dependent Appearance for Neural Radiance Fields": "Ref-NeRF",
     "Scene Representation Transformer: Geometry-Free Novel View Synthesis Through Set-Latent Scene Representations": "SRT",
     "Mega-NeRF: Scalable Construction of Large-Scale NeRFs for Virtual Fly-Throughs": "Mega-NeRF",
     "Block-NeRF: Scalable Large Scene Neural View Synthesis": "Block-NeRF",
+    "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding": "Instant NGP",
+}
+
+mapping_representation_3d = {
+    "Approximate Differentiable Rendering with Algebraic Surfaces": "Fuzzy Metaballs",
+}
+
+mapping_3D = {
+    "Differentiable Blocks World: Qualitative 3D Decomposition by Rendering Primitives": "Differentiable Blocks World (DBW)",
 }
 
 mapping_geometric = {
     "Learning Deformable Tetrahedral Meshes for 3D Reconstruction": "Deformable Tetrahedral Meshes (DefTet)",
     "Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis": "Deep Marching Tetrahedra (DMTet)",
+}
+
+mapping_representation_image = {
+    "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
+}
+
+mapping_adversarial = {
+    "Explaining and Harnessing Adversarial Examples": "Fast Gradient Sign Method (FGSM)",
 }
 
 mapping = {
@@ -261,7 +301,7 @@ mapping = {
     "MultiGrain: a unified image embedding for classes and instances": "MultiGrain",
     "A Self-Supervised Descriptor for Image Copy Detection": "SSCD",
     "Particular object retrieval with integral max-pooling of CNN activations": "R-MAC",
-    "Fine-tuning CNN Image Retrieval with No Human Annotation": "GeM",
+    "Fine-tuning CNN Image Retrieval with No Human Annotation": "Generalized-Mean (GeM) pooling",
     "Deep Image Retrieval: Learning global representations for image search": "Triplet Ranking Loss",
     # Image Captioning
     "Injecting Semantic Concepts into End-to-End Image Captioning": "ViTCAP",
@@ -295,7 +335,9 @@ mapping = {
 
 mapping.update(mapping_cnns)
 mapping.update(mapping_detection)
-mapping.update(mapping_segmentation)
+mapping.update(mapping_semantic_segmentation)
+mapping.update(mapping_instance_segmentation)
+mapping.update(mapping_transformer)
 mapping.update(mapping_mtl)
 mapping.update(mapping_gan_2D)
 mapping.update(mapping_gan_3D)
@@ -303,3 +345,7 @@ mapping.update(mapping_diffusion_2D)
 mapping.update(mapping_diffusion_3D)
 mapping.update(mapping_nerf)
 mapping.update(mapping_geometric)
+mapping.update(mapping_3D)
+mapping.update(mapping_representation_image)
+mapping.update(mapping_representation_3d)
+mapping.update(mapping_adversarial)
