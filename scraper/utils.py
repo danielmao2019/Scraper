@@ -80,6 +80,7 @@ def parse_writers(
 
 
 def post_process_abstract(abstract):
+    abstract = abstract.strip()
     if abstract.startswith('\"'):
         abstract = abstract[1:]
     if abstract.endswith('\"'):
