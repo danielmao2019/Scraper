@@ -258,7 +258,7 @@ mapping_nerf = {
     "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding": "Instant NGP",
 }
 
-mapping_3d_representation = {
+mapping_representation_3d = {
     "Approximate Differentiable Rendering with Algebraic Surfaces": "Fuzzy Metaballs",
 }
 
@@ -269,6 +269,10 @@ mapping_3D = {
 mapping_geometric = {
     "Learning Deformable Tetrahedral Meshes for 3D Reconstruction": "Deformable Tetrahedral Meshes (DefTet)",
     "Deep Marching Tetrahedra: a Hybrid Representation for High-Resolution 3D Shape Synthesis": "Deep Marching Tetrahedra (DMTet)",
+}
+
+mapping_representation_image = {
+    "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
 }
 
 mapping = {
@@ -329,4 +333,5 @@ mapping.update(mapping_diffusion_3D)
 mapping.update(mapping_nerf)
 mapping.update(mapping_geometric)
 mapping.update(mapping_3D)
-mapping.update(mapping_3d_representation)
+mapping.update(mapping_representation_image)
+mapping.update(mapping_representation_3d)
