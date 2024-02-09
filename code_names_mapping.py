@@ -284,7 +284,7 @@ mapping = {
     "MultiGrain: a unified image embedding for classes and instances": "MultiGrain",
     "A Self-Supervised Descriptor for Image Copy Detection": "SSCD",
     "Particular object retrieval with integral max-pooling of CNN activations": "R-MAC",
-    "Fine-tuning CNN Image Retrieval with No Human Annotation": "GeM",
+    "Fine-tuning CNN Image Retrieval with No Human Annotation": "Generalized-Mean (GeM) pooling",
     "Deep Image Retrieval: Learning global representations for image search": "Triplet Ranking Loss",
     # Image Captioning
     "Injecting Semantic Concepts into End-to-End Image Captioning": "ViTCAP",
