@@ -7,6 +7,7 @@ mapping_cnns = {
 
 mapping_detection = {
     "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks": "Faster R-CNN, Region Proposal Network (RPN)",
+    "End-to-End Object Detection with Transformers": "DEtection TRansformer (DETR)",
 }
 
 mapping_segmentation = {
