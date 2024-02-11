@@ -10,7 +10,7 @@ mapping_detection = {
     "End-to-End Object Detection with Transformers": "DEtection TRansformer (DETR)",
 }
 
-mapping_segmentation = {
+mapping_semantic_segmentation = {
     # DeepLab Family
     "Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs": "DeepLab-v1",
     "DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs": "DeepLab-v2",
@@ -29,6 +29,10 @@ mapping_segmentation = {
     "DifFSS: Diffusion Model for Few-Shot Semantic Segmentation": "DifFSS",
     "DFormer: Diffusion-guided Transformer for Universal Image Segmentation": "DFormer",
     "SegDiff: Image Segmentation with Diffusion Probabilistic Models": "SegDiff",
+}
+
+mapping_instance_segmentation = {
+    "Explicit Shape Encoding for Real-Time Instance Segmentation": "Explicit Shape Encoding (ESE-Seg)",
 }
 
 mapping_transformer = {
@@ -323,7 +327,8 @@ mapping = {
 
 mapping.update(mapping_cnns)
 mapping.update(mapping_detection)
-mapping.update(mapping_segmentation)
+mapping.update(mapping_semantic_segmentation)
+mapping.update(mapping_instance_segmentation)
 mapping.update(mapping_transformer)
 mapping.update(mapping_mtl)
 mapping.update(mapping_gan_2D)
