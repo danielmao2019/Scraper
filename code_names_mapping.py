@@ -32,6 +32,10 @@ mapping_semantic_segmentation = {
 }
 
 mapping_instance_segmentation = {
+    # Two-stage
+    "Learning to Segment Object Candidates": "DeepMask",
+    "Learning to Refine Object Segments": "SharpMask",
+    # Single-stage
     "Explicit Shape Encoding for Real-Time Instance Segmentation": "Explicit Shape Encoding (ESE-Seg)",
 }
 
