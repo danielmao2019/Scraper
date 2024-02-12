@@ -46,7 +46,7 @@ mapping_transformer = {
 mapping_mtl = {
     # gradient manipulation
     "Multi-Task Learning as Multi-Objective Optimization": "Multiple Gradient Descent Algorithm (MGDA)",
-    "Gradient Surgery for Multi-Task Learning": "PCGrad",
+    "Gradient Surgery for Multi-Task Learning": "Projecting Conflicting Gradients (PCGrad)",
     "Gradient Vaccine: Investigating and Improving Multi-task Optimization in Massively Multilingual Models": "Gradient Vaccine (GradVac)",
     "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
     "Conflict-Averse Gradient Descent for Multi-task learning": "CAGrad",
