@@ -49,7 +49,7 @@ mapping_mtl = {
     "Gradient Surgery for Multi-Task Learning": "Projecting Conflicting Gradients (PCGrad)",
     "Gradient Vaccine: Investigating and Improving Multi-task Optimization in Massively Multilingual Models": "Gradient Vaccine (GradVac)",
     "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
-    "Conflict-Averse Gradient Descent for Multi-task learning": "CAGrad",
+    "Conflict-Averse Gradient Descent for Multi-task learning": "Conflict-Averse Gradient Descent (CAGrad)",
     "Measuring and Harnessing Transference in Multi-Task Learning": "Transference, Increased Transfer MTL (IT-MTL)",
     # gradient balancing
     "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
