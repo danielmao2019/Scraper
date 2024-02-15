@@ -3,7 +3,7 @@ from scraper.scraper_acm import scrape_acm
 from scraper.scraper_eccv import scrape_eccv
 from scraper.scraper_ieee import scrape_ieee
 from scraper.scraper_mdpi import scrape_mdpi
-from scraper.scraper_mlr import scrape_mlr
+from scraper.scraper_pmlr import scrape_pmlr
 from scraper.scraper_neurips import scrape_neurips
 from scraper.scraper_openaccess import scrape_openaccess
 from scraper.scraper_openreview import scrape_openreview
@@ -25,7 +25,7 @@ def scrape(url):
     if url.startswith("https://www.mdpi.com"):
         info_dict = scrape_mdpi(url)
     if url.startswith("https://proceedings.mlr.press"):
-        info_dict = scrape_mlr(url)
+        info_dict = scrape_pmlr(url)
     if url.startswith("https://papers.nips.cc") or url.startswith("https://proceedings.neurips.cc"):
         info_dict = scrape_neurips(url)
     if url.startswith("https://openaccess.thecvf.com"):
