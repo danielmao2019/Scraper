@@ -8,6 +8,7 @@ from scraper.scraper_neurips import scrape_neurips
 from scraper.scraper_openaccess import scrape_openaccess
 from scraper.scraper_openreview import scrape_openreview
 from scraper.scraper_springer import scrape_springer
+from scraper.scraper_jmlr import scrape_jmlr
 from . import utils
 
 
@@ -33,6 +34,8 @@ def scrape(url):
         info_dict = scrape_openreview(url)
     if url.startswith("https://link.springer.com"):
         info_dict = scrape_springer(url)
+    if url.startswith("https://www.jmlr.org") or url.startswith("https://jmlr.org/"):
+        info_dict = scrape_jmlr(url)
     if info_dict is not None:
         return utils.compile_markdown(**info_dict)
     else:

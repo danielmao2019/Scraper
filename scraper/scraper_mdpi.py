@@ -1,8 +1,10 @@
+from typing import Dict
 import requests
 from bs4 import BeautifulSoup
 
 
-def scrape_mdpi(url):
+def scrape_mdpi(url: str) -> Dict[str, str]:
+    assert type(url) == str, f"{type(url)=}"
     response = requests.get(url)
     assert response.status_code == 200, f"{response.status_code=}"
     soup = BeautifulSoup(response.content, "html.parser")
