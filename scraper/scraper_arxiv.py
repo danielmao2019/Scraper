@@ -1,9 +1,11 @@
+from typing import Dict
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
 
 
-def scrape_arxiv(url: str) -> dict:
+def scrape_arxiv(url: str) -> Dict[str, str]:
+    assert type(url) == str, f"{type(url)=}"
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
