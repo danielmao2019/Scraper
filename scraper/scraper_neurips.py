@@ -1,13 +1,11 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 import re
+
 from . import utils
 
 
 def scrape_neurips(url):
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    assert type(url) == str, f"{type(url)=}"
+    soup = utils.get_soup(url)
     # get title
     title = str(soup.findAll(name="h4")[0])[4:-5]
     # get year

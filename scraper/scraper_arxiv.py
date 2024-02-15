@@ -1,14 +1,12 @@
 from typing import Dict
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 import re
+
+from . import utils
 
 
 def scrape_arxiv(url: str) -> Dict[str, str]:
     assert type(url) == str, f"{type(url)=}"
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    soup = utils.get_soup(url)
     # generate links
     idx = url.split('/')[-1]
     pdf_url = f"https://arxiv.org/pdf/{idx}.pdf"

@@ -1,15 +1,11 @@
 from typing import Dict
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 
 from . import utils
 
 
 def scrape_jmlr(url: str) -> Dict[str, str]:
     assert type(url) == str, f"{type(url)=}"
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    soup = utils.get_soup(url)
     # get title
     title = soup.findAll('meta', {'name': 'citation_title'})
     assert len(title) == 1
