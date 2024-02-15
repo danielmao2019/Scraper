@@ -33,7 +33,7 @@ def scrape_pmlr (url: str) -> dict:
         'title': title,
         'abs_url': url,
         'pdf_url': pdf_url,
-        'pub_name': "MLR",
+        'pub_name': "PMLR",
         'pub_year': year,
         'authors': authors,
         'abstract': abstract,
