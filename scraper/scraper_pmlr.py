@@ -1,14 +1,12 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 import re
 from datetime import datetime
+
 from . import utils
 
 
 def scrape_pmlr (url: str) -> dict:
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    assert type(url) == str, f"{type(url)=}"
+    soup = utils.get_soup(url)
     # get title
     title = soup.find('title').text
     # get pdf url

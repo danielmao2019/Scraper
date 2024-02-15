@@ -1,12 +1,9 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 from . import utils
 
 
 def scrape_openaccess(url: str) -> dict:
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    assert type(url) == str, f"{type(url)=}"
+    soup = utils.get_soup(url)
     # extract
     title = soup.find("div", id="papertitle").text.strip()
     pdf_url = utils.get_pdf_url(url, soup.find("a", string="pdf")['href'])

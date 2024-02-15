@@ -1,13 +1,11 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 import re
+
 from . import utils
 
 
 def scrape_eccv(url):
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    assert type(url) == str, f"{type(url)=}"
+    soup = utils.get_soup(url)
     # generate links
     rel_pdf_url = soup.find("a", string="pdf")['href']
     pdf_url = utils.get_pdf_url(url, rel_pdf_url)
