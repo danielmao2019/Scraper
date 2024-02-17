@@ -29,21 +29,28 @@ mapping_semantic_segmentation = {
     "DifFSS: Diffusion Model for Few-Shot Semantic Segmentation": "DifFSS",
     "DFormer: Diffusion-guided Transformer for Universal Image Segmentation": "DFormer",
     "SegDiff: Image Segmentation with Diffusion Probabilistic Models": "SegDiff",
+    "Stochastic Segmentation with Conditional Categorical Diffusion Models": "Conditional Categorical Diffusion Model (CCDM)",
 }
 
 mapping_instance_segmentation = {
     # Two-stage
     "Learning to Segment Object Candidates": "DeepMask",
     "Learning to Refine Object Segments": "SharpMask",
+    "Path Aggregation Network for Instance Segmentation": "Path Aggregation Network (PANet)",
     # Single-stage
     "Explicit Shape Encoding for Real-Time Instance Segmentation": "Explicit Shape Encoding (ESE-Seg)",
+}
+
+mapping_edge_detection = {
+    "Pixel Difference Networks for Efficient Edge Detection": "Pixel Difference Network (PiDiNet)",
+    "EDTER: Edge Detection With Transformer": "Edge Detection TransformER (EDTER)",
 }
 
 mapping_transformer = {
     "AutoFocusFormer: Image Segmentation off the Grid": "AutoFocusFormer (AFF)",
 }
 
-mapping_mtl = {
+mapping_multi_task_supervised_learning = {
     # gradient manipulation
     "Multi-Task Learning as Multi-Objective Optimization": "Multiple Gradient Descent Algorithm (MGDA)",
     "Gradient Surgery for Multi-Task Learning": "Projecting Conflicting Gradients (PCGrad)",
@@ -87,13 +94,13 @@ mapping_mtl = {
     "Mitigating Task Interference in Multi-Task Learning via Explicit Task Routing with Non-Learnable Primitives": "Explicit Task Routing (ETR), Non-Learnable Primitives (NLPs)",
     # architecture search
     "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
+    "Inverted Pyramid Multi-task Transformer for Dense Scene Understanding": "Inverted Pyramid Multi-Task Transformer (InvPT)",
     # others
     "Facial Landmark Detection by Deep Multi-task Learning": "Tasks-Constrained Learning",
     "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
     "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
     "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
     "Just Pick a Sign: Optimizing Deep Multitask Models with Gradient Sign Dropout": "Gradient Sign Dropout (GradDrop)",
-    "Gradient Surgery for Multi-Task Learning": "PCGrad",
     "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
     "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
     "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
@@ -108,6 +115,12 @@ mapping_mtl = {
     "Batch Model Consolidation: A Multi-Task Model Consolidation Framework": "Batch Model Consolidation (BMC)",
     # federated learning
     "Towards Hetero-Client Federated Multi-Task Learning": "Hetero-Client Federated Multi-Task Learning (HC-FMTL), Hyper Conflict-Averse, Hyper Cross Attention (HCA$^2$)",
+    # meta learning
+    "Multi-Objective Meta Learning": "Multi-Objective Meta Learning (MOML)",
+}
+
+mapping_multi_task_reinforcement_learning = {
+    "Multi-Task Reinforcement Learning with Context-based Representations": "Contextual Attention-Based Representation Learning (CARE)",
 }
 
 mapping_gan_2D = {
@@ -175,7 +188,7 @@ mapping_diffusion_2D = {
     "SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations": "SDEdit",
     "Multimodal Explanations: Justifying Decisions and Pointing to the Evidence": "Multimodal Explanations",
     "DeepVoting: A Robust and Explainable Deep Network for Semantic Part Detection under Partial Occlusion": "DeepVoting",
-    "Diffusion Models already have a Semantic Latent Space": "ASYRP",
+    "Diffusion Models already have a Semantic Latent Space": "Asymmetric Reverse Process (ASYRP)",
     "UnitBox: An Advanced Object Detection Network": "UnitBox",
     "Attentional Bottleneck: Towards an Interpretable Deep Driving Network": "Attentional Bottleneck",
     "VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection": "VoxelNet",
@@ -266,6 +279,10 @@ mapping_nerf = {
     "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding": "Instant NGP",
 }
 
+mapping_implicit_field = {
+    "DISN: Deep Implicit Surface Network for High-quality Single-view 3D Reconstruction": "Deep Implicit Surface Network (DISN)",
+}
+
 mapping_representation_3d = {
     "Approximate Differentiable Rendering with Algebraic Surfaces": "Fuzzy Metaballs",
 }
@@ -281,10 +298,25 @@ mapping_geometric = {
 
 mapping_representation_image = {
     "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
+    "A Simple Framework for Contrastive Learning of Visual Representations": "SimCLR-v1",
+    "Big Self-Supervised Models are Strong Semi-Supervised Learners": "SimCLR-v2",
+    "Signature Verification using a \"Siamese\" Time Delay Neural Network": "Siamese Networks",
+    "Exploring Simple Siamese Representation Learning": "SimSiam",
+    "Momentum Contrast for Unsupervised Visual Representation Learning": "MoCo-v1",
+    "Improved Baselines with Momentum Contrastive Learning": "MoCo-v2",
+    "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
+    "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture": "Image-based Joint-Embedding Predictive Architecture (I-JEPA)",
+    "Masked Siamese Networks for Label-Efficient Learning": "Masked Siamese Networks (MSN)",
+    "OBoW: Online Bag-of-Visual-Words Generation for Self-Supervised Learning": "Online Bag-of-Visual-Words (OBoW)",
+    "VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning": "Variance-Invariance-Covariance Regularization (VICReg)",
+    "Siamese Image Modeling for Self-Supervised Vision Representation Learning": "Siamese Image Modeling (SiameseIM)",
+    "Learning by Sorting: Self-supervised Learning with Group Ordering Constraints": "Group Ordering Constraints (GroCo)",
+    "Semantics-Consistent Feature Search for Self-Supervised Visual Representation Learning": "Semantics-Consistent Feature Search (SCFS)",
 }
 
 mapping_adversarial = {
     "Explaining and Harnessing Adversarial Examples": "Fast Gradient Sign Method (FGSM)",
+    "Towards Deep Learning Models Resistant to Adversarial Attacks": "Projected Gradient Descent (PGD)",
 }
 
 mapping = {
@@ -301,7 +333,7 @@ mapping = {
     "MultiGrain: a unified image embedding for classes and instances": "MultiGrain",
     "A Self-Supervised Descriptor for Image Copy Detection": "SSCD",
     "Particular object retrieval with integral max-pooling of CNN activations": "R-MAC",
-    "Fine-tuning CNN Image Retrieval with No Human Annotation": "Generalized-Mean (GeM) pooling",
+    "Fine-tuning CNN Image Retrieval with No Human Annotation": "Generalized-Mean (GeM) Pooling",
     "Deep Image Retrieval: Learning global representations for image search": "Triplet Ranking Loss",
     # Image Captioning
     "Injecting Semantic Concepts into End-to-End Image Captioning": "ViTCAP",
@@ -337,13 +369,16 @@ mapping.update(mapping_cnns)
 mapping.update(mapping_detection)
 mapping.update(mapping_semantic_segmentation)
 mapping.update(mapping_instance_segmentation)
+mapping.update(mapping_edge_detection)
 mapping.update(mapping_transformer)
-mapping.update(mapping_mtl)
+mapping.update(mapping_multi_task_supervised_learning)
+mapping.update(mapping_multi_task_reinforcement_learning)
 mapping.update(mapping_gan_2D)
 mapping.update(mapping_gan_3D)
 mapping.update(mapping_diffusion_2D)
 mapping.update(mapping_diffusion_3D)
 mapping.update(mapping_nerf)
+mapping.update(mapping_implicit_field)
 mapping.update(mapping_geometric)
 mapping.update(mapping_3D)
 mapping.update(mapping_representation_image)
