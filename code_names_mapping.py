@@ -108,6 +108,8 @@ mapping_mtl = {
     "Batch Model Consolidation: A Multi-Task Model Consolidation Framework": "Batch Model Consolidation (BMC)",
     # federated learning
     "Towards Hetero-Client Federated Multi-Task Learning": "Hetero-Client Federated Multi-Task Learning (HC-FMTL), Hyper Conflict-Averse, Hyper Cross Attention (HCA$^2$)",
+    # meta learning
+    "Multi-Objective Meta Learning": "Multi-Objective Meta Learning (MOML)",
 }
 
 mapping_gan_2D = {
