@@ -269,6 +269,10 @@ mapping_nerf = {
     "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding": "Instant NGP",
 }
 
+mapping_implicit_field = {
+    "DISN: Deep Implicit Surface Network for High-quality Single-view 3D Reconstruction": "Deep Implicit Surface Network (DISN)",
+}
+
 mapping_representation_3d = {
     "Approximate Differentiable Rendering with Algebraic Surfaces": "Fuzzy Metaballs",
 }
@@ -343,6 +347,7 @@ mapping.update(mapping_gan_3D)
 mapping.update(mapping_diffusion_2D)
 mapping.update(mapping_diffusion_3D)
 mapping.update(mapping_nerf)
+mapping.update(mapping_implicit_field)
 mapping.update(mapping_geometric)
 mapping.update(mapping_3D)
 mapping.update(mapping_representation_image)
