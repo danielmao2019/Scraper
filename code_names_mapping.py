@@ -35,6 +35,7 @@ mapping_instance_segmentation = {
     # Two-stage
     "Learning to Segment Object Candidates": "DeepMask",
     "Learning to Refine Object Segments": "SharpMask",
+    "Path Aggregation Network for Instance Segmentation": "Path Aggregation Network (PANet)",
     # Single-stage
     "Explicit Shape Encoding for Real-Time Instance Segmentation": "Explicit Shape Encoding (ESE-Seg)",
 }
