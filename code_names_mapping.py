@@ -292,6 +292,7 @@ mapping_representation_image = {
     "Exploring Simple Siamese Representation Learning": "SimSiam",
     "Momentum Contrast for Unsupervised Visual Representation Learning": "Momentum Contrast (MoCo)",
     "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
+    "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture": "Image-based Joint-Embedding Predictive Architecture (I-JEPA)",
 }
 
 mapping = {
