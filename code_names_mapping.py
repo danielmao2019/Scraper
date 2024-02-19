@@ -288,6 +288,7 @@ mapping_geometric = {
 
 mapping_representation_image = {
     "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
+    "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
 }
 
 mapping = {
