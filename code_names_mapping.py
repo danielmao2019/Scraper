@@ -290,6 +290,7 @@ mapping_representation_image = {
     "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
     "A Simple Framework for Contrastive Learning of Visual Representations": "SimCLR",
     "Exploring Simple Siamese Representation Learning": "SimSiam",
+    "Momentum Contrast for Unsupervised Visual Representation Learning": "Momentum Contrast (MoCo)",
     "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
 }
 
