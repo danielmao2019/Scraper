@@ -288,8 +288,8 @@ mapping_geometric = {
 
 mapping_representation_image = {
     "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
-    "Exploring Simple Siamese Representation Learning": "SimSiam",
     "A Simple Framework for Contrastive Learning of Visual Representations": "SimCLR",
+    "Exploring Simple Siamese Representation Learning": "SimSiam",
     "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
 }
 
