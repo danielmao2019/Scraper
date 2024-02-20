@@ -294,6 +294,7 @@ mapping_representation_image = {
     "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
     "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture": "Image-based Joint-Embedding Predictive Architecture (I-JEPA)",
     "Masked Siamese Networks for Label-Efficient Learning": "Masked Siamese Networks (MSN)",
+    "OBoW: Online Bag-of-Visual-Words Generation for Self-Supervised Learning": "Online Bag-of-Visual-Words (OBoW)",
 }
 
 mapping = {
