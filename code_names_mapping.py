@@ -288,7 +288,8 @@ mapping_geometric = {
 
 mapping_representation_image = {
     "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
-    "A Simple Framework for Contrastive Learning of Visual Representations": "SimCLR",
+    "A Simple Framework for Contrastive Learning of Visual Representations": "SimCLR-v1",
+    "Big Self-Supervised Models are Strong Semi-Supervised Learners": "SimCLR-v2",
     "Exploring Simple Siamese Representation Learning": "SimSiam",
     "Momentum Contrast for Unsupervised Visual Representation Learning": "MoCo-v1",
     "Improved Baselines with Momentum Contrastive Learning": "MoCo-v2",
