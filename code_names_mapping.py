@@ -299,6 +299,7 @@ mapping_representation_image = {
     "Masked Siamese Networks for Label-Efficient Learning": "Masked Siamese Networks (MSN)",
     "OBoW: Online Bag-of-Visual-Words Generation for Self-Supervised Learning": "Online Bag-of-Visual-Words (OBoW)",
     "VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning": "Variance-Invariance-Covariance Regularization (VICReg)",
+    "Siamese Image Modeling for Self-Supervised Vision Representation Learning": "Siamese Image Modeling (SiameseIM)",
 }
 
 mapping = {
