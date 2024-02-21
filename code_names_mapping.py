@@ -298,6 +298,7 @@ mapping_representation_image = {
     "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture": "Image-based Joint-Embedding Predictive Architecture (I-JEPA)",
     "Masked Siamese Networks for Label-Efficient Learning": "Masked Siamese Networks (MSN)",
     "OBoW: Online Bag-of-Visual-Words Generation for Self-Supervised Learning": "Online Bag-of-Visual-Words (OBoW)",
+    "VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning": "Variance-Invariance-Covariance Regularization (VICReg)",
 }
 
 mapping = {
