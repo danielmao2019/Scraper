@@ -15,7 +15,6 @@ diffusion = {
     #         "https://arxiv.org/abs/2105.05233",
     #         "https://arxiv.org/abs/2112.05744",
     #         "https://arxiv.org/abs/2111.14818",
-    #         "https://arxiv.org/abs/2110.02711",
     #         "https://arxiv.org/abs/2210.10960",
     #         "https://arxiv.org/abs/2207.12598",
     #         "https://arxiv.org/abs/2210.09276",
