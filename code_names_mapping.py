@@ -178,7 +178,7 @@ mapping_diffusion_2D = {
     "SDEdit: Guided Image Synthesis and Editing with Stochastic Differential Equations": "SDEdit",
     "Multimodal Explanations: Justifying Decisions and Pointing to the Evidence": "Multimodal Explanations",
     "DeepVoting: A Robust and Explainable Deep Network for Semantic Part Detection under Partial Occlusion": "DeepVoting",
-    "Diffusion Models already have a Semantic Latent Space": "ASYRP",
+    "Diffusion Models already have a Semantic Latent Space": "Asymmetric Reverse Process (ASYRP)",
     "UnitBox: An Advanced Object Detection Network": "UnitBox",
     "Attentional Bottleneck: Towards an Interpretable Deep Driving Network": "Attentional Bottleneck",
     "VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection": "VoxelNet",
