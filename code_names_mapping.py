@@ -300,6 +300,7 @@ mapping_representation_image = {
     "OBoW: Online Bag-of-Visual-Words Generation for Self-Supervised Learning": "Online Bag-of-Visual-Words (OBoW)",
     "VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning": "Variance-Invariance-Covariance Regularization (VICReg)",
     "Siamese Image Modeling for Self-Supervised Vision Representation Learning": "Siamese Image Modeling (SiameseIM)",
+    "Learning by Sorting: Self-supervised Learning with Group Ordering Constraints": "Group Ordering Constraints (GroCo)",
 }
 
 mapping = {
