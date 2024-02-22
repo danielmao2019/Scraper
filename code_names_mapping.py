@@ -301,6 +301,7 @@ mapping_representation_image = {
     "VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning": "Variance-Invariance-Covariance Regularization (VICReg)",
     "Siamese Image Modeling for Self-Supervised Vision Representation Learning": "Siamese Image Modeling (SiameseIM)",
     "Learning by Sorting: Self-supervised Learning with Group Ordering Constraints": "Group Ordering Constraints (GroCo)",
+    "Semantics-Consistent Feature Search for Self-Supervised Visual Representation Learning": "Semantics-Consistent Feature Search (SCFS)",
 }
 
 mapping = {
