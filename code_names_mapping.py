@@ -88,6 +88,7 @@ mapping_mtl = {
     "Mitigating Task Interference in Multi-Task Learning via Explicit Task Routing with Non-Learnable Primitives": "Explicit Task Routing (ETR), Non-Learnable Primitives (NLPs)",
     # architecture search
     "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
+    "Inverted Pyramid Multi-task Transformer for Dense Scene Understanding": "Inverted Pyramid Multi-Task Transformer (InvPT)",
     # others
     "Facial Landmark Detection by Deep Multi-task Learning": "Tasks-Constrained Learning",
     "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
