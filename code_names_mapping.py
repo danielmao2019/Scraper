@@ -44,7 +44,7 @@ mapping_transformer = {
     "AutoFocusFormer: Image Segmentation off the Grid": "AutoFocusFormer (AFF)",
 }
 
-mapping_mtl = {
+mapping_multi_task_supervised_learning = {
     # gradient manipulation
     "Multi-Task Learning as Multi-Objective Optimization": "Multiple Gradient Descent Algorithm (MGDA)",
     "Gradient Surgery for Multi-Task Learning": "Projecting Conflicting Gradients (PCGrad)",
@@ -111,6 +111,10 @@ mapping_mtl = {
     "Towards Hetero-Client Federated Multi-Task Learning": "Hetero-Client Federated Multi-Task Learning (HC-FMTL), Hyper Conflict-Averse, Hyper Cross Attention (HCA$^2$)",
     # meta learning
     "Multi-Objective Meta Learning": "Multi-Objective Meta Learning (MOML)",
+}
+
+mapping_multi_task_reinforcement_learning = {
+    "Multi-Task Reinforcement Learning with Context-based Representations": "Contextual Attention-Based Representation Learning (CARE)",
 }
 
 mapping_gan_2D = {
@@ -355,7 +359,8 @@ mapping.update(mapping_detection)
 mapping.update(mapping_semantic_segmentation)
 mapping.update(mapping_instance_segmentation)
 mapping.update(mapping_transformer)
-mapping.update(mapping_mtl)
+mapping.update(mapping_multi_task_supervised_learning)
+mapping.update(mapping_multi_task_reinforcement_learning)
 mapping.update(mapping_gan_2D)
 mapping.update(mapping_gan_3D)
 mapping.update(mapping_diffusion_2D)
