@@ -95,7 +95,6 @@ mapping_mtl = {
     "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
     "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
     "Just Pick a Sign: Optimizing Deep Multitask Models with Gradient Sign Dropout": "Gradient Sign Dropout (GradDrop)",
-    "Gradient Surgery for Multi-Task Learning": "PCGrad",
     "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
     "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
     "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
