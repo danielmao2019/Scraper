@@ -24,6 +24,7 @@ class GetPaperList:
     }
 
     papers_count_iccv = {
+        2013: 454,
         2017: 621,
         2019: 294 + 153 + 318 + 310,
         2021: 1612,
