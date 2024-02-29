@@ -42,6 +42,7 @@ mapping_instance_segmentation = {
 
 mapping_edge_detection = {
     "Pixel Difference Networks for Efficient Edge Detection": "Pixel Difference Network (PiDiNet)",
+    "EDTER: Edge Detection With Transformer": "Edge Detection TransformER (EDTER)",
 }
 
 mapping_transformer = {
