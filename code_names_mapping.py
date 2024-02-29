@@ -40,6 +40,10 @@ mapping_instance_segmentation = {
     "Explicit Shape Encoding for Real-Time Instance Segmentation": "Explicit Shape Encoding (ESE-Seg)",
 }
 
+mapping_edge_detection = {
+    "Pixel Difference Networks for Efficient Edge Detection": "Pixel Difference Network (PiDiNet)",
+}
+
 mapping_transformer = {
     "AutoFocusFormer: Image Segmentation off the Grid": "AutoFocusFormer (AFF)",
 }
@@ -358,6 +362,7 @@ mapping.update(mapping_cnns)
 mapping.update(mapping_detection)
 mapping.update(mapping_semantic_segmentation)
 mapping.update(mapping_instance_segmentation)
+mapping.update(mapping_edge_detection)
 mapping.update(mapping_transformer)
 mapping.update(mapping_multi_task_supervised_learning)
 mapping.update(mapping_multi_task_reinforcement_learning)
