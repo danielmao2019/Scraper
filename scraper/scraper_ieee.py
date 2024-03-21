@@ -1,14 +1,12 @@
-from urllib.request import urlopen
 from urllib.parse import urljoin
-from bs4 import BeautifulSoup
 import re
 import json
 
+from . import utils
+
 
 def scrape_ieee(url: str) -> dict:
-    page = urlopen(url)
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    soup = utils.get_soup(url)
     # construct json
     json_str = re.findall(pattern="xplGlobal.document.metadata=(.*);\n", string=str(soup))
     assert len(json_str) == 1
