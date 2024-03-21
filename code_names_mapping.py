@@ -283,6 +283,10 @@ mapping_representation_image = {
     "Masked Autoencoders Are Scalable Vision Learners": "Masked Autoencoders (MAE)",
 }
 
+mapping_adversarial = {
+    "Explaining and Harnessing Adversarial Examples": "Fast Gradient Sign Method (FGSM)",
+}
+
 mapping = {
     # Convolutional Neural Networks
     "InceptionNeXt: When Inception Meets ConvNeXt": "InceptionNeXt",
@@ -344,3 +348,4 @@ mapping.update(mapping_geometric)
 mapping.update(mapping_3D)
 mapping.update(mapping_representation_image)
 mapping.update(mapping_representation_3d)
+mapping.update(mapping_adversarial)
