@@ -315,6 +315,7 @@ mapping_representation_image = {
 
 mapping_adversarial = {
     "Explaining and Harnessing Adversarial Examples": "Fast Gradient Sign Method (FGSM)",
+    "Towards Deep Learning Models Resistant to Adversarial Attacks": "Projected Gradient Descent (PGD)",
 }
 
 mapping = {
