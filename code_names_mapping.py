@@ -29,6 +29,7 @@ mapping_semantic_segmentation = {
     "DifFSS: Diffusion Model for Few-Shot Semantic Segmentation": "DifFSS",
     "DFormer: Diffusion-guided Transformer for Universal Image Segmentation": "DFormer",
     "SegDiff: Image Segmentation with Diffusion Probabilistic Models": "SegDiff",
+    "Stochastic Segmentation with Conditional Categorical Diffusion Models": "Conditional Categorical Diffusion Model (CCDM)",
 }
 
 mapping_instance_segmentation = {
