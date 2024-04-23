@@ -21,15 +21,19 @@ def scrape_springer(url: str) -> dict:
     r = requests.get(pdf_url)
     assert r.status_code == 200, f"{r.status_code=}, {pdf_url=}"
     authors = ", ".join(a['name'] for a in json_dict['author'])
-    year = f"`{json_dict['datePublished']}`"
+    pub_name = json_dict['isPartOf']['name']
+    pub_name = re.findall(pattern="Computer Vision . (\w+) \d+", string=pub_name)
+    assert len(pub_name) == 1, f"{pub_name=}"
+    pub_name = pub_name[0]
+    pub_year = f"`{json_dict['datePublished']}`"
     abstract = json_dict['description'].strip()
     # return
     return {
         'title': title,
         'abs_url': url,
         'pdf_url': pdf_url,
-        'pub_name': "Springer",
-        'pub_year': year,
+        'pub_name': pub_name,
+        'pub_year': pub_year,
         'authors': authors,
         'abstract': abstract,
     }
