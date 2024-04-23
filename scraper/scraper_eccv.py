@@ -15,14 +15,13 @@ def scrape_eccv(url):
     pattern = "eccv_(\d\d\d\d)"
     year = re.findall(pattern=pattern, string=url)
     assert len(year) == 1, f"{url=}, {pattern=}, {year=}"
-    year = year[0]
-    assert 2000 <= int(year) <= 2030
-    year = f"`{year}`"
+    assert 2000 <= int(year[0]) <= 2030
+    year = f"`{year[0]}`"
     # get authors
     authors = soup.find("div", id="authors").text.strip()
     authors = re.sub(pattern='\n', repl="", string=authors)
     # get abstract
-    abstract = utils.post_process_abstract(soup.find("div", id="abstract").text.strip())
+    abstract = soup.find("div", id="abstract").text.strip()
     # return
     return {
         'title': title,

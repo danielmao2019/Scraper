@@ -25,7 +25,6 @@ def scrape_pmlr (url: str) -> dict:
     authors = ", ".join(authors)
     # get abstract
     abstract = soup.find('div', class_="abstract").text
-    abstract = utils.post_process_abstract(abstract)
     # return
     return {
         'title': title,

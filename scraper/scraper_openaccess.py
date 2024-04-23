@@ -10,7 +10,7 @@ def scrape_openaccess(url: str) -> dict:
     conf_name, conf_year = utils.parse_writers(url.split('/')[-1])
     conf_year = f"`{conf_year}`"
     authors = soup.find("div", id="authors").text.strip().split(';')[0]
-    abstract = utils.post_process_abstract(soup.find("div", id="abstract").text.strip())
+    abstract = soup.find("div", id="abstract").text.strip()
     # return
     return {
         'title': title,
