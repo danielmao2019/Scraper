@@ -60,9 +60,11 @@ mapping_multi_task_supervised_learning = {
     "Measuring and Harnessing Transference in Multi-Task Learning": "Transference, Increased Transfer MTL (IT-MTL)",
     # gradient balancing
     "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
-    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
+    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "Gradient Normalization (GradNorm)",
     "FAMO: Fast Adaptive Multitask Optimization": "Fast Adaptive Multitask Optimization (FAMO)",
     "Self-Paced Multi-Task Learning": "Self-Paced Multi-Task Learning (SPMTL)",
+    # stochastic method
+    "Mitigating Gradient Bias in Multi-objective Learning: A Provably Convergent Stochastic Approach": "Multi-Objective Gradient Correction (MoCo)",
     # architectural solutions
     ## architecture design
     "HyperFace: A Deep Multi-task Learning Framework for Face Detection, Landmark Localization, Pose Estimation, and Gender Recognition": "HyperFace",
@@ -124,6 +126,8 @@ mapping_multi_task_reinforcement_learning = {
 }
 
 mapping_gan_2D = {
+    # GAN Encoders
+    "Adversarially Learned Inference": "Adversarially Learned Inference (ALI)",
     # GAN Inversion
     "Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?": "Image2StyleGAN",
     "Image2StyleGAN++: How to Edit the Embedded Images?": "Image2StyleGAN++",
@@ -320,6 +324,13 @@ mapping_adversarial = {
     "Towards Deep Learning Models Resistant to Adversarial Attacks": "Projected Gradient Descent (PGD)",
 }
 
+mapping_domain_adaptation = {
+    "Transferable Query Selection for Active Domain Adaptation": "Transferable Query Selection (TQS)",
+    "Active Domain Adaptation via Clustering Uncertainty-Weighted Embeddings": "Clustering Uncertainty-weighted Embeddings (CLUE)",
+    "Active Universal Domain Adaptation": "Active Universal Adaptation Network (AUAN)",
+    "Learning Distinctive Margin Toward Active Domain Adaptation": "Select-by-Distinctive-Margin (SDM)",
+}
+
 mapping = {
     # Convolutional Neural Networks
     "InceptionNeXt: When Inception Meets ConvNeXt": "InceptionNeXt",
@@ -385,3 +396,4 @@ mapping.update(mapping_3D)
 mapping.update(mapping_representation_image)
 mapping.update(mapping_representation_3d)
 mapping.update(mapping_adversarial)
+mapping.update(mapping_domain_adaptation)
