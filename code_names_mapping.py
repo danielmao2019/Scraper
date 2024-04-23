@@ -124,6 +124,8 @@ mapping_multi_task_reinforcement_learning = {
 }
 
 mapping_gan_2D = {
+    # GAN Encoders
+    "Adversarially Learned Inference": "Adversarially Learned Inference (ALI)",
     # GAN Inversion
     "Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?": "Image2StyleGAN",
     "Image2StyleGAN++: How to Edit the Embedded Images?": "Image2StyleGAN++",
