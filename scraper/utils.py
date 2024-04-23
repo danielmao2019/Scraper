@@ -48,7 +48,7 @@ def get_pdf_url(
     return pdf_url
 
 
-def _parse_conference_(string):
+def _parse_conference_(string: str) -> Tuple[str, str]:
     r"""
     Args:
         string (str): a string that contains the name and year of the conference.
@@ -67,7 +67,7 @@ def _parse_conference_(string):
     return name, year
 
 
-def _parse_journal_(string):
+def _parse_journal_(string: str) -> Tuple[str, str]:
     r"""
     Args:
         string (str): a string that contains the name and year of the journal.
@@ -82,11 +82,9 @@ def _parse_journal_(string):
     return name, ""
 
 
-def parse_writers(
-    value: Union[str, List[str]],
-) -> Tuple[str]:
+def parse_writers(value: Union[str, List[str]]) -> Tuple[str]:
     if type(value) == list:
-        assert len(value) == 1
+        assert len(value) == 1, f"{len(value)=}"
         value = value[0]
     try:
         return _parse_conference_(value)
