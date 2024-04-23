@@ -16,7 +16,7 @@ def scrape_neurips(url):
     authors = str(soup.findAll(name="p")[1])[6:-8]
     # get abstract
     p_idx = 2 + (soup.findAll(name="p")[2].text.strip() == "")
-    abstract = utils.post_process_abstract(soup.findAll(name="p")[p_idx].text.strip())
+    abstract = soup.findAll(name="p")[p_idx].text.strip()
     # get pdf url
     pdf_url = url
     pdf_url = re.sub(pattern="hash", repl="file", string=pdf_url)

@@ -122,5 +122,5 @@ def compile_markdown(
     string += f"{INDENT}* Title: {title}\n"
     string += f"{INDENT}* Year: {pub_year}\n"
     string += f"{INDENT}* Authors: {authors}\n"
-    string += f"{INDENT}* Abstract: {abstract}\n"
+    string += f"{INDENT}* Abstract: {post_process_abstract(abstract)}\n"
     return string

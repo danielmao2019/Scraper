@@ -19,12 +19,12 @@ def scrape_acm(url: str) -> Dict[str, str]:
     assert len(year.split(' ')) == 3, f"{year=}"
     year = datetime.strptime(year, "%d %B %Y")
     year = year.strftime("%d %b %Y")
+    year = f"`{year}`"
     # get authors
     authors = soup.findAll('div', class_="author-data")
     authors = ", ".join([a.text for a in authors])
     # get abstract
     abstract = soup.find('div', class_="abstractSection abstractInFull").text
-    abstract = utils.post_process_abstract(abstract)
     # return
     return {
         'title': title,

@@ -17,21 +17,20 @@ def scrape_jmlr(url: str) -> Dict[str, str]:
     # get year
     year = soup.findAll('meta', {'name': 'citation_publication_date'})
     assert len(year) == 1
-    year = year[0]['content']
+    year = f"`{year[0]['content']}`"
     # get authors
     authors = soup.findAll('meta', {'name': 'citation_author'})
     authors = ", ".join([t['content'] for t in authors])
     # get abstract
     abstract = soup.find('h3', text="Abstract").findNextSiblings('p')
     abstract = ' '.join([p.text.strip() for p in abstract])
-    abstract = utils.post_process_abstract(abstract)
     # return
     return {
         'title': title,
         'abs_url': url,
         'pdf_url': pdf_url,
         'pub_name': "JMLR",
-        'pub_year': f"`{year}`",
+        'pub_year': year,
         'authors': authors,
         'abstract': abstract,
     }
