@@ -60,9 +60,11 @@ mapping_multi_task_supervised_learning = {
     "Measuring and Harnessing Transference in Multi-Task Learning": "Transference, Increased Transfer MTL (IT-MTL)",
     # gradient balancing
     "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
-    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
+    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "Gradient Normalization (GradNorm)",
     "FAMO: Fast Adaptive Multitask Optimization": "Fast Adaptive Multitask Optimization (FAMO)",
     "Self-Paced Multi-Task Learning": "Self-Paced Multi-Task Learning (SPMTL)",
+    # stochastic method
+    "Mitigating Gradient Bias in Multi-objective Learning: A Provably Convergent Stochastic Approach": "Multi-Objective Gradient Correction (MoCo)",
     # architectural solutions
     ## architecture design
     "HyperFace: A Deep Multi-task Learning Framework for Face Detection, Landmark Localization, Pose Estimation, and Gender Recognition": "HyperFace",
