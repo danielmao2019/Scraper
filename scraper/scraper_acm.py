@@ -17,9 +17,10 @@ def scrape_acm(url: str) -> Dict[str, str]:
     assert len(year) == 1
     year = year[0][len("Published: "):]
     assert len(year.split(' ')) == 3, f"{year=}"
-    year = datetime.strptime(year, "%d %B %Y")
-    year = year.strftime("%d %b %Y")
-    year = f"`{year}`"
+    year = datetime.strptime(year, "%d %B %Y").strftime("%d %b %Y")
+    year = year.split(' ')
+    year[2] = f"`{year[2]}`"
+    year = ' '.join(year)
     # get authors
     authors = soup.findAll('div', class_="author-data")
     authors = ", ".join([a.text for a in authors])
