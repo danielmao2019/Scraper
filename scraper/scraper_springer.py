@@ -22,7 +22,7 @@ def scrape_springer(url: str) -> dict:
     assert r.status_code == 200, f"{r.status_code=}, {pdf_url=}"
     authors = ", ".join(a['name'] for a in json_dict['author'])
     pub_name = json_dict['isPartOf']['name']
-    pub_name = re.findall(pattern="Computer Vision . (\w+) \d+", string=pub_name)
+    pub_name = re.findall(pattern="(?:Computer Vision|Machine Learning)[^(\w|\d)]+([A-Z]+) \d+", string=pub_name)
     assert len(pub_name) == 1, f"{pub_name=}"
     pub_name = pub_name[0]
     pub_year = f"`{json_dict['datePublished']}`"
