@@ -328,6 +328,7 @@ mapping_domain_adaptation = {
     "Transferable Query Selection for Active Domain Adaptation": "Transferable Query Selection (TQS)",
     "Active Domain Adaptation via Clustering Uncertainty-Weighted Embeddings": "Clustering Uncertainty-weighted Embeddings (CLUE)",
     "Active Universal Domain Adaptation": "Active Universal Adaptation Network (AUAN)",
+    "Learning Distinctive Margin Toward Active Domain Adaptation": "Select-by-Distinctive-Margin (SDM)",
 }
 
 mapping = {
