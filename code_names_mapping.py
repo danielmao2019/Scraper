@@ -326,6 +326,7 @@ mapping_adversarial = {
 
 mapping_domain_adaptation = {
     "Transferable Query Selection for Active Domain Adaptation": "Transferable Query Selection (TQS)",
+    "Active Domain Adaptation via Clustering Uncertainty-Weighted Embeddings": "Clustering Uncertainty-weighted Embeddings (CLUE)",
 }
 
 mapping = {
