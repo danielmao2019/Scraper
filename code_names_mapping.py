@@ -324,6 +324,10 @@ mapping_adversarial = {
     "Towards Deep Learning Models Resistant to Adversarial Attacks": "Projected Gradient Descent (PGD)",
 }
 
+mapping_domain_adaptation = {
+    "Transferable Query Selection for Active Domain Adaptation": "Transferable Query Selection (TQS)",
+}
+
 mapping = {
     # Convolutional Neural Networks
     "InceptionNeXt: When Inception Meets ConvNeXt": "InceptionNeXt",
@@ -389,3 +393,4 @@ mapping.update(mapping_3D)
 mapping.update(mapping_representation_image)
 mapping.update(mapping_representation_3d)
 mapping.update(mapping_adversarial)
+mapping.update(mapping_domain_adaptation)
