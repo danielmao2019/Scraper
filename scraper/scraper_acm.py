@@ -1,14 +1,11 @@
 from typing import Dict
-import requests
-from bs4 import BeautifulSoup
 from datetime import datetime
 from . import utils
 
 
 def scrape_acm(url: str) -> Dict[str, str]:
-    response = requests.get(url)
-    assert response.status_code == 200, f"{response.status_code=}"
-    soup = BeautifulSoup(response.content, "html.parser")
+    assert type(url) == str, f"{type(url)=}"
+    soup = utils.get_soup(url)
     # get title
     title = soup.find('h1', class_="citation__title").text
     # get year

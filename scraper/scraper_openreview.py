@@ -1,9 +1,9 @@
+from typing import Dict
 import json
-
 from . import utils
 
 
-def scrape_openreview(url: str) -> dict:
+def scrape_openreview(url: str) -> Dict[str, str]:
     assert type(url) == str, f"{type(url)=}"
     soup = utils.get_soup(url)
     # construct json

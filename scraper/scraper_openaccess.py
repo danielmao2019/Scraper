@@ -1,7 +1,8 @@
+from typing import Dict
 from . import utils
 
 
-def scrape_openaccess(url: str) -> dict:
+def scrape_openaccess(url: str) -> Dict[str, str]:
     assert type(url) == str, f"{type(url)=}"
     soup = utils.get_soup(url)
     # extract

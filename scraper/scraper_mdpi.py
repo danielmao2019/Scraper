@@ -1,13 +1,10 @@
 from typing import Dict
-import requests
-from bs4 import BeautifulSoup
+from . import utils
 
 
 def scrape_mdpi(url: str) -> Dict[str, str]:
     assert type(url) == str, f"{type(url)=}"
-    response = requests.get(url)
-    assert response.status_code == 200, f"{response.status_code=}"
-    soup = BeautifulSoup(response.content, "html.parser")
+    soup = utils.get_soup(url)
     # get title
     title = soup.find("h1", class_="title hypothesis_container").text.strip()
     # get year
