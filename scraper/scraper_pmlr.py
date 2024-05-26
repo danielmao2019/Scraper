@@ -1,10 +1,10 @@
+from typing import Dict
 import re
 from datetime import datetime
-
 from . import utils
 
 
-def scrape_pmlr (url: str) -> dict:
+def scrape_pmlr (url: str) -> Dict[str, str]:
     assert type(url) == str, f"{type(url)=}"
     soup = utils.get_soup(url)
     # get title
