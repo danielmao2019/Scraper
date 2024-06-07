@@ -329,6 +329,8 @@ mapping_domain_adaptation = {
     "Active Domain Adaptation via Clustering Uncertainty-Weighted Embeddings": "Clustering Uncertainty-weighted Embeddings (CLUE)",
     "Active Universal Domain Adaptation": "Active Universal Adaptation Network (AUAN)",
     "Learning Distinctive Margin Toward Active Domain Adaptation": "Select-by-Distinctive-Margin (SDM)",
+    "Unsupervised Domain Adaptation with Residual Transfer Networks": "Residual Transfer Networks (RTN)",
+    "Central Moment Discrepancy (CMD) for Domain-Invariant Representation Learning": "Central Moment Discrepancy (CMD)",
 }
 
 mapping = {
