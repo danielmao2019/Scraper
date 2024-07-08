@@ -4,7 +4,7 @@ from . import utils
 
 
 def scrape_acm(url: str) -> Dict[str, str]:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.get_soup(url)
     # get title
     title = soup.find('h1', class_="citation__title").text
@@ -13,7 +13,7 @@ def scrape_acm(url: str) -> Dict[str, str]:
     year = [y.text for y in year.findAll('li') if y.text.startswith("Published: ")]
     assert len(year) == 1
     year = year[0][len("Published: "):]
-    assert len(year.split(' ')) == 3, f"{year=}"
+    assert len(year.split(' ')) == 3, f"year={year}"
     year = datetime.strptime(year, "%d %B %Y").strftime("%d %b %Y")
     year = year.split(' ')
     year[2] = f"`{year[2]}`"

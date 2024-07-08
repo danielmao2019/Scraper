@@ -14,7 +14,7 @@ INDENT = ' ' * 4
 
 
 def get_soup(url: str):
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     try:
         page = urlopen(url)
     except Exception as e1:
@@ -44,7 +44,7 @@ def get_pdf_url(
     pdf_url = urljoin(base=abs_url, url=rel_pdf_url)
     # check if new url exists
     r = requests.get(pdf_url)
-    assert r.status_code == 200, f"{r.status_code=}, {abs_url=}, {rel_pdf_url=}"
+    assert r.status_code == 200, f"r.status_code={r.status_code}, abs_url={abs_url}, rel_pdf_url={rel_pdf_url}"
     return pdf_url
 
 
@@ -58,11 +58,11 @@ def _parse_conference_(string: str) -> Tuple[str, str]:
     """
     # get name
     name = re.findall(pattern=f"({'|'.join(RECOGNIZED_CONFERENCES)})w?", string=string.lower())
-    assert len(name) == 1, f"{string=}, {name=}"
+    assert len(name) == 1, f"string={string}, name={name}"
     name = name[0].upper()
     # get year
     year = re.findall(pattern=r"\d\d\d\d", string=string)
-    assert len(year) == 1, f"{string=}, {year=}"
+    assert len(year) == 1, f"string={string}, year={year}"
     year = year[0]
     return name, year
 
@@ -77,14 +77,14 @@ def _parse_journal_(string: str) -> Tuple[str, str]:
     """
     # get name
     name = re.findall(pattern=f"({'|'.join(RECOGNIZED_JOURNALS)})", string=string.lower())
-    assert len(name) == 1, f"{string=}, {name=}"
+    assert len(name) == 1, f"string={string}, name={name}"
     name = name[0].upper()
     return name, ""
 
 
 def parse_writers(value: Union[str, List[str]]) -> Tuple[str]:
     if type(value) == list:
-        assert len(value) == 1, f"{len(value)=}"
+        assert len(value) == 1, f"len(value)={len(value)}"
         value = value[0]
     try:
         return _parse_conference_(value)

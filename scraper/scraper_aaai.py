@@ -3,7 +3,7 @@ from . import utils
 
 
 def scrape_aaai(url: str) -> Dict[str, str]:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.get_soup(url)
     # get title
     title = soup.findAll(name='meta', attrs={'name': 'DC.Title'})
@@ -11,11 +11,11 @@ def scrape_aaai(url: str) -> Dict[str, str]:
     title = title[0]['content']
     # get pdf url
     pdf_url = soup.findAll(name='a', attrs={'class': 'obj_galley_link pdf'})
-    assert len(pdf_url) == 1, f"{pdf_url=}"
+    assert len(pdf_url) == 1, f"pdf_url={pdf_url}"
     pdf_url = pdf_url[0]['href']
     # get year
     year = soup.findAll(name='meta', attrs={'name': 'DC.Date.created'})
-    assert len(year) == 1, f"{year=}"
+    assert len(year) == 1, f"year={year}"
     year = f"`{year[0]['content'].split('-')[0]}`"
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': 'DC.Creator.PersonalName'})

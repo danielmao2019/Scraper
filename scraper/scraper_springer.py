@@ -6,7 +6,7 @@ from . import utils
 
 
 def scrape_springer(url: str) -> Dict[str, str]:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.get_soup(url)
     # construct json
     json_str = soup.findAll('script', type="application/ld+json")
@@ -19,11 +19,11 @@ def scrape_springer(url: str) -> Dict[str, str]:
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]
     r = requests.get(pdf_url)
-    assert r.status_code == 200, f"{r.status_code=}, {pdf_url=}"
+    assert r.status_code == 200, f"r.status_code={r.status_code}, pdf_url={pdf_url}"
     authors = ", ".join(a['name'] for a in json_dict['author'])
     pub_name = json_dict['isPartOf']['name']
     pub_name = re.findall(pattern="([A-Z]+) \d+", string=pub_name)
-    assert len(pub_name) == 1, f"{pub_name=}"
+    assert len(pub_name) == 1, f"pub_name={pub_name}"
     pub_name = pub_name[0]
     pub_year = f"`{json_dict['datePublished']}`"
     abstract = json_dict['description'].strip()

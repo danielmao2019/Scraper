@@ -4,7 +4,7 @@ from . import utils
 
 
 def scrape_eccv(url: str) -> Dict[str, str]:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.get_soup(url)
     # generate links
     rel_pdf_url = soup.find("a", string="pdf")['href']
@@ -14,7 +14,7 @@ def scrape_eccv(url: str) -> Dict[str, str]:
     # get year
     pattern = "eccv_(\d\d\d\d)"
     year = re.findall(pattern=pattern, string=url)
-    assert len(year) == 1, f"{url=}, {pattern=}, {year=}"
+    assert len(year) == 1, f"url={url}, pattern={pattern}, year={year}"
     assert 2000 <= int(year[0]) <= 2030
     year = f"`{year[0]}`"
     # get authors

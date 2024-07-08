@@ -3,7 +3,7 @@ from . import utils
 
 
 def scrape_openaccess(url: str) -> Dict[str, str]:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.get_soup(url)
     # extract
     title = soup.find("div", id="papertitle").text.strip()
