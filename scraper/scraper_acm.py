@@ -4,7 +4,7 @@ from . import utils
 
 
 def scrape_acm(url: str) -> Dict[str, str]:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.get_soup(url)
     # get title
     title = soup.find('h1', class_="citation__title").text

@@ -10,7 +10,7 @@ def main(url_dict):
     Arguments:
         url_dict (dict): dictionary of lists of urls to be scrapped.
     """
-    assert type(url_dict) == dict, f"{type(url_dict)=}"
+    assert type(url_dict) == dict, f"type(url_dict)={type(url_dict)}"
     for group in url_dict:
         url_list = url_dict[group]
         logging.info(f"Processing group '{group}'." + (

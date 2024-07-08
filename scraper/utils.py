@@ -14,7 +14,7 @@ INDENT = ' ' * 4
 
 
 def get_soup(url: str):
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     try:
         page = urlopen(url)
     except Exception as e1:
