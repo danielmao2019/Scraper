@@ -62,7 +62,7 @@ def _parse_conference_(string: str) -> Tuple[str, str]:
     name = name[0].upper()
     # get year
     year = re.findall(pattern=r"\d\d\d\d", string=string)
-    assert len(year) == 1, f"{string=}, {year=}"
+    assert len(year) == 1, f"{string=}, year={year}"
     year = year[0]
     return name, year
 

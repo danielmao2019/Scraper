@@ -13,7 +13,7 @@ def scrape_acm(url: str) -> Dict[str, str]:
     year = [y.text for y in year.findAll('li') if y.text.startswith("Published: ")]
     assert len(year) == 1
     year = year[0][len("Published: "):]
-    assert len(year.split(' ')) == 3, f"{year=}"
+    assert len(year.split(' ')) == 3, f"year={year}"
     year = datetime.strptime(year, "%d %B %Y").strftime("%d %b %Y")
     year = year.split(' ')
     year[2] = f"`{year[2]}`"

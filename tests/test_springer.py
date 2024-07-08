@@ -12,7 +12,7 @@ import os
     ),
 ])
 def test_springer(url: str, expected: str) -> None:
-    assert type(url) == str, f"{type(url)=}"
+    assert type(url) == str, f"type(url)={type(url)}"
     assert type(expected) == str, f'{expected=}'
     assert os.path.isfile(expected), f"{expected=}"
     with open(expected, mode='r') as f:
