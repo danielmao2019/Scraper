@@ -7,11 +7,11 @@ import os
 
 @pytest.mark.parametrize("url, expected", [
     (
-        "https://link.springer.com/chapter/10.1007/978-3-319-13560-1_76",
-        "test_springer_ground_truth.txt",
+        "https://pubmed.ncbi.nlm.nih.gov/7584893/",
+        "test_pubmed_ground_truth.txt",
     ),
 ])
-def test_springer(url: str, expected: str) -> None:
+def test_pubmed(url: str, expected: str) -> None:
     assert type(url) == str, f"type(url)={type(url)}"
     assert type(expected) == str, f'expected={expected}'
     assert os.path.isfile(expected), f"expected={expected}"
