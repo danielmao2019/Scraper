@@ -5,7 +5,7 @@ from datetime import datetime
 from . import utils
 
 
-def scrape_mlr (url: str) -> dict:
+def scrape_pmlr (url: str) -> dict:
     page = urlopen(url)
     html = page.read().decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
@@ -33,7 +33,7 @@ def scrape_mlr (url: str) -> dict:
         'title': title,
         'abs_url': url,
         'pdf_url': pdf_url,
-        'pub_name': "MLR",
+        'pub_name': "PMLR",
         'pub_year': year,
         'authors': authors,
         'abstract': abstract,
