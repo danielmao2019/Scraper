@@ -52,8 +52,9 @@ mapping_mtl = {
     "Conflict-Averse Gradient Descent for Multi-task learning": "Conflict-Averse Gradient Descent (CAGrad)",
     "Measuring and Harnessing Transference in Multi-Task Learning": "Transference, Increased Transfer MTL (IT-MTL)",
     # gradient balancing
-    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
     "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
+    "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "GradNorm",
+    "FAMO: Fast Adaptive Multitask Optimization": "Fast Adaptive Multitask Optimization (FAMO)",
     "Self-Paced Multi-Task Learning": "Self-Paced Multi-Task Learning (SPMTL)",
     # architectural solutions
     ## architecture design
@@ -96,7 +97,6 @@ mapping_mtl = {
     "Conflict-Averse Gradient Descent for Multi-task Learning": "CAGrad",
     "UberNet: Training a `Universal' Convolutional Neural Network for Low-, Mid-, and High-Level Vision using Diverse Datasets and Limited Memory": "UberNet",
     "Multi-Task Learning as a Bargaining Game": "Nash-MTL",
-    "FAMO: Fast Adaptive Multitask Optimization": "FAMO",
     "Distral: Robust Multitask Reinforcement Learning": "Distral",
     "Actor-Mimic: Deep Multitask and Transfer Reinforcement Learning": "Actor-Mimic",
     "End-to-End Multi-Task Learning with Attention": "Multi-Task Attention Network (MTAN)",
