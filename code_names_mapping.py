@@ -11,6 +11,7 @@ mapping_detection = {
 }
 
 mapping_semantic_segmentation = {
+    "Object Detection with Discriminatively Trained Part-Based Models": "DPM",
     # DeepLab Family
     "Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs": "DeepLab-v1",
     "DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs": "DeepLab-v2",
@@ -98,7 +99,7 @@ mapping_multi_task_supervised_learning = {
     "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
     "Inverted Pyramid Multi-task Transformer for Dense Scene Understanding": "Inverted Pyramid Multi-Task Transformer (InvPT)",
     # others
-    "Facial Landmark Detection by Deep Multi-task Learning": "Tasks-Constrained Learning",
+    "Facial Landmark Detection by Deep Multi-task Learning": "Tasks-Constrained Deep Convolutional Network (TCDCN)",
     "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
     "Routing Networks: Adaptive Selection of Non-linear Functions for Multi-Task Learning": "Routing Networks",
     "PathNet: Evolution Channels Gradient Descent in Super Neural Networks": "PathNet",
@@ -120,6 +121,12 @@ mapping_multi_task_supervised_learning = {
     # meta learning
     "Multi-Objective Meta Learning": "Multi-Objective Meta Learning (MOML)",
 }
+
+mapping_multi_task_supervised_learning_datasets = {
+    "Indoor segmentation and support inference from rgbd images": "NYU-v2",
+}
+
+mapping_multi_task_supervised_learning.update(mapping_multi_task_supervised_learning_datasets)
 
 mapping_multi_task_reinforcement_learning = {
     "Multi-Task Reinforcement Learning with Context-based Representations": "Contextual Attention-Based Representation Learning (CARE)",
@@ -308,6 +315,7 @@ mapping_representation_image = {
     "Exploring Simple Siamese Representation Learning": "SimSiam",
     "Momentum Contrast for Unsupervised Visual Representation Learning": "MoCo-v1",
     "Improved Baselines with Momentum Contrastive Learning": "MoCo-v2",
+    "An Empirical Study of Training Self-Supervised Vision Transformers": "MoCo-v3",
     "Bootstrap your own latent: A new approach to self-supervised Learning": "Bootstrap Your Own Latent (BYOL)",
     "Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture": "Image-based Joint-Embedding Predictive Architecture (I-JEPA)",
     "Masked Siamese Networks for Label-Efficient Learning": "Masked Siamese Networks (MSN)",
@@ -317,6 +325,7 @@ mapping_representation_image = {
     "Learning by Sorting: Self-supervised Learning with Group Ordering Constraints": "Group Ordering Constraints (GroCo)",
     "Semantics-Consistent Feature Search for Self-Supervised Visual Representation Learning": "Semantics-Consistent Feature Search (SCFS)",
     "Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks": "Deep Convolutional Generative Adversarial Networks (DCGANs)",
+    "Learning deep representations by mutual information estimation and maximization": "Deep InfoMax (DIM)",
 }
 
 mapping_adversarial = {
@@ -331,6 +340,15 @@ mapping_domain_adaptation = {
     "Learning Distinctive Margin Toward Active Domain Adaptation": "Select-by-Distinctive-Margin (SDM)",
     "Unsupervised Domain Adaptation with Residual Transfer Networks": "Residual Transfer Networks (RTN)",
     "Central Moment Discrepancy (CMD) for Domain-Invariant Representation Learning": "Central Moment Discrepancy (CMD)",
+}
+
+mapping_open_set_domain_adaptation = {
+    "Open-Set Domain Adaptation for Semantic Segmentation": "Boundary and Unknown Shape-Aware Open-Set Domain Adaptation (BUS)",
+}
+
+mapping_dataset_distillation = {
+    "Minimizing the Accumulated Trajectory Error to Improve Dataset Distillation": "Flat Trajectory Distillation (FTD)",
+    "On the Diversity and Realism of Distilled Dataset: An Efficient Dataset Distillation Paradigm": "Realistic, Diverse, and Efficient Dataset Distillation (RDED)",
 }
 
 mapping = {
@@ -399,3 +417,5 @@ mapping.update(mapping_representation_image)
 mapping.update(mapping_representation_3d)
 mapping.update(mapping_adversarial)
 mapping.update(mapping_domain_adaptation)
+mapping.update(mapping_open_set_domain_adaptation)
+mapping.update(mapping_dataset_distillation)

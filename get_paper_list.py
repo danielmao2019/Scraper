@@ -21,6 +21,7 @@ class GetPaperList:
         2021: 1660,
         2022: 2074,
         2023: 2353,
+        2024: 2715,
     }
 
     papers_count_iccv = {
@@ -96,7 +97,7 @@ class GetPaperList:
             html = page.read().decode("utf-8")
             soup = BeautifulSoup(html, "html.parser")
             papers += soup.findAll(name='dt', class_="ptitle")
-        assert len(papers) == getattr(self, f"papers_count_{conference}")[year], f"{len(papers)=}"
+        assert len(papers) == getattr(self, f"papers_count_{conference}")[year], f"len(papers)={len(papers)}"
         filepath = os.path.join(self.paper_lists_root, f"{conference}/{conference}{year}.txt")
         with open(filepath, mode='w') as f:
             for dt in papers:
@@ -126,7 +127,7 @@ class GetPaperList:
         html = page.read().decode("utf-8")
         soup = BeautifulSoup(html, "html.parser")
         papers = soup.findAll(name='a', title="paper title")
-        assert len(papers) == self.papers_count_neurips[year], f"{len(papers)=}"
+        assert len(papers) == self.papers_count_neurips[year], f"len(papers)={len(papers)}"
         filepath = os.path.join(self.paper_lists_root, f"neurips/neurips{year}.txt")
         with open(filepath, mode='w') as f:
             for a in papers:
