@@ -1,5 +1,6 @@
-from scraper.scraper_aaai import scrape_aaai
 from scraper.scraper_arxiv import scrape_arxiv
+from scraper.scraper_aaai import scrape_aaai
+from scraper.scraper_acl import scrape_acl
 from scraper.scraper_acm import scrape_acm
 from scraper.scraper_eccv import scrape_eccv
 from scraper.scraper_ieee import scrape_ieee
@@ -17,10 +18,12 @@ from . import utils
 
 def scrape(url: str) -> str:
     info_dict = None
-    if url.startswith("https://ojs.aaai.org"):
-        info_dict = scrape_aaai(url)
     if url.startswith("https://arxiv.org"):
         info_dict = scrape_arxiv(url)
+    if url.startswith("https://ojs.aaai.org"):
+        info_dict = scrape_aaai(url)
+    if url.startswith("https://aclanthology.org"):
+        info_dict = scrape_acl(url)
     if url.startswith("https://dl.acm.org/doi"):
         info_dict = scrape_acm(url)
     if url.startswith("https://www.ecva.net"):
