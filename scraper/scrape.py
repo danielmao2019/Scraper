@@ -11,6 +11,7 @@ from scraper.scraper_openaccess import scrape_openaccess
 from scraper.scraper_openreview import scrape_openreview
 from scraper.scraper_pmlr import scrape_pmlr
 from scraper.scraper_pubmed import scrape_pubmed
+from scraper.scraper_robotics import scrape_robotics
 from scraper.scraper_springer import scrape_springer
 
 from . import utils
@@ -44,6 +45,8 @@ def scrape(url: str) -> str:
         info_dict = scrape_pmlr(url)
     if url.startswith("https://pubmed.ncbi.nlm.nih.gov"):
         info_dict = scrape_pubmed(url)
+    if url.startswith("https://www.roboticsproceedings.org"):
+        info_dict = scrape_robotics(url)
     if url.startswith("https://link.springer.com"):
         info_dict = scrape_springer(url)
     if info_dict is not None:

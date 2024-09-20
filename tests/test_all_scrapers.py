@@ -22,6 +22,10 @@ import os
         "https://aclanthology.org/P07-1033/",
         "gt_ACL_Frustratingly_Easy_Domain_Adaptation.md",
     ),
+    (
+        "https://www.roboticsproceedings.org/rss11/p01.html",
+        "gt_RSS_ElasticFusion_Dense_SLAM_Without_A_Pose_Graph.md",
+    ),
 ])
 def test_springer(url: str, expected: str) -> None:
     assert type(url) == str, f"type(url)={type(url)}"
