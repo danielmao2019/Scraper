@@ -1,3 +1,4 @@
+from typing import List
 import os
 import time
 import re
@@ -15,7 +16,7 @@ def search_in_file(pdf_url: str, keyword: str) -> bool:
     assert type(keyword) == str, f"{type(keyword)=}"
     assert keyword != ""
     # download pdf to temporary file
-    time.sleep(5)
+    time.sleep(4)
     os.system(' '.join([
         'wget', pdf_url, '--output-document', "tmp.pdf", '--quiet',
     ]))
@@ -43,15 +44,15 @@ def main(filepath: str, keyword: str) -> None:
     all_pdf_urls = re.findall(pattern="\((http.+\.pdf)\)", string=content)
     print(f"Found {len(all_pdf_urls)} pdf urls.")
     # search relevant documents
-    failures: int = 0
+    failures: List[str] = []
     for pdf_url in tqdm.tqdm(all_pdf_urls):
         try:
             if search_in_file(pdf_url=pdf_url, keyword=keyword):
                 with open(f"search_results_{keyword}.txt", mode='a') as f:
                     f.write(pdf_url + '\n')
-        except Exception as e:
-            failures += 1
-    print(f"{failures} failed files.")
+        except:
+            failures.append(pdf_url)
+    print(f"Failure cases:\n{'\n'.join(failures)}")
 
 
 if __name__ == "__main__":
