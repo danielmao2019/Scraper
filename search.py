@@ -1,4 +1,5 @@
 import os
+import time
 import re
 import tqdm
 from PyPDF2 import PdfReader
@@ -14,6 +15,7 @@ def search_in_file(pdf_url: str, keyword: str) -> bool:
     assert type(keyword) == str, f"{type(keyword)=}"
     assert keyword != ""
     # download pdf to temporary file
+    time.sleep(5)
     os.system(' '.join([
         'wget', pdf_url, '--output-document', "tmp.pdf", '--quiet',
     ]))
