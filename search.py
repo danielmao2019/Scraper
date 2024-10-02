@@ -52,7 +52,7 @@ def search_in_file(url: str, keywords: List[str]) -> Dict[str, int]:
 
 def main(filepath: str, keywords: List[str]) -> None:
     # get list of pdf urls
-    with open(filepath, mode='r') as f:
+    with open(filepath, mode='r', encoding='utf-8') as f:
         content = f.read()
     all_pdf_urls = re.findall(pattern="\((http.+\.pdf)\)", string=content)
     print(f"Found {len(all_pdf_urls)} pdf urls.")
@@ -71,9 +71,10 @@ def main(filepath: str, keywords: List[str]) -> None:
             failures.append(url)
     for k in keywords:
         with open(f"search_results_{os.path.basename(filepath).split('.')[0]}_{k}.txt", mode='w') as f:
-            f.write('\n'.join(
-                list(map(lambda x: str(x[0]) + ' ' + x[1], sorted(results[k], key=lambda x: x[0], reverse=True)))
-            ))
+            f.write("".join(list(map(
+                lambda x: str(x[0]) + ' ' + x[1] + '\n',
+                sorted(results[k], key=lambda x: x[0], reverse=True),
+            ))))
     print(f"Failure cases:")
     print('\n'.join(failures))
 
