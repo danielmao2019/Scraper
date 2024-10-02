@@ -24,4 +24,11 @@ papers_tmp = {
     #     "https://www.sciencedirect.com/science/article/pii/S1389128622003280",
     #     "https://www.sciencedirect.com/science/article/pii/S0031320323002157",
     # ],
+    # 'not_searchable': [
+    #     'https://link.springer.com/content/pdf/10.1007/978-3-031-19809-0_17.pdf',
+    #     'https://link.springer.com/content/pdf/10.1007/978-3-030-58621-8_45.pdf',
+    #     'https://link.springer.com/content/pdf/10.1007/978-3-319-13560-1_76.pdf',
+    #     'https://link.springer.com/content/pdf/10.1007/978-3-030-58555-6_34.pdf',
+    #     'https://link.springer.com/content/pdf/10.1007/978-3-031-20056-4_22.pdf',
+    # ]，
 }
