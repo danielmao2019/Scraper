@@ -1,4 +1,4 @@
-from typing import List
+from typing import Tuple, List, Dict
 import os
 import time
 import re
@@ -6,38 +6,51 @@ import tqdm
 from PyPDF2 import PdfReader
 
 
-def search_in_file(pdf_url: str, keyword: str) -> bool:
+def url2text(url: str) -> str:
     """
-    Args:
-        context (int): the number of lines before and after the line of match.
-            Default: 3.
+    Returns:
+        text (str): text in the file from url.
     """
-    # input checks
-    assert type(keyword) == str, f"{type(keyword)=}"
-    assert keyword != ""
-    # download pdf to temporary file
+    # avoid CAPTCHA
     time.sleep(4)
+    # download pdf to temporary file
     os.system(' '.join([
-        'wget', pdf_url, '--output-document', "tmp.pdf", '--quiet',
+        'wget', url, '--output-document', "tmp.pdf", '--quiet',
     ]))
     # extract lines
     reader = PdfReader("tmp.pdf")
     text = ""
     for page in reader.pages:
         text += page.extract_text() + "\n"
-    lines = text.split('\n')
     # cleanup
     os.system(' '.join([
         'rm', "tmp.pdf",
     ]))
+    return text
+
+
+def search_in_file(url: str, keywords: List[str]) -> Dict[str, int]:
+    """
+    Args:
+        url (str): the url of the pdf file to search within.
+        keywords (List[str]): the keywords to search within the file.
+    Returns:
+        counts (List[int]): the count of instances of each keyword in the file.
+    """
+    # input checks
+    assert type(keywords) == list, f"{type(keywords)=}"
+    assert all([type(k) == str and k != ""] for k in keywords)
+    # extract lines
+    text = url2text(url)
     # search for keyword
-    return any([
-        len(re.findall(pattern=keyword, string=l)) > 0
-        for l in lines
-    ])
+    counts = {
+        k: len(re.findall(pattern=k, string=text))
+        for k in keywords
+    }
+    return counts
 
 
-def main(filepath: str, keyword: str) -> None:
+def main(filepath: str, keywords: List[str]) -> None:
     # get list of pdf urls
     with open(filepath, mode='r') as f:
         content = f.read()
@@ -45,20 +58,30 @@ def main(filepath: str, keyword: str) -> None:
     print(f"Found {len(all_pdf_urls)} pdf urls.")
     # search relevant documents
     failures: List[str] = []
-    for pdf_url in tqdm.tqdm(all_pdf_urls):
+    results: Dict[str, List[Tuple[int, str]]] = {
+        k: [] for k in keywords
+    }
+    for url in tqdm.tqdm(all_pdf_urls):
         try:
-            if search_in_file(pdf_url=pdf_url, keyword=keyword):
-                with open(f"search_results_{keyword}.txt", mode='a') as f:
-                    f.write(pdf_url + '\n')
+            counts: Dict[str, int] = search_in_file(url=url, keywords=keywords)
+            for k in keywords:
+                if counts[k] > 0:
+                    results[k].append((counts[k], url))
         except:
-            failures.append(pdf_url)
-    print(f"Failure cases:\n{'\n'.join(failures)}")
+            failures.append(url)
+    for k in keywords:
+        with open(f"search_results_{os.path.basename(filepath).split('.')[0]}_{k}.txt", mode='w') as f:
+            f.write('\n'.join(
+                list(map(lambda x: str(x[0]) + ' ' + x[1], sorted(results[k], key=lambda x: x[0], reverse=True)))
+            ))
+    print(f"Failure cases:")
+    print('\n'.join(failures))
 
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--filepath', '-f', type=str)
-    parser.add_argument('--keyword', '-k', type=str)
+    parser.add_argument('-f', '--filepath', type=str)
+    parser.add_argument('-k', '--keywords', nargs='+', default=[])
     args = parser.parse_args()
-    main(filepath=args.filepath, keyword=args.keyword)
+    main(filepath=args.filepath, keywords=args.keywords)
