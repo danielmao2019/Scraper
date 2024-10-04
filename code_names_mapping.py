@@ -126,7 +126,13 @@ mapping_multi_task_supervised_learning_datasets = {
     "Indoor segmentation and support inference from rgbd images": "NYU-v2",
 }
 
+mapping_multi_task_supervised_learning_task_grouping = {
+    "Efficiently Identifying Task Groupings for Multi-Task Learning": "Task Affinity Grouping (TAG)",
+    "Which Tasks Should Be Learned Together in Multi-task Learning?": "Higher-Order Approximation (HOA)",
+}
+
 mapping_multi_task_supervised_learning.update(mapping_multi_task_supervised_learning_datasets)
+mapping_multi_task_supervised_learning.update(mapping_multi_task_supervised_learning_task_grouping)
 
 mapping_multi_task_reinforcement_learning = {
     "Multi-Task Reinforcement Learning with Context-based Representations": "Contextual Attention-Based Representation Learning (CARE)",
