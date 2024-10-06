@@ -70,7 +70,7 @@ def main(filepath: str, keywords: List[str]) -> None:
         except:
             failures.append(url)
     for k in keywords:
-        with open(f"search_results_{os.path.basename(filepath).split('.')[0]}_{k}.txt", mode='w') as f:
+        with open(f"search_results_{os.path.basename(filepath).split('.')[0]}_{k}.md", mode='w') as f:
             f.write("".join(list(map(
                 lambda x: str(x[0]) + ' ' + x[1] + '\n',
                 sorted(results[k], key=lambda x: x[0], reverse=True),
