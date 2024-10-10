@@ -95,9 +95,6 @@ mapping_multi_task_supervised_learning = {
     "Mitigating Task Interference in Multi-Task Learning via Explicit Task Routing with Non-Learnable Primitives": "ETR-NLP",
     "Many Task Learning with Task Routing": "Many Task Learning (MaTL), Task Routing Layer (TRL)",
     "Mitigating Task Interference in Multi-Task Learning via Explicit Task Routing with Non-Learnable Primitives": "Explicit Task Routing (ETR), Non-Learnable Primitives (NLPs)",
-    # architecture search
-    "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
-    "Inverted Pyramid Multi-task Transformer for Dense Scene Understanding": "Inverted Pyramid Multi-Task Transformer (InvPT)",
     # others
     "Facial Landmark Detection by Deep Multi-task Learning": "Tasks-Constrained Deep Convolutional Network (TCDCN)",
     "Branched Multi-Task Networks: Deciding What Layers To Share": "Branched Multi-Task Networks",
@@ -122,6 +119,12 @@ mapping_multi_task_supervised_learning = {
     "Multi-Objective Meta Learning": "Multi-Objective Meta Learning (MOML)",
 }
 
+mapping_multi_task_supervised_learning_nas = {
+    "GNAS: A Greedy Neural Architecture Search Method for Multi-Attribute Learning": "Greedy Neural Architecture Search (GNAS)",
+    "Inverted Pyramid Multi-task Transformer for Dense Scene Understanding": "Inverted Pyramid Multi-Task Transformer (InvPT)",
+    "Automated Search for Resource-Efficient Branched Multi-Task Networks": "Branched Multi-Task Architecture Search (BMTAS)",
+}
+
 mapping_multi_task_supervised_learning_datasets = {
     "Indoor segmentation and support inference from rgbd images": "NYU-v2",
 }
@@ -131,6 +134,7 @@ mapping_multi_task_supervised_learning_task_grouping = {
     "Which Tasks Should Be Learned Together in Multi-task Learning?": "Higher-Order Approximation (HOA)",
 }
 
+mapping_multi_task_supervised_learning.update(mapping_multi_task_supervised_learning_nas)
 mapping_multi_task_supervised_learning.update(mapping_multi_task_supervised_learning_datasets)
 mapping_multi_task_supervised_learning.update(mapping_multi_task_supervised_learning_task_grouping)
 
