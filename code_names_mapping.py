@@ -58,7 +58,7 @@ mapping_multi_task_supervised_learning = {
     "Gradient Vaccine: Investigating and Improving Multi-task Optimization in Massively Multilingual Models": "Gradient Vaccine (GradVac)",
     "Towards Impartial Multi-task Learning": "Impartial Multi-Task Learning (IMTL)",
     "Conflict-Averse Gradient Descent for Multi-task learning": "Conflict-Averse Gradient Descent (CAGrad)",
-    "Measuring and Harnessing Transference in Multi-Task Learning": "Transference, Increased Transfer MTL (IT-MTL)",
+    "Measuring and Harnessing Transference in Multi-Task Learning": "Increased Transfer MTL (IT-MTL)",
     # gradient balancing
     "Reasonable Effectiveness of Random Weighting: A Litmus Test for Multi-Task Learning": "Random Weighting (RW)",
     "GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks": "Gradient Normalization (GradNorm)",
