@@ -16,8 +16,7 @@ def scrape_pubmed(url: str) -> Dict[str, str]:
     assert len(year) == 1, f"{year=}"
     year = year[0]['content']
     # get authors
-    authors = soup.findAll('meta', {'name': 'citation_author'})
-    authors = ", ".join([t['content'] for t in authors])
+    authors = utils.parse_authors_from_meta(soup)
     # get abstract
     abstract = utils.parse_abstract_after_h2(soup)
     # return

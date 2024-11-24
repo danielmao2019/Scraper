@@ -53,7 +53,29 @@ def parse_writers(value: Union[str, List[str]]) -> Tuple[str]:
             raise ValueError(f"[ERROR] Cannot parse writers.")
 
 
-def _extract_text_with_spaces(element):
+def _parse_authors_citation_authors(citation_authors) -> str:
+    assert len(citation_authors) == 1
+    authors = citation_authors[0]['content']
+    authors = ", ".join(filter(lambda x: x.strip(), authors.split(';')))
+    return authors
+
+
+def _parse_authors_citation_author_list(citation_author_list) -> str:
+    authors = ", ".join([ca['content'] for ca in citation_author_list])
+    return authors
+
+
+def parse_authors_from_meta(soup) -> str:
+    citation_authors = soup.findAll('meta', {'name': 'citation_authors'})
+    if len(citation_authors) > 0:
+        return _parse_authors_citation_authors(citation_authors)
+    citation_author_list = soup.findAll('meta', {'name': 'citation_author'})
+    if len(citation_author_list) > 0:
+        return _parse_authors_citation_author_list(citation_author_list)
+    raise RuntimeError("Cannot parse authors.")
+
+
+def _extract_text_with_spaces(element) -> str:
     text: List[str] = []
     for item in element.descendants:
         if item.name is None:  # Only add non-tag elements
