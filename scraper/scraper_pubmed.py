@@ -1,10 +1,10 @@
 from typing import Dict
-from .utils import get_soup
+import utils
 
 
 def scrape_pubmed(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = get_soup(url)
+    soup = utils.get_soup(url)
     # get title
     title = soup.findAll(name='meta', attrs={'name': 'citation_title'})
     assert len(title) == 1

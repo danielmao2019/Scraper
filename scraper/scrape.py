@@ -14,7 +14,7 @@ from scraper.scraper_pubmed import scrape_pubmed
 from scraper.scraper_robotics import scrape_robotics
 from scraper.scraper_springer import scrape_springer
 
-from . import utils
+import utils
 
 
 def scrape(url: str) -> str:

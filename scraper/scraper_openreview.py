@@ -1,6 +1,6 @@
 from typing import Dict
 import json
-from . import utils
+import utils
 
 
 def scrape_openreview(url: str) -> Dict[str, str]:

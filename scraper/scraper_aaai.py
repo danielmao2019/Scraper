@@ -1,5 +1,5 @@
 from typing import Dict
-from . import utils
+import utils
 
 
 def scrape_aaai(url: str) -> Dict[str, str]:

@@ -1,5 +1,5 @@
 from typing import Dict
-from . import utils
+import utils
 
 
 def pub_name_mapping(name: str) -> str:

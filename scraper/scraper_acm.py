@@ -1,6 +1,6 @@
 from typing import Dict
 from datetime import datetime
-from . import utils
+import utils
 
 
 def scrape_acm(url: str) -> Dict[str, str]:

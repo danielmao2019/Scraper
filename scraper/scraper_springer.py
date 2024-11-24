@@ -2,7 +2,7 @@ from typing import Dict
 import requests
 import re
 import json
-from . import utils
+import utils
 
 
 def scrape_springer(url: str) -> Dict[str, str]:

@@ -2,7 +2,7 @@ from typing import Dict
 from urllib.parse import urljoin
 import re
 import json
-from . import utils
+import utils
 
 
 def scrape_ieee(url: str) -> Dict[str, str]:

@@ -1,5 +1,5 @@
 from typing import Dict
-from . import utils
+import utils
 
 
 def scrape_openaccess(url: str) -> Dict[str, str]:

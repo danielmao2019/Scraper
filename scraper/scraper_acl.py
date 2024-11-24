@@ -1,6 +1,6 @@
 from typing import Dict
 import re
-from . import utils
+import utils
 
 
 def scrape_acl(url: str) -> Dict[str, str]:

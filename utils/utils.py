@@ -1,7 +1,5 @@
 from typing import List, Tuple, Union
-from urllib.request import urlopen, Request
 from urllib.parse import urljoin
-from bs4 import BeautifulSoup
 import requests
 import re
 
@@ -11,22 +9,6 @@ from code_names_mapping import mapping
 RECOGNIZED_CONFERENCES = ['cvpr', 'iccv', 'eccv', 'accv', 'wacv', 'iclr']
 RECOGNIZED_JOURNALS = ['tmlr']
 INDENT = ' ' * 4
-
-
-def get_soup(url: str):
-    assert type(url) == str, f"type(url)={type(url)}"
-    try:
-        page = urlopen(url)
-    except Exception as e1:
-        try:
-            headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'}
-            ret = Request(url, headers=headers)
-            page = urlopen(ret)
-        except Exception as e2:
-            raise RuntimeError(f"Got {e1} and {e2} when trying to open page.")
-    html = page.read().decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
-    return soup
 
 
 def get_value(item):

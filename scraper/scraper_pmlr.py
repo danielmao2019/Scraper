@@ -1,7 +1,7 @@
 from typing import Dict
 import re
 from datetime import datetime
-from . import utils
+import utils
 
 
 def scrape_pmlr (url: str) -> Dict[str, str]:
