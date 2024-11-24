@@ -26,6 +26,10 @@ import os
         "https://www.roboticsproceedings.org/rss11/p01.html",
         "gt_RSS_ElasticFusion_Dense_SLAM_Without_A_Pose_Graph.md",
     ),
+    (
+        "https://www.sciencedirect.com/science/article/pii/S1574954121001011",
+        "gt_science_direct_Analysis_on_change_detection_techniques_for_remote_sensing_applications__A_review.md",
+    ),
 ])
 def test_springer(url: str, expected: str) -> None:
     assert type(url) == str, f"type(url)={type(url)}"
