@@ -11,7 +11,7 @@ def scrape_neurips(url: str) -> Dict[str, str]:
     # get year
     year = re.findall(pattern="/(\d\d\d\d)/", string=url)
     assert len(year) == 1
-    year = f"`{year[0]}`"
+    year = year[0]
     # get authors
     authors = str(soup.findAll(name="p")[1])[6:-8]
     # get abstract

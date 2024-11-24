@@ -16,7 +16,6 @@ def scrape_sciencedirect(url: str) -> Dict[str, str]:
     assert len(pub_year) == 1
     pub_year = pub_year[0]['content']
     assert len(pub_year.split('/')) == 3, f"{pub_year=}"
-    pub_year = f"`{pub_year.split('/')[0]}`"
     authors = ', '.join([
         first_name.get_text(strip=True) + ' ' + last_name.get_text(strip=True)
         for first_name, last_name in zip(

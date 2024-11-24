@@ -26,7 +26,7 @@ def scrape_robotics(url: str) -> Dict[str, str]:
     # get pub year
     pub_year = soup.findAll(name='meta', attrs={'name': 'citation_publication_date'})
     assert len(pub_year) == 1
-    pub_year = f"`{pub_year[0]['content'].split('/')[0]}`"
+    pub_year = pub_year[0]['content']
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': 'citation_author'})
     authors = ', '.join([a['content'] for a in authors])

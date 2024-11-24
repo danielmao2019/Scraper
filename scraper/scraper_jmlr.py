@@ -16,7 +16,7 @@ def scrape_jmlr(url: str) -> Dict[str, str]:
     # get year
     year = soup.findAll('meta', {'name': 'citation_publication_date'})
     assert len(year) == 1
-    year = f"`{year[0]['content']}`"
+    year = year[0]['content']
     # get authors
     authors = soup.findAll('meta', {'name': 'citation_author'})
     authors = ", ".join([t['content'] for t in authors])

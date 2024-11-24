@@ -12,9 +12,9 @@ def scrape_pubmed(url: str) -> Dict[str, str]:
     # get pdf url
     pdf_url = ""
     # get year
-    year = soup.findAll('meta', {'name': 'citation_publication_date'})
-    assert len(year) == 1
-    year = f"`{year[0]['content'].split('/')[0]}`"
+    year = soup.findAll('meta', {'name': 'citation_date'})
+    assert len(year) == 1, f"{year=}"
+    year = year[0]['content']
     # get authors
     authors = soup.findAll('meta', {'name': 'citation_author'})
     authors = ", ".join([t['content'] for t in authors])

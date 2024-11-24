@@ -16,7 +16,7 @@ def scrape_eccv(url: str) -> Dict[str, str]:
     year = re.findall(pattern=pattern, string=url)
     assert len(year) == 1, f"url={url}, pattern={pattern}, year={year}"
     assert 2000 <= int(year[0]) <= 2030
-    year = f"`{year[0]}`"
+    year = year[0]
     # get authors
     authors = soup.find("div", id="authors").text.strip()
     authors = re.sub(pattern='\n', repl="", string=authors)

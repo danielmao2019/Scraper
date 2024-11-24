@@ -40,7 +40,7 @@ def scrape_springer(url: str) -> Dict[str, str]:
     # get year
     pub_year = soup.findAll(name='meta', attrs={'name': 'citation_publication_date'})
     assert len(pub_year) == 1
-    pub_year = f"`{pub_year[0]['content'].split('/')[0]}`"
+    pub_year = pub_year[0]['content']
     # get abstract
     abstract = json_dict['description']
     # return

@@ -18,8 +18,6 @@ def scrape_pmlr (url: str) -> Dict[str, str]:
     assert len(year) == 1
     year = datetime.strptime(year[0], "%Y/%m/%d")
     year = year.strftime("%d %b %Y")
-    date, month, year = year.split(' ')
-    year = f"{date}, {month}, `{year}`"
     # get authors
     authors = re.findall(pattern="content=\"([^\"]+)\" name=\"citation_author\"", string=soup.__str__())
     authors = ", ".join(authors)

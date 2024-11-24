@@ -16,7 +16,7 @@ def scrape_aaai(url: str) -> Dict[str, str]:
     # get year
     year = soup.findAll(name='meta', attrs={'name': 'DC.Date.created'})
     assert len(year) == 1, f"year={year}"
-    year = f"`{year[0]['content'].split('-')[0]}`"
+    year = year[0]['content']
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': 'DC.Creator.PersonalName'})
     authors = ", ".join([t['content'] for t in authors])

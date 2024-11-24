@@ -17,7 +17,7 @@ def scrape_acl(url: str) -> Dict[str, str]:
     # get year
     year = re.findall(pattern=r'year = "(\d+)"', string=str(soup))
     assert len(year) == 1
-    year = f"`{year[0]}`"
+    year = year[0]
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': 'citation_author'})
     authors = ', '.join([a['content'] for a in authors])

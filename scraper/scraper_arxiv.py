@@ -16,10 +16,6 @@ def scrape_arxiv(url: str) -> Dict[str, str]:
     year = soup.find("div", class_="dateline").text.strip()
     year = re.findall(pattern=r"Submitted on \d+ \w{3} \d{4}", string=year)[0]
     year = re.sub(pattern=r"Submitted on ", repl="", string=year)
-    year = year.split(' ')
-    year[0] = '0' * (2-len(year[0])) + year[0]
-    year[2] = '`' + year[2] + '`'
-    year = ' '.join(year)
     # get authors
     authors = soup.find("div", class_="authors").text.strip()
     authors = re.sub(pattern=r"Authors: *", repl="", string=authors)
