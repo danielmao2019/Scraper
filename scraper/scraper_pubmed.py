@@ -19,9 +19,7 @@ def scrape_pubmed(url: str) -> Dict[str, str]:
     authors = soup.findAll('meta', {'name': 'citation_author'})
     authors = ", ".join([t['content'] for t in authors])
     # get abstract
-    abstract = soup.findAll('meta', {'name': 'citation_abstract'})
-    assert len(abstract) == 1
-    abstract = abstract[0]['content']
+    abstract = utils.parse_abstract_after_h2(soup)
     # return
     return {
         'title': title,

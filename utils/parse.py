@@ -51,3 +51,25 @@ def parse_writers(value: Union[str, List[str]]) -> Tuple[str]:
             return _parse_journal_(value)
         except:
             raise ValueError(f"[ERROR] Cannot parse writers.")
+
+
+def _extract_text_with_spaces(element):
+    text: List[str] = []
+    for item in element.descendants:
+        if item.name is None:  # Only add non-tag elements
+            text.append(item)
+    return ''.join(text)
+
+
+def parse_abstract_after_h2(soup) -> str:
+    # Match 'Abstract' with flexibility for spaces, newlines, and case
+    h2_tag = soup.find('h2', text=re.compile(r'\bAbstract\b', re.IGNORECASE))
+    assert h2_tag, "Abstract heading not found"
+
+    # Find the next <div> after the matched <h2>
+    abstract_div = h2_tag.find_next('div')
+    assert abstract_div, "Abstract content not found"
+
+    # Extract text from the abstract's <div>
+    abstract = _extract_text_with_spaces(abstract_div)
+    return abstract
