@@ -1,5 +1,5 @@
 * An information-maximization approach to blind separation and blind deconvolution
-    [[abs-PubMed](https://pubmed.ncbi.nlm.nih.gov/7584893/)]
+    [[abs-PubMed](https://pubmed.ncbi.nlm.nih.gov/7584893)]
     [[pdf-PubMed]()]
     * Title: An information-maximization approach to blind separation and blind deconvolution
     * Year: `1995` Nov
