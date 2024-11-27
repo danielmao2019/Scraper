@@ -11,6 +11,10 @@ import os
         "gt_ACL_Frustratingly_Easy_Domain_Adaptation.md",
     ),
     (
+        "https://dl.acm.org/doi/abs/10.1145/3550454.3555475",
+        "gt_ACM_Geo_Metric_A_Perceptual_Dataset_of_Distortions_on_Faces.md",
+    ),
+    (
         "https://pubmed.ncbi.nlm.nih.gov/7584893",
         "gt_PubMed_An_information_maximization_approach_to_blind_separation_and_blind_deconvolution.md",
     ),
