@@ -15,6 +15,10 @@ import os
         "gt_ACM_Geo_Metric_A_Perceptual_Dataset_of_Distortions_on_Faces.md",
     ),
     (
+        "https://isprs-archives.copernicus.org/articles/XLII-2/565/2018/",
+        "gt_isprs_CHANGE_DETECTION_IN_REMOTE_SENSING_IMAGES_USING_CONDITIONAL_ADVERSARIAL_NETWORKS.md",
+    ),
+    (
         "https://www.mdpi.com/2072-4292/6/9/8310",
         "gt_mdpi_Building_Change_Detection_from_Historical_Aerial_Photographs_Using_Dense_Image_Matching_and_Object_Based_Image_Analysis.md",
     ),

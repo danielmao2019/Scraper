@@ -4,6 +4,7 @@ from scraper.scraper_acl import scrape_acl
 from scraper.scraper_acm import scrape_acm
 from scraper.scraper_eccv import scrape_eccv
 from scraper.scraper_ieee import scrape_ieee
+from scraper.scraper_isprs import scrape_isprs
 from scraper.scraper_jmlr import scrape_jmlr
 from scraper.scraper_mdpi import scrape_mdpi
 from scraper.scraper_neurips import scrape_neurips
@@ -33,6 +34,8 @@ def scrape(url: str) -> str:
         info_dict = scrape_eccv(url)
     if url.startswith("https://ieeexplore.ieee.org"):
         info_dict = scrape_ieee(url)
+    if url.startswith("https://isprs"):
+        info_dict = scrape_isprs(url)
     if url.startswith("https://www.jmlr.org") or url.startswith("https://jmlr.org/"):
         info_dict = scrape_jmlr(url)
     if url.startswith("https://www.mdpi.com"):
