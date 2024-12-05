@@ -1,5 +1,8 @@
 papers_tmp = {
     'tmp': [
+        # 'https://www.sciencedirect.com/science/article/pii/S0924271617300096',
+        # 'https://www.sciencedirect.com/science/article/pii/S0924271614001816',
+        # 'https://www.sciencedirect.com/science/article/pii/S0924271620300393',
         # "https://arxiv.org/abs/2212.07796",
         # # Jan 18 readings - Video
         # "https://arxiv.org/abs/2104.01198", # Beyond Short Clips
