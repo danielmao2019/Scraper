@@ -12,9 +12,17 @@ def scrape_researchgate(url: str) -> Dict[str, str]:
     # get pdf url
     pdf_url = ""
     # get pub name
-    pub_name = soup.findAll('meta', attrs={'property': "citation_journal_title"})
-    assert len(pub_name) == 1
-    pub_name = pub_name[0]['content']
+    try:
+        pub_name = soup.findAll('meta', attrs={'property': "citation_journal_title"})
+        assert len(pub_name) == 1
+        pub_name = pub_name[0]['content']
+    except:
+        try:
+            pub_name = soup.findAll('meta', attrs={'property': "citation_conference_title"})
+            assert len(pub_name) == 1
+            pub_name = pub_name[0]['content']
+        except:
+            pub_name = ""
     # get pub year
     pub_year = soup.findAll('meta', attrs={'property': "citation_publication_date"})
     assert len(pub_year) == 1
