@@ -15,6 +15,10 @@ import os
         "gt_ACM_Geo_Metric_A_Perceptual_Dataset_of_Distortions_on_Faces.md",
     ),
     (
+        "https://www.mdpi.com/2072-4292/6/9/8310",
+        "gt_mdpi_Building_Change_Detection_from_Historical_Aerial_Photographs_Using_Dense_Image_Matching_and_Object_Based_Image_Analysis.md",
+    ),
+    (
         "https://pubmed.ncbi.nlm.nih.gov/7584893",
         "gt_PubMed_An_information_maximization_approach_to_blind_separation_and_blind_deconvolution.md",
     ),
