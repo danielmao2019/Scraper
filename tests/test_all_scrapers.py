@@ -23,6 +23,10 @@ import os
         "gt_PubMed_An_information_maximization_approach_to_blind_separation_and_blind_deconvolution.md",
     ),
     (
+        "https://www.researchgate.net/publication/367989910_Automatic_classification_of_asphalt_pavement_cracks_using_a_novel_integrated_generative_adversarial_networks_and_improved_VGG_model",
+        "gt_researchgate_Automatic_classification_of_asphalt_pavement_cracks_using_a_novel_integrated_generative_adversarial_networks_and_improved_VGG_model.md",
+    ),
+    (
         "https://www.roboticsproceedings.org/rss11/p01.html",
         "gt_RSS_ElasticFusion_Dense_SLAM_Without_A_Pose_Graph.md",
     ),

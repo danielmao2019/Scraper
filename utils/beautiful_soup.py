@@ -76,7 +76,11 @@ def get_soup(url: str, api_key: str = None, article_id: str = None):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
     }
 
-    if url.startswith("https://www.sciencedirect.com") or url.startswith("https://dl.acm.org/doi"):
+    if (
+        url.startswith("https://dl.acm.org/doi") or
+        url.startswith("https://www.researchgate.net") or
+        url.startswith("https://www.sciencedirect.com")
+    ):
         try:
             return get_soup_with_selenium(url)
         except Exception as e3:
