@@ -78,6 +78,7 @@ def get_soup(url: str, api_key: str = None, article_id: str = None):
 
     if (
         url.startswith("https://dl.acm.org/doi") or
+        url.startswith("https://ieeexplore.ieee.org") or
         url.startswith("https://www.researchgate.net") or
         url.startswith("https://www.sciencedirect.com")
     ):
