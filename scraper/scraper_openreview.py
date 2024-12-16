@@ -15,7 +15,7 @@ def scrape_openreview(url: str) -> Dict[str, str]:
     # extract from json
     title = utils.get_value(json_dict['content']['title'])
     pdf_url = utils.get_pdf_url(url, soup.find('a', title="Download PDF")['href'])
-    pub_name, pub_year = utils.parse_writers(json_dict['writers'] if len(json_dict['writers']) else json_dict['content']['venue'])
+    pub_name, pub_year = utils.parse_publisher(json_dict['writers'] if len(json_dict['writers']) else json_dict['content']['venue'])
     authors = ", ".join(utils.get_value(json_dict['content']['authors']))
     abstract = utils.get_value(json_dict['content']['abstract'])
     # return
