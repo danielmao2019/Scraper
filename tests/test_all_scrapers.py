@@ -23,6 +23,14 @@ import os
         "gt_mdpi_Building_Change_Detection_from_Historical_Aerial_Photographs_Using_Dense_Image_Matching_and_Object_Based_Image_Analysis.md",
     ),
     (
+        "https://openreview.net/forum?id=7UyBKTFrtd",
+        "gt_openreview_Interpreting_CLIP_with_Sparse_Linear_Concept_Embeddings_SpLiCE.md",
+    ),
+    (
+        "https://openreview.net/forum?id=KunlRYApGc",
+        "gt_openreview_Latent_Space_Disentanglement_in_Diffusion_Transformers_Enables_Zero_shot_Fine_grained_Semantic_Editing.md",
+    ),
+    (
         "https://pubmed.ncbi.nlm.nih.gov/7584893",
         "gt_PubMed_An_information_maximization_approach_to_blind_separation_and_blind_deconvolution.md",
     ),

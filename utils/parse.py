@@ -1,9 +1,9 @@
-from typing import List, Tuple, Union
+from typing import Tuple, List, Dict, Union
 import re
 
 
 RECOGNIZED_WORKSHOPS = ['corr']
-RECOGNIZED_CONFERENCES = ['cvpr', 'iccv', 'eccv', 'accv', 'wacv', 'iclr']
+RECOGNIZED_CONFERENCES = ['cvpr', 'iccv', 'eccv', 'accv', 'wacv', 'icml', 'iclr', 'neurips']
 RECOGNIZED_JOURNALS = ['tmlr']
 
 
@@ -60,10 +60,14 @@ def _parse_journal_(string: str) -> Tuple[str, str]:
     return name, ""
 
 
-def parse_publisher(value: Union[str, List[str]]) -> Tuple[str]:
+def parse_publisher(value: Union[str, List[str], Dict[str, str]]) -> Tuple[str]:
     if type(value) == list:
-        assert len(value) == 1, f"len(value)={len(value)}"
+        assert len(value) == 1, f"value={value}"
         value = value[0]
+    elif type(value) == dict:
+        assert len(value) == 1, f"value={value}"
+        value = list(value.values())[0]
+    assert type(value) == str, f"value={value}"
     try:
         return _parse_conference_(value)
     except:
