@@ -11,6 +11,10 @@ import os
         "gt_ACL_Frustratingly_Easy_Domain_Adaptation.md",
     ),
     (
+        "https://dl.acm.org/doi/10.1145/3610548.3618154",
+        "gt_ACM_Break_A_Scene_Extracting_Multiple_Concepts_from_a_Single_Image.md",
+    ),
+    (
         "https://dl.acm.org/doi/abs/10.1145/3550454.3555475",
         "gt_ACM_Geo_Metric_A_Perceptual_Dataset_of_Distortions_on_Faces.md",
     ),

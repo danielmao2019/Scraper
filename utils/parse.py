@@ -3,7 +3,11 @@ import re
 
 
 RECOGNIZED_WORKSHOPS = ['corr']
-RECOGNIZED_CONFERENCES = ['cvpr', 'iccv', 'eccv', 'accv', 'wacv', 'icml', 'iclr', 'neurips']
+RECOGNIZED_CONFERENCES = [
+    'cvpr', 'iccv', 'eccv', 'accv', 'wacv',
+    'icml', 'iclr', 'neurips',
+    'siggraph',
+]
 RECOGNIZED_JOURNALS = ['tmlr']
 
 

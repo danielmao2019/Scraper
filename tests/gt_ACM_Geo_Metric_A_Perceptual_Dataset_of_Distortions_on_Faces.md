@@ -1,6 +1,6 @@
 * Geo-Metric: A Perceptual Dataset of Distortions on Faces
-    [[abs-ACM](https://dl.acm.org/doi/abs/10.1145/3550454.3555475)]
-    [[pdf-ACM](https://dl.acm.org/doi/pdf/10.1145/3550454.3555475)]
+    [[abs-ACM Transactions on Graphics](https://dl.acm.org/doi/abs/10.1145/3550454.3555475)]
+    [[pdf-ACM Transactions on Graphics](https://dl.acm.org/doi/pdf/10.1145/3550454.3555475)]
     * Title: Geo-Metric: A Perceptual Dataset of Distortions on Faces
     * Year: 30 November `2022`
     * Authors: Krzysztof Wolski, Laura Trutoiu, Zhao Dong, Zhengyang Shen, Kevin Mackenzie, Alexandre Chapiro
