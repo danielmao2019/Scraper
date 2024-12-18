@@ -1,35 +1,39 @@
 from typing import Dict
-import utils
 
 
 def scrape_sciencedirect(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
-    # get title
-    title = soup.findAll(name='meta', attrs={'name': 'citation_title'})
-    assert len(title) == 1
-    title = title[0]['content']
+    # get Elsevier client
+    from elsapy.elsclient import ElsClient
+    config = {
+        "apikey": "1be9aac6ca066332daef54b7ff83996e",
+        "insttoken": ""
+    }
+    client = ElsClient(config['apikey'])
+    client.inst_token = config['insttoken']
+    # get pii
+    from elsapy.elsdoc import FullDoc
+    id = url.split('/')[-1]
+    pii_doc = FullDoc(sd_pii=id)
+    assert pii_doc.read(client)
+    data = pii_doc.__dict__['_data']['coredata']
     # get pdf url
+    if url.endswith('/'):
+        url = url[:-1]
     pdf_url = url + "/pdfft"
-    # get pub year
-    pub_name = soup.findAll(name='meta', attrs={'name': 'citation_journal_title'})
-    assert len(pub_name) == 1
-    pub_name = pub_name[0]['content']
-    # get pub year
-    pub_year = soup.findAll(name='meta', attrs={'name': 'citation_publication_date'})
-    assert len(pub_year) == 1
-    pub_year = pub_year[0]['content']
-    assert len(pub_year.split('/')) == 3, f"{pub_year=}"
+    # get title
+    title = data['dc:title']
     # get authors
-    authors = ', '.join([
-        first_name.get_text(strip=True) + ' ' + last_name.get_text(strip=True)
-        for first_name, last_name in zip(
-            soup.findAll(name='span', attrs={'class': 'given-name'}),
-            soup.findAll(name='span', attrs={'class': 'text surname'})
-        )
+    authors = ", ".join([
+        a['$'].split(", ")[1] + ' ' + a['$'].split(", ")[0]
+        for a in data['dc:creator']
     ])
+    # get pub name
+    pub_name = data['prism:publicationName']
+    # get pub year
+    pub_year = data['prism:coverDate']
     # get abstract
-    abstract = utils.parse_abstract_after_h2(soup)
+    abstract = data['dc:description']
     return {
         'title': title,
         'abs_url': url,

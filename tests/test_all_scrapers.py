@@ -48,7 +48,7 @@ import os
     ),
     (
         "https://www.sciencedirect.com/science/article/pii/S1574954121001011",
-        "gt_science_direct_Analysis_on_change_detection_techniques_for_remote_sensing_applications__A_review.md",
+        "gt_sciencedirect_Analysis_on_change_detection_techniques_for_remote_sensing_applications_A_review.md",
     ),
     (
         "https://link.springer.com/chapter/10.1007/978-3-319-13560-1_76",

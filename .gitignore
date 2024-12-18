@@ -3,3 +3,4 @@ __pycache__
 temp_*.md
 scraped_papers_*.md
 search/results
+elsapy-*.log

@@ -1,4 +1,5 @@
 tqdm
+elsapy
 beautifulsoup4
 requests
 pymupdf
