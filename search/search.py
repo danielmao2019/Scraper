@@ -7,7 +7,7 @@ import tqdm
 import fitz  # PyMuPDF
 
 
-def _url2text(url: str) -> str:
+def _url2text_wget(url: str) -> str:
     """
     Returns:
         text (str): text in the file from url.
@@ -30,8 +30,34 @@ def _url2text(url: str) -> str:
     return text
 
 
+def _url2text_elsevier(url: str) -> str:
+    # get Elsevier client
+    from elsapy.elsclient import ElsClient
+    config = {
+        "apikey": "1be9aac6ca066332daef54b7ff83996e",
+        "insttoken": ""
+    }
+    client = ElsClient(config['apikey'])
+    client.inst_token = config['insttoken']
+    # get pii
+    from elsapy.elsdoc import FullDoc
+    assert url.endswith("/pdfft")
+    id = url.split('/')[-2]
+    pii_doc = FullDoc(sd_pii=id)
+    assert pii_doc.read(client)
+    text = pii_doc.__dict__['_data']['originalText']
+    return text
+
+
+def _url2text(url: str) -> str:
+    if "sciencedirect" in url:
+        return _url2text_elsevier(url)
+    else:
+        return _url2text_wget(url)
+
+
 def _keyword2regex(keyword: str) -> str:
-    result = "(\s+|\s*-\s*)".join([
+    result = "(?:\s+|\s*-\s*)".join([
         "-?\n?".join(list(w)) for w in keyword.split(' ')
     ])
     return result
@@ -78,7 +104,8 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
             for k in keywords:
                 if counts[k] > 0:
                     results[k].append((counts[k], url))
-        except:
+        except Exception as e:
+            print(e)
             failures.append(url)
     # save to disk
     for k in keywords:

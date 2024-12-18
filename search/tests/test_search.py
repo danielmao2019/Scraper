@@ -40,6 +40,11 @@ from search import search_in_file
         "triangulated irregular network",
         2,
     ),
+    (
+        "https://www.sciencedirect.com/science/article/pii/S0924271616304026/pdfft",
+        "object based",
+        20,
+    ),
 ])
 def test_search(url: str, keyword: str, count: int) -> None:
     result = search_in_file(url, [keyword])
