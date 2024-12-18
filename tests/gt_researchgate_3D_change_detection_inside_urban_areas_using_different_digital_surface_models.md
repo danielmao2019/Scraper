@@ -1,6 +1,6 @@
 * 3D change detection inside urban areas using different digital surface models
     [[abs-PCV 2010 - ISPRS Technical Commission III Symposium on Photogrammetry Computer Vision and Image Analysis](https://www.researchgate.net/publication/225006058_3D_change_detection_inside_urban_areas_using_different_digital_surface_models)]
-    [[pdf-PCV 2010 - ISPRS Technical Commission III Symposium on Photogrammetry Computer Vision and Image Analysis]()]
+    [[pdf-PCV 2010 - ISPRS Technical Commission III Symposium on Photogrammetry Computer Vision and Image Analysis](https://www.researchgate.net/profile/Thomas-Krauss/publication/225006058_3D_change_detection_inside_urban_areas_using_different_digital_surface_models/links/0fcfd50cebc96b4dc1000000/3D-change-detection-inside-urban-areas-using-different-digital-surface-models.pdf)]
     * Title: 3D change detection inside urban areas using different digital surface models
     * Year: `2010`/09/01
     * Authors: Houda Chaabouni-Chouayakh, Thomas Krauss, Pablo d’Angelo, Peter Reinartz

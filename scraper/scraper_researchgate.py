@@ -10,7 +10,12 @@ def scrape_researchgate(url: str) -> Dict[str, str]:
     assert len(title) == 1
     title = title[0]['content']
     # get pdf url
-    pdf_url = ""
+    pdf_url = soup.findAll('meta', attrs={'property': "citation_pdf_url"})
+    if len(pdf_url) == 1:
+        pdf_url = pdf_url[0]['content']
+    else:
+        assert len(pdf_url) == 0
+        pdf_url = ""
     # get pub name
     try:
         pub_name = soup.findAll('meta', attrs={'property': "citation_journal_title"})
