@@ -5,7 +5,7 @@ import utils
 
 def scrape_acm(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # get pdf url
     pdf_url = soup.findAll(name='a', attrs={'title': "View PDF"})
     pdf_url = pdf_url[0]['href']
@@ -47,7 +47,7 @@ def scrape_acm(url: str) -> Dict[str, str]:
             authors.append(author)
     authors: str = ', '.join(authors)
     # get abstract
-    abstract = utils.parse_abstract_after_h2(soup)
+    abstract = utils.soup.extract_abstract(soup)
     # return
     return {
         'title': title,

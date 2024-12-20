@@ -5,7 +5,7 @@ import utils
 
 def scrape_acl(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # get title
     title = soup.findAll(name='meta', attrs={'name': 'citation_title'})
     assert len(title) == 1

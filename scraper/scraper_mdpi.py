@@ -4,7 +4,7 @@ import utils
 
 def scrape_mdpi(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # get title
     title = soup.find("h1", attrs={'class': "title hypothesis_container"}).text.strip()
     # get pdf url
@@ -12,9 +12,7 @@ def scrape_mdpi(url: str) -> Dict[str, str]:
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]['content']
     # get pub name
-    pub_name = soup.findAll('meta', attrs={'name': "citation_journal_title"})
-    assert len(pub_name) == 1
-    pub_name = pub_name[0]['content']
+    pub_name = utils.soup.extract_pub_name(soup)
     # get pub year
     pub_year = soup.findAll('meta', attrs={'name': "citation_publication_date"})
     assert len(pub_year) == 1

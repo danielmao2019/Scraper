@@ -5,7 +5,7 @@ import utils
 
 def scrape_arxiv(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # generate links
     idx = url.split('/')[-1]
     pdf_url = f"https://arxiv.org/pdf/{idx}.pdf"

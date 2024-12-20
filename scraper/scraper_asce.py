@@ -10,7 +10,7 @@ def process_author(author: str) -> str:
 
 def scrape_asce(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # get title
     title = soup.findAll('meta', attrs={'name': "citation_title"})
     assert len(title) == 1
@@ -18,9 +18,7 @@ def scrape_asce(url: str) -> Dict[str, str]:
     # get pdf url
     pdf_url = ""
     # get pub name
-    pub_name = soup.findAll('meta', attrs={'name': "citation_journal_title"})
-    assert len(pub_name) == 1
-    pub_name = pub_name[0]['content']
+    pub_name = utils.soup.extract_pub_name(soup)
     # get pub year
     pub_year = soup.findAll('meta', attrs={'name': "citation_publication_date"})
     assert len(pub_year) == 1
@@ -29,7 +27,7 @@ def scrape_asce(url: str) -> Dict[str, str]:
     authors = soup.findAll('meta', attrs={'name': "citation_author"})
     authors = ", ".join([process_author(author['content']) for author in authors])
     # get abstract
-    abstract = utils.parse_abstract_after_h2(soup)
+    abstract = utils.soup.extract_abstract(soup)
     # return
     return {
         'title': title,

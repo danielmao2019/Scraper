@@ -5,7 +5,7 @@ import utils
 
 def scrape_eccv(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # generate links
     rel_pdf_url = soup.find("a", string="pdf")['href']
     pdf_url = utils.get_pdf_url(url, rel_pdf_url)

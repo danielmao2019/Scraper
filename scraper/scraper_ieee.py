@@ -7,7 +7,7 @@ import utils
 
 def scrape_ieee(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # construct json
     json_str = re.findall(pattern="xplGlobal.document.metadata=(.*);\n", string=str(soup))
     assert len(json_str) == 1

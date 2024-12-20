@@ -5,7 +5,7 @@ import utils
 
 def scrape_neurips(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # get title
     title = str(soup.findAll(name="h4")[0])[4:-5]
     # get year

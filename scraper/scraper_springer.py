@@ -7,7 +7,7 @@ import utils
 
 def scrape_springer(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # construct json
     json_str = soup.findAll('script', type="application/ld+json")
     assert len(json_str) == 1

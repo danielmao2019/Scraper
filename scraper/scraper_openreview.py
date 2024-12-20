@@ -5,7 +5,7 @@ import utils
 
 def scrape_openreview(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # construct json
     json_str = soup.findAll('script', type="application/json")
     assert len(json_str) == 1
@@ -24,9 +24,7 @@ def scrape_openreview(url: str) -> Dict[str, str]:
         pdf_url = "https://openreview.net" + pdf_url
     # get pub name and year
     try:
-        pub_name = soup.findAll(name='meta', attrs={'name': "citation_journal_title"})
-        assert len(pub_name) == 1
-        pub_name = pub_name[0]['content']
+        pub_name = utils.soup.extract_pub_name(soup)
         pub_year = soup.findAll(name='meta', attrs={'name': "citation_publication_date"})
         assert len(pub_year) == 1
         pub_year = pub_year[0]['content']

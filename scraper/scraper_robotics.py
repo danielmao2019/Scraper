@@ -11,7 +11,7 @@ def pub_name_mapping(name: str) -> str:
 
 def scrape_robotics(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
-    soup = utils.get_soup(url)
+    soup = utils.soup.get_soup(url)
     # get pdf url
     pdf_url = '.'.join(url.split('.')[:-1]) + ".pdf"
     # get title
@@ -19,9 +19,7 @@ def scrape_robotics(url: str) -> Dict[str, str]:
     assert len(title) == 1
     title = title[0]['content']
     # get pub name
-    pub_name = soup.findAll(name='meta', attrs={'name': 'citation_conference_title'})
-    assert len(pub_name) == 1
-    pub_name = pub_name[0]['content']
+    pub_name = utils.soup.extract_pub_name(soup)
     pub_name = pub_name_mapping(pub_name)
     # get pub year
     pub_year = soup.findAll(name='meta', attrs={'name': 'citation_publication_date'})
