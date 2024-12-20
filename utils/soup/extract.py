@@ -14,11 +14,29 @@ def _extract_meta_content(soup, key: str, val: str, result: List[str]) -> None:
 def extract_pub_name(soup) -> str:
     result: List[str] = []
     for key in ['name', 'property']:
-        for val in ['citation_conference_title', 'citation_journal_title']:
+        for val in [
+            'citation_conference_title', 'citation_journal_title',
+        ]:
             _extract_meta_content(soup, key, val, result)
     assert len(result) >= 1, f"No pub name extracted from soup."
     assert all([x == result[0] for x in result]), f"{result=}"
     return result[0]
+
+# ==================================================
+# pub year
+# ==================================================
+
+def extract_pub_year(soup) -> str:
+    extracted: List[str] = []
+    for key in ['name', 'property']:
+        for val in [
+            'citation_publication_date',
+            'citation_date', 'citation_online_date',
+            'dc.Date', 'DC.Date.created',
+        ]:
+            _extract_meta_content(soup, key, val, extracted)
+    assert len(extracted) >= 1, f"No pub name extracted from soup."
+    return extracted[0]
 
 # ==================================================
 # authors

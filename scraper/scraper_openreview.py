@@ -25,9 +25,7 @@ def scrape_openreview(url: str) -> Dict[str, str]:
     # get pub name and year
     try:
         pub_name = utils.soup.extract_pub_name(soup)
-        pub_year = soup.findAll(name='meta', attrs={'name': "citation_publication_date"})
-        assert len(pub_year) == 1
-        pub_year = pub_year[0]['content']
+        pub_year = utils.soup.extract_pub_year(soup)
     except:
         pub_name, pub_year = utils.parse_publisher(json_dict['content']['venue'])
     # get authors

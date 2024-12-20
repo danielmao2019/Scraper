@@ -39,9 +39,7 @@ def scrape_isprs(url: str) -> Dict[str, str]:
     # get pub name
     pub_name = "ISPRS"
     # get pub year
-    pub_year = soup.findAll('meta', attrs={'name': "citation_publication_date"})
-    assert len(pub_year) == 1
-    pub_year = pub_year[0]['content']
+    pub_year = utils.soup.extract_pub_year(soup)
     # get authors
     authors = soup.findAll('meta', attrs={'name': "citation_author"})
     authors = ", ".join([_process_author(author['content']) for author in authors])

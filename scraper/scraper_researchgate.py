@@ -19,9 +19,7 @@ def scrape_researchgate(url: str) -> Dict[str, str]:
     # get pub name
     pub_name = utils.soup.extract_pub_name(soup)
     # get pub year
-    pub_year = soup.findAll('meta', attrs={'property': "citation_publication_date"})
-    assert len(pub_year) == 1
-    pub_year = pub_year[0]['content']
+    pub_year = utils.soup.extract_pub_year(soup)
     # get authors
     authors = soup.findAll('meta', attrs={'property': "citation_author"})
     authors = ", ".join([author['content'] for author in authors])

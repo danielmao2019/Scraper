@@ -8,7 +8,7 @@ def scrape_neurips(url: str) -> Dict[str, str]:
     soup = utils.soup.get_soup(url)
     # get title
     title = str(soup.findAll(name="h4")[0])[4:-5]
-    # get year
+    # get pub year
     year = re.findall(pattern="/(\d\d\d\d)/", string=url)
     assert len(year) == 1
     year = year[0]

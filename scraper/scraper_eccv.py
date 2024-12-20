@@ -11,7 +11,7 @@ def scrape_eccv(url: str) -> Dict[str, str]:
     pdf_url = utils.get_pdf_url(url, rel_pdf_url)
     # get title
     title = soup.find("div", id="papertitle").text.strip()
-    # get year
+    # get pub year
     pattern = "eccv_(\d\d\d\d)"
     year = re.findall(pattern=pattern, string=url)
     assert len(year) == 1, f"url={url}, pattern={pattern}, year={year}"

@@ -37,10 +37,8 @@ def scrape_springer(url: str) -> Dict[str, str]:
         pub_name = json_dict['isPartOf']['name']
     else:
         assert 0
-    # get year
-    pub_year = soup.findAll(name='meta', attrs={'name': 'citation_publication_date'})
-    assert len(pub_year) == 1
-    pub_year = pub_year[0]['content']
+    # get pub year
+    pub_year = utils.soup.extract_pub_year(soup)
     # get abstract
     abstract = json_dict['description']
     # return

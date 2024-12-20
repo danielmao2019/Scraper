@@ -13,10 +13,8 @@ def scrape_jmlr(url: str) -> Dict[str, str]:
     pdf_url = soup.findAll('meta', {'name': 'citation_pdf_url'})
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]['content']
-    # get year
-    year = soup.findAll('meta', {'name': 'citation_publication_date'})
-    assert len(year) == 1
-    year = year[0]['content']
+    # get pub year
+    pub_year = utils.soup.extract_pub_year(soup)
     # get authors
     authors = soup.findAll('meta', {'name': 'citation_author'})
     authors = ", ".join([t['content'] for t in authors])
@@ -29,7 +27,7 @@ def scrape_jmlr(url: str) -> Dict[str, str]:
         'abs_url': url,
         'pdf_url': pdf_url,
         'pub_name': "JMLR",
-        'pub_year': year,
+        'pub_year': pub_year,
         'authors': authors,
         'abstract': abstract,
     }

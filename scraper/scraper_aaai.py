@@ -13,10 +13,8 @@ def scrape_aaai(url: str) -> Dict[str, str]:
     pdf_url = soup.findAll(name='a', attrs={'class': 'obj_galley_link pdf'})
     assert len(pdf_url) == 1, f"pdf_url={pdf_url}"
     pdf_url = pdf_url[0]['href']
-    # get year
-    year = soup.findAll(name='meta', attrs={'name': 'DC.Date.created'})
-    assert len(year) == 1, f"year={year}"
-    year = year[0]['content']
+    # get pub year
+    pub_year = utils.soup.extract_pub_year(soup)
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': 'DC.Creator.PersonalName'})
     authors = ", ".join([t['content'] for t in authors])
@@ -30,7 +28,7 @@ def scrape_aaai(url: str) -> Dict[str, str]:
         'abs_url': url,
         'pdf_url': pdf_url,
         'pub_name': "AAAI",
-        'pub_year': year,
+        'pub_year': pub_year,
         'authors': authors,
         'abstract': abstract,
     }

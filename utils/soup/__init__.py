@@ -4,6 +4,7 @@ UTILS.SOUP API
 from utils.soup.get_soup import get_soup
 from utils.soup.extract import (
     extract_pub_name,
+    extract_pub_year,
     extract_authors,
     extract_abstract,
 )
@@ -12,6 +13,7 @@ from utils.soup.extract import (
 __all__ = (
     'get_soup',
     'extract_pub_name',
+    'extract_pub_year',
     'extract_authors',
     'extract_abstract',
 )

@@ -1,0 +1,7 @@
+* Stable Diffusion Exposed: Gender Bias from Prompt to Image
+    [[abs-AAAI](https://ojs.aaai.org/index.php/AIES/article/view/31754)]
+    [[pdf-AAAI](https://ojs.aaai.org/index.php/AIES/article/view/31754/33921)]
+    * Title: Stable Diffusion Exposed: Gender Bias from Prompt to Image
+    * Year: `2024`/10/16
+    * Authors: Yankun Wu, Yuta Nakashima, Noa Garcia
+    * Abstract: Several studies have raised awareness about social biases in image generative models, demonstrating their predisposition towards stereotypes and imbalances. This paper contributes to this growing body of research by introducing an evaluation protocol that analyzes the impact of gender indicators at every step of the generation process on Stable Diffusion images. Leveraging insights from prior work, we explore how gender indicators not only affect gender presentation but also the representation of objects and layouts within the generated images. Our findings include the existence of differences in the depiction of objects, such as instruments tailored for specific genders, and shifts in overall layouts. We also reveal that neutral prompts tend to produce images more aligned with masculine prompts than their feminine counterparts. We further explore where bias originates through representational disparities and how it manifests in the images via prompt-image dependencies, and provide recommendations for developers and users to mitigate potential bias in image generation.

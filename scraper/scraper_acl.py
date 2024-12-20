@@ -14,7 +14,7 @@ def scrape_acl(url: str) -> Dict[str, str]:
     pdf_url = soup.findAll(name='meta', attrs={'name': 'citation_pdf_url'})
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]['content']
-    # get year
+    # get pub year
     year = re.findall(pattern=r'year = "(\d+)"', string=str(soup))
     assert len(year) == 1
     year = year[0]
