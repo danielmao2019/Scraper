@@ -6,6 +6,11 @@ from search import search_in_file
 
 @pytest.mark.parametrize("url, keyword, count", [
     (
+        "https://www.mdpi.com/1424-8220/18/4/966/pdf?version=1522057381",
+        "graph cut",
+        38,
+    ),
+    (
         "https://link.springer.com/content/pdf/10.1023/A:1007379606734.pdf",
         "inductive bias",
         16,
