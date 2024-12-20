@@ -2,6 +2,6 @@
     [[abs-Journal of Computing in Civil Engineering](https://ascelibrary.org/doi/10.1061/%28ASCE%29CP.1943-5487.0000660)]
     [[pdf-Journal of Computing in Civil Engineering](https://ascelibrary.org/doi/epdf/10.1061/%28ASCE%29CP.1943-5487.0000660)]
     * Title: Automated Schedule and Progress Updating of IFC-Based 4D BIMs
-    * Year: `2017`-07-01
+    * Year: `2017`/07/01
     * Authors: Hesam Hamledari, Brenda McCabe, Shakiba Davari, Arash Shahi
     * Abstract: Researchers have studied the detection of actual site conditions and the state of construction progress using various field data capture technologies. To fully exploit these solutions, a method was developed to automatically update industry foundation classes (IFC) based four-dimensional (4D) building information models (BIM) in terms of schedule and progress. To automatically incorporate progress data into 4D BIMs, the method modifies the schedule hierarchy; updates progress ratios for the building elements; color codes the building elements based on their actual and expected progress; and updates the task durations and finish dates. A real case application is provided to demonstrate the potential of the system. The method’s reliance on nonproprietary IFC data format, its high accuracy rates, and its real-time performance in real-life testing scenarios provide promise to the future of automated 4D BIM updating and its use during construction. Input data can come from any source, thereby leveraging the use of reality capture technologies for BIM-based progress tracking.

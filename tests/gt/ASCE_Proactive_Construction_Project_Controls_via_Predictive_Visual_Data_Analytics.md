@@ -2,6 +2,6 @@
     [[abs-Computing in Civil Engineering](https://ascelibrary.org/doi/10.1061/9780784480830.019)]
     [[pdf-Computing in Civil Engineering](https://ascelibrary.org/doi/epdf/10.1061/9780784480830.019)]
     * Title: Proactive Construction Project Controls via Predictive Visual Data Analytics
-    * Year: `2017`-06-13
+    * Year: `2017`/06/13
     * Authors: Jacob J. Lin, Mani Golparvar-Fard
     * Abstract: This paper presents a new visual production management system for proactive project controls on construction sites. Taking advantage from the unprecedented growth of visual data on construction sites, the system continuously reconstructs and visualizes reality in form of 4D point clouds and maps it directly within 4D BIM. By putting schedule tasks and project performance data in a visual context for the entire team and mapping Reality to Plan, the system communicates “who does what work in what location”, tracks actual progress and productivity at the weekly work plan and the look ahead schedule, and infers top locations at risk for potential delays. To validate the system and its impact on field reporting and project controls practices, a case study is conducted on a building construction project. Results demonstrate that such a system improves coordination and communication by providing transparency in project execution and helps project teams improve reliability of their short term plans.

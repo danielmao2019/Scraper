@@ -2,13 +2,14 @@ from typing import Tuple, List, Dict, Union
 import re
 
 
-RECOGNIZED_WORKSHOPS = ['corr']
+RECOGNIZED_WORKSHOPS = ['CoRR']
 RECOGNIZED_CONFERENCES = [
-    'cvpr', 'iccv', 'eccv', 'accv', 'wacv',
-    'icml', 'iclr', 'neurips',
-    'siggraph',
+    'CVPR', 'ICCV', 'ECCV', 'ACCV', 'WACV',
+    'ICML', 'ICLR', 'NeurIPS',
+    'SIGGRAPH',
+    'Computing in Civil Engineering',
 ]
-RECOGNIZED_JOURNALS = ['tmlr']
+RECOGNIZED_JOURNALS = ['TMLR']
 
 
 def _parse_workshop_(string: str) -> Tuple[str, str]:
@@ -20,9 +21,12 @@ def _parse_workshop_(string: str) -> Tuple[str, str]:
         year (str): year of conference.
     """
     # get name
-    name = re.findall(pattern=f"({'|'.join(RECOGNIZED_WORKSHOPS)})", string=string.lower())
+    name = re.findall(
+        pattern=f"({'|'.join(RECOGNIZED_WORKSHOPS)})", string=string,
+        flags=re.IGNORECASE,
+    )
     assert len(name) == 1, f"string={string}, name={name}"
-    name = name[0].upper()
+    name = name[0]
     # get year
     year = re.findall(pattern=r"\d\d\d\d", string=string)
     assert len(year) == 1, f"string={string}, year={year}"
@@ -39,9 +43,12 @@ def _parse_conference_(string: str) -> Tuple[str, str]:
         year (str): year of conference.
     """
     # get name
-    name = re.findall(pattern=f"({'|'.join(RECOGNIZED_CONFERENCES)})w?", string=string.lower())
+    name = re.findall(
+        pattern=f"({'|'.join(RECOGNIZED_CONFERENCES)})w?", string=string,
+        flags=re.IGNORECASE,
+    )
     assert len(name) == 1, f"string={string}, name={name}"
-    name = name[0].upper()
+    name = name[0]
     # get year
     year = re.findall(pattern=r"\d\d\d\d", string=string)
     assert len(year) == 1, f"string={string}, year={year}"
@@ -58,9 +65,12 @@ def _parse_journal_(string: str) -> Tuple[str, str]:
         year (str): an empty string.
     """
     # get name
-    name = re.findall(pattern=f"({'|'.join(RECOGNIZED_JOURNALS)})", string=string.lower())
+    name = re.findall(
+        pattern=f"({'|'.join(RECOGNIZED_JOURNALS)})", string=string,
+        flags=re.IGNORECASE,
+    )
     assert len(name) == 1, f"string={string}, name={name}"
-    name = name[0].upper()
+    name = name[0]
     return name, ""
 
 
