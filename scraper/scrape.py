@@ -17,6 +17,7 @@ from scraper.scraper_researchgate import scrape_researchgate
 from scraper.scraper_robotics import scrape_robotics
 from scraper.scraper_sciencedirect import scrape_sciencedirect
 from scraper.scraper_springer import scrape_springer
+from scraper.scraper_tandfonline import scrape_tandfonline
 
 import utils
 
@@ -61,6 +62,8 @@ def scrape(url: str) -> str:
         info_dict = scrape_sciencedirect(url)
     if url.startswith("https://link.springer.com"):
         info_dict = scrape_springer(url)
+    if url.startswith("https://www.tandfonline.com"):
+        info_dict = scrape_tandfonline(url)
     if info_dict is not None:
         return utils.compile_markdown(**info_dict)
     else:
