@@ -2,13 +2,6 @@ from typing import Dict
 import utils
 
 
-def pub_name_mapping(name: str) -> str:
-    if name.startswith("Robotics: Science and Systems"):
-        return "RSS"
-    else:
-        return name
-
-
 def scrape_robotics(url: str) -> Dict[str, str]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
@@ -20,7 +13,6 @@ def scrape_robotics(url: str) -> Dict[str, str]:
     title = title[0]['content']
     # get pub name
     pub_name = utils.soup.extract_pub_name(soup)
-    pub_name = pub_name_mapping(pub_name)
     # get pub year
     pub_year = utils.soup.extract_pub_year(soup)
     # get authors

@@ -1,6 +1,6 @@
 * Break-A-Scene: Extracting Multiple Concepts from a Single Image
-    [[abs-SIGGRAPH](https://dl.acm.org/doi/10.1145/3610548.3618154)]
-    [[pdf-SIGGRAPH](https://dl.acm.org/doi/pdf/10.1145/3610548.3618154)]
+    [[abs-SIGGRAPH Asia](https://dl.acm.org/doi/10.1145/3610548.3618154)]
+    [[pdf-SIGGRAPH Asia](https://dl.acm.org/doi/pdf/10.1145/3610548.3618154)]
     * Title: Break-A-Scene: Extracting Multiple Concepts from a Single Image
     * Year: 11 December `2023`
     * Authors: Omri Avrahami, Kfir Aberman, Ohad Fried, Daniel Cohen-Or, Dani Lischinski

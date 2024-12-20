@@ -18,7 +18,7 @@ def scrape_acm(url: str) -> Dict[str, str]:
         assert len(title_and_pub) == 1
         title_and_pub = title_and_pub[0]['content'].split(" | ")
         assert len(title_and_pub) == 2
-        pub_name, _ = utils.parse_publisher(value=title_and_pub[1])
+        pub_name = utils.parse_pub_name(string=title_and_pub[1])
         # sanity check
         site_name = soup.findAll(name='meta', attrs={'property': "og:site_name"})
         assert len(site_name) == 1

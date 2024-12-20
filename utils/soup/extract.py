@@ -1,5 +1,6 @@
 from typing import List
 import re
+from utils.parse import parse_pub_name
 
 
 def _extract_meta_content(soup, key: str, val: str, result: List[str]) -> None:
@@ -12,15 +13,16 @@ def _extract_meta_content(soup, key: str, val: str, result: List[str]) -> None:
 # ==================================================
 
 def extract_pub_name(soup) -> str:
-    result: List[str] = []
+    extracted: List[str] = []
     for key in ['name', 'property']:
         for val in [
             'citation_conference_title', 'citation_journal_title',
         ]:
-            _extract_meta_content(soup, key, val, result)
-    assert len(result) >= 1, f"No pub name extracted from soup."
-    assert all([x == result[0] for x in result]), f"{result=}"
-    return result[0]
+            _extract_meta_content(soup, key, val, extracted)
+    parsed = [parse_pub_name(x) for x in extracted]
+    assert len(parsed) >= 1, f"No pub name extracted and parsed from soup."
+    assert all([x == parsed[0] for x in parsed]), f"{parsed=}"
+    return parsed[0]
 
 # ==================================================
 # pub year

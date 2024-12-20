@@ -29,7 +29,7 @@ def scrape_asce(url: str) -> Dict[str, str]:
         pub_name = []
         for cand in pub_name_cands:
             try:
-                pub_name.append(utils.parse_publisher(cand.text.strip())[0])
+                pub_name.append(utils.parse_pub_name(cand.text.strip()))
             except:
                 pass
         assert len(pub_name) > 0
