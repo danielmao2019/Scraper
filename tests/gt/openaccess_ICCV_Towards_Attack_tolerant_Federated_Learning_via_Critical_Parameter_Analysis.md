@@ -1,0 +1,7 @@
+* Towards Attack-tolerant Federated Learning via Critical Parameter Analysis
+    [[abs-ICCV](https://openaccess.thecvf.com/content/ICCV2023/html/Han_Towards_Attack-tolerant_Federated_Learning_via_Critical_Parameter_Analysis_ICCV_2023_paper.html)]
+    [[pdf-ICCV](https://openaccess.thecvf.com/content/ICCV2023/papers/Han_Towards_Attack-tolerant_Federated_Learning_via_Critical_Parameter_Analysis_ICCV_2023_paper.pdf)]
+    * Title: Towards Attack-tolerant Federated Learning via Critical Parameter Analysis
+    * Year: `2023`
+    * Authors: Sungwon Han, Sungwon Park, Fangzhao Wu, Sundong Kim, Bin Zhu, Xing Xie, Meeyoung Cha
+    * Abstract: Federated learning is used to train a shared model in a decentralized way without clients sharing private data with each other. Federated learning systems are susceptible to poisoning attacks when malicious clients send false updates to the central server. Existing defense strategies are ineffective under non-IID data settings. This paper proposes a new defense strategy, FedCPA (Federated learning with Critical Parameter Analysis). Our attack-tolerant aggregation method is based on the observation that benign local models have similar sets of top-k and bottom-k critical parameters, whereas poisoned local models do not. Experiments with different attack scenarios on multiple datasets demonstrate that our model outperforms existing defense strategies in defending against poisoning attacks.
