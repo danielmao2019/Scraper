@@ -4,6 +4,7 @@ import os
 import time
 import re
 import tqdm
+import hashlib
 import fitz  # PyMuPDF
 
 
@@ -12,21 +13,23 @@ def _url2text_wget(url: str) -> str:
     Returns:
         text (str): text in the file from url.
     """
-    # avoid CAPTCHA
-    time.sleep(4)
+    filename = hashlib.sha256(url.encode('utf-8')).hexdigest() + ".pdf"
+    os.makedirs("downloads", exist_ok=True)
+    filepath = os.path.join("downloads", filename)
 
-    # Download the PDF
-    os.system('wget {} --output-document tmp.pdf --quiet'.format(url))
+    if not os.path.isfile(filepath):
+        # avoid CAPTCHA
+        time.sleep(4)
+        # Download the PDF
+        os.system(f'wget {url} --output-document {filepath} --quiet')
 
     # Extract text
     text = ""
-    pdf_document = fitz.open("tmp.pdf")
+    pdf_document = fitz.open(filepath)
     for page in pdf_document:
         text += page.get_text() + "\n"
     pdf_document.close()
 
-    # Cleanup
-    os.remove("tmp.pdf")
     return text
 
 
