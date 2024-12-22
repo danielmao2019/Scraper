@@ -1,0 +1,8 @@
+16 https://arxiv.org/pdf/1602.04433.pdf
+16 https://papers.nips.cc/paper_files/paper/2016/file/ac627ab1ccbdb62ec96e702f07f6425b-Paper.pdf
+1 https://arxiv.org/pdf/1702.08811.pdf
+1 https://papers.nips.cc/paper_files/paper/2006/file/e9fb2eda3d9c55a0d89c98d6c54b5b3e-Paper.pdf
+1 https://arxiv.org/pdf/1901.00976.pdf
+1 https://openaccess.thecvf.com/content_CVPR_2019/papers/Kang_Contrastive_Adaptation_Network_for_Unsupervised_Domain_Adaptation_CVPR_2019_paper.pdf
+1 https://arxiv.org/pdf/1705.00609.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2017/papers/Yan_Mind_the_Class_CVPR_2017_paper.pdf

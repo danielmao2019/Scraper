@@ -1,0 +1,17 @@
+16 https://link.springer.com/content/pdf/10.1007/s12145-019-00380-5.pdf
+3 https://www.mdpi.com/2072-4292/6/9/7911/pdf?version=1409551638
+2 https://arxiv.org/pdf/2212.04869.pdf
+2 https://www.mdpi.com/2072-4292/2/5/1217/pdf?version=1403129175
+2 https://www.mdpi.com/2072-4292/12/10/1680/pdf?version=1590487245
+1 https://www.sciencedirect.com/science/article/pii/S0924271614000100/pdfft
+1 https://www.sciencedirect.com/science/article/pii/S0924271616304026/pdfft
+1 https://www.mdpi.com/2072-4292/14/9/2046/pdf?version=1650936698
+1 https://arxiv.org/pdf/2103.00188.pdf
+1 https://www.mdpi.com/2072-4292/7/12/15867/pdf?version=1450358052
+1 https://www.sciencedirect.com/science/article/pii/S0924271623000163/pdfft
+1 https://www.sciencedirect.com/science/article/pii/S1574954121001011/pdfft
+1 https://link.springer.com/content/pdf/10.1007/978-981-13-7025-0_18.pdf
+1 https://www.sciencedirect.com/science/article/pii/S0924271616305305/pdfft
+1 https://arxiv.org/pdf/1802.10249.pdf
+1 https://www.mdpi.com/2072-4292/14/14/3297/pdf?version=1657678483
+1 https://www.mdpi.com/2072-4292/12/15/2460/pdf?version=1596189630

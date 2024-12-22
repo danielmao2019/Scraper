@@ -1,0 +1,15 @@
+7 https://arxiv.org/pdf/2301.02009.pdf
+4 https://arxiv.org/pdf/2006.07733.pdf
+3 https://openaccess.thecvf.com/content/ICCV2023/papers/Shvetsova_Learning_by_Sorting_Self-supervised_Learning_with_Group_Ordering_Constraints_ICCV_2023_paper.pdf
+3 https://arxiv.org/pdf/2105.04906.pdf
+2 https://arxiv.org/pdf/2202.03026.pdf
+2 https://arxiv.org/pdf/2212.06486.pdf
+2 https://arxiv.org/pdf/2106.09785.pdf
+2 https://arxiv.org/pdf/2112.05141.pdf
+1 https://arxiv.org/pdf/2201.13100.pdf
+1 https://arxiv.org/pdf/2011.10566.pdf
+1 https://openaccess.thecvf.com/content/CVPR2021/papers/Chen_Exploring_Simple_Siamese_Representation_Learning_CVPR_2021_paper.pdf
+1 https://arxiv.org/pdf/2105.00470.pdf
+1 https://arxiv.org/pdf/2104.14294.pdf
+1 https://arxiv.org/pdf/2111.07832.pdf
+1 https://openaccess.thecvf.com/content/CVPR2024/papers/Ahn_Style_Blind_Domain_Generalized_Semantic_Segmentation_via_Covariance_Alignment_and_CVPR_2024_paper.pdf
