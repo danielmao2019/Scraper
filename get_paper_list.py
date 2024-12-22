@@ -40,11 +40,15 @@ class GetPaperList:
     papers_count_wacv = {
         2020: 378,
         2021: 406,
+        2022: 406,
+        2023: 639,
+        2024: 846,
     }
 
     papers_count_accv = {
         2020: 254,
         2022: 277,
+        2024: 269,
     }
 
     papers_count_neurips = {
@@ -59,10 +63,11 @@ class GetPaperList:
         2020: 1898,
         2021: 2334,
         2022: 2834,
+        2023: 3540,
     }
 
     # assume this file is located under a directory ("Scraper") that is in parallel to "Machine-Learning-Knowledge-Base"
-    paper_lists_root = "../Machine-Learning-Knowledge-Base/paper-collections/papers-cv/_paper_lists_"
+    paper_lists_root = "../Machine-Learning-Knowledge-Base/paper-collections/deep-learning/_paper_lists_"
 
     def get_urls_cvf(
         self,
