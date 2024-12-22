@@ -14,6 +14,7 @@ def _url2text_wget(url: str) -> str:
         text (str): text in the file from url.
     """
     filename = hashlib.sha256(url.encode('utf-8')).hexdigest() + ".pdf"
+    os.makedirs("downloads", exist_ok=True)
     filepath = os.path.join("downloads", filename)
 
     if not os.path.isfile(filepath):
