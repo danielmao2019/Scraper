@@ -49,6 +49,7 @@ def _url2text_elsevier(url: str) -> str:
     pii_doc = FullDoc(sd_pii=id)
     assert pii_doc.read(client)
     text = pii_doc.__dict__['_data']['originalText']
+    assert type(text) == str, f"{text=}"
     return text
 
 
