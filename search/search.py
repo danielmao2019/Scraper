@@ -16,21 +16,29 @@ def _url2text_wget(url: str) -> str:
     filename = hashlib.sha256(url.encode('utf-8')).hexdigest() + ".pdf"
     os.makedirs("downloads", exist_ok=True)
     filepath = os.path.join("downloads", filename)
-
-    if not os.path.isfile(filepath):
-        # avoid CAPTCHA
-        time.sleep(4)
-        # Download the PDF
-        os.system(f'wget {url} --output-document {filepath} --quiet')
-
-    # Extract text
-    text = ""
-    pdf_document = fitz.open(filepath)
-    for page in pdf_document:
-        text += page.get_text() + "\n"
-    pdf_document.close()
-
-    return text
+    if os.path.isfile(filepath) and os.path.getsize(filepath):
+        try:
+            text = ""
+            pdf_document = fitz.open(filepath)
+            for page in pdf_document:
+                text += page.get_text() + "\n"
+            pdf_document.close()
+            return text
+        except:
+            pass
+    else:
+        time.sleep(4)  # avoid CAPTCHA
+        cmd = f'wget "{url}" --output-document "{filepath}" --quiet'
+        os.system(cmd)
+        try:
+            text = ""
+            pdf_document = fitz.open(filepath)
+            for page in pdf_document:
+                text += page.get_text() + "\n"
+            pdf_document.close()
+            return text
+        except Exception as e:
+            raise RuntimeError(f"{e} {url=}")
 
 
 def _url2text_elsevier(url: str) -> str:
@@ -49,15 +57,16 @@ def _url2text_elsevier(url: str) -> str:
     pii_doc = FullDoc(sd_pii=id)
     assert pii_doc.read(client)
     text = pii_doc.__dict__['_data']['originalText']
-    assert type(text) == str, f"{text=}"
     return text
 
 
 def _url2text(url: str) -> str:
     if "sciencedirect" in url:
-        return _url2text_elsevier(url)
+        result = _url2text_elsevier(url)
     else:
-        return _url2text_wget(url)
+        result = _url2text_wget(url)
+    assert type(result) == str, f"{type(result)=}"
+    return result
 
 
 def _keyword2regex(keyword: str) -> str:
@@ -95,30 +104,31 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
         with open(filepath, mode='r', encoding='utf-8') as f:
             content += f.read()
     all_pdf_urls = re.findall(pattern=r"\[pdf-.+\]\((http.+)\)", string=content)
-    all_pdf_urls = set(all_pdf_urls)
+    all_pdf_urls = sorted(set(all_pdf_urls))
     print(f"Found {len(all_pdf_urls)} pdf urls.")
     # search relevant documents
     failures: List[str] = []
     results: Dict[str, List[Tuple[int, str]]] = {
-        k: [] for k in keywords
+        kw: [] for kw in keywords
     }
     for url in tqdm.tqdm(all_pdf_urls):
         try:
             counts: Dict[str, int] = search_in_file(url=url, keywords=keywords)
-            for k in keywords:
-                if counts[k] > 0:
-                    results[k].append((counts[k], url))
+            for kw in keywords:
+                if counts[kw] > 0:
+                    results[kw].append((counts[kw], url))
         except Exception as e:
             print(e)
+            print(f"{url=}")
             failures.append(url)
     # save to disk
-    for k in keywords:
-        output_name = re.sub(pattern=' ', repl='_', string=k) + ".md"
+    for kw in keywords:
+        output_name = re.sub(pattern=' ', repl='_', string=kw) + ".md"
         os.makedirs(name=os.path.join("results", output_dir), exist_ok=True)
         with open(os.path.join("results", output_dir, output_name), mode='w') as f:
             f.write("".join(list(map(
                 lambda x: str(x[0]) + ' ' + x[1] + '\n',
-                sorted(results[k], key=lambda x: x[0], reverse=True),
+                sorted(results[kw], key=lambda x: x[0], reverse=True),
             ))))
     # logging
     print(f"Failure cases:")
