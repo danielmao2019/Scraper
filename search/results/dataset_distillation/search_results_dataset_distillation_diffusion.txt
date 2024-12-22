@@ -1,0 +1,6 @@
+78 https://arxiv.org/pdf/2311.15529.pdf
+46 https://openaccess.thecvf.com/content/CVPR2024/papers/Gu_Efficient_Dataset_Distillation_via_Minimax_Diffusion_CVPR_2024_paper.pdf
+26 https://arxiv.org/pdf/2407.15138.pdf
+24 https://openaccess.thecvf.com/content/CVPR2024/papers/Su_D4_Dataset_Distillation_via_Disentangled_Diffusion_Model_CVPR_2024_paper.pdf
+2 https://arxiv.org/pdf/2201.05610.pdf
+1 https://arxiv.org/pdf/2301.04272.pdf

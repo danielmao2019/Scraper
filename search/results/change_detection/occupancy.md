@@ -1,0 +1,10 @@
+144 https://www.sciencedirect.com/science/article/pii/S0924271615001215/pdfft
+54 https://isprs-annals.copernicus.org/articles/II-5-W2/331/2013/isprsannals-II-5-W2-331-2013.pdf
+50 https://www.sciencedirect.com/science/article/pii/S0924271623000163/pdfft
+20 https://link.springer.com/content/pdf/10.1007/978-3-642-24393-6_16.pdf
+10 https://link.springer.com/content/pdf/10.1007/s41064-021-00148-x.pdf
+6 https://www.mdpi.com/2072-4292/7/12/15867/pdf?version=1450358052
+5 https://isprs-annals.copernicus.org/articles/II-5-W2/343/2013/isprsannals-II-5-W2-343-2013.pdf
+4 https://arxiv.org/pdf/2108.02800.pdf
+3 https://isprs-archives.copernicus.org/articles/XLI-B3/693/2016/isprs-archives-XLI-B3-693-2016.pdf
+2 https://www.sciencedirect.com/science/article/pii/S0924271616000502/pdfft

@@ -1,0 +1,1 @@
+1 https://openaccess.thecvf.com/content/CVPR2024/papers/Liang_BadCLIP_Dual-Embedding_Guided_Backdoor_Attack_on_Multimodal_Contrastive_Learning_CVPR_2024_paper.pdf
