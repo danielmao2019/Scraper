@@ -14,6 +14,7 @@
 49 https://www.sciencedirect.com/science/article/pii/S0924271616000502/pdfft
 48 https://arxiv.org/pdf/2108.07002.pdf
 48 https://www.sciencedirect.com/science/article/pii/S0034425712000570/pdfft
+48 https://openaccess.thecvf.com/content/ICCV2021/papers/Zheng_Change_Is_Everywhere_Single-Temporal_Supervised_Object_Change_Detection_in_Remote_ICCV_2021_paper.pdf
 45 https://www.mdpi.com/2072-4292/2/5/1217/pdf?version=1403129175
 44 https://arxiv.org/pdf/2305.05813.pdf
 43 https://www.mdpi.com/2072-4292/14/7/1552/pdf?version=1648046350
@@ -23,8 +24,10 @@
 39 https://www.mdpi.com/2072-4292/14/4/1048/pdf?version=1645533833
 38 https://link.springer.com/content/pdf/10.1007/978-981-13-7025-0_18.pdf
 38 https://www.sciencedirect.com/science/article/pii/S0303243421001720/pdfft
+37 https://openaccess.thecvf.com/content/ICCV2023/papers/Bernhard_MapFormer_Boosting_Change_Detection_by_Using_Pre-change_Information_ICCV_2023_paper.pdf
 34 https://arxiv.org/pdf/1802.10249.pdf
 32 https://arxiv.org/pdf/2404.12081.pdf
+29 https://arxiv.org/pdf/2208.09870.pdf
 28 https://www.sciencedirect.com/science/article/pii/S0924271624000042/pdfft
 27 https://arxiv.org/pdf/1909.07726.pdf
 27 https://www.sciencedirect.com/science/article/pii/S0924271614000100/pdfft
@@ -44,6 +47,8 @@
 19 https://www.sciencedirect.com/science/article/pii/S0034425714000984/pdfft
 18 https://arxiv.org/pdf/1912.08628.pdf
 18 https://arxiv.org/pdf/2208.01881.pdf
+18 https://openaccess.thecvf.com/content/WACV2023/papers/Seo_Self-Pair_Synthesizing_Changes_From_Single_Source_for_Object_Change_Detection_WACV_2023_paper.pdf
+17 https://openaccess.thecvf.com/content/WACV2024/papers/Song_SyntheWorld_A_Large-Scale_Synthetic_Dataset_for_Land_Cover_Mapping_and_WACV_2024_paper.pdf
 16 https://arxiv.org/pdf/2212.04869.pdf
 15 https://arxiv.org/pdf/2209.08290.pdf
 15 https://arxiv.org/pdf/2406.15320.pdf
@@ -68,6 +73,7 @@
 10 https://www.mdpi.com/2072-4292/7/12/15867/pdf?version=1450358052
 9 https://arxiv.org/pdf/2401.04330.pdf
 9 https://arxiv.org/pdf/2404.17765.pdf
+9 https://openaccess.thecvf.com/content/ACCV2022/papers/Yan_Fully_Transformer_Network_for_Change_Detection_of_Remote_Sensing_Images_ACCV_2022_paper.pdf
 8 https://arxiv.org/pdf/2001.04271.pdf
 8 https://arxiv.org/pdf/2205.13769.pdf
 8 https://arxiv.org/pdf/2205.15903.pdf
@@ -83,6 +89,7 @@
 7 https://www.sciencedirect.com/science/article/pii/S0012825218306470/pdfft
 6 https://arxiv.org/pdf/2009.03630.pdf
 6 https://arxiv.org/pdf/2103.00208.pdf
+6 https://openaccess.thecvf.com/content_cvpr_2013/papers/Taneja_City-Scale_Change_Detection_2013_CVPR_paper.pdf
 6 https://www.mdpi.com/2072-4292/8/12/1030/pdf?version=1481970263
 6 https://www.sciencedirect.com/science/article/pii/S0097849321001369/pdfft
 5 https://arxiv.org/pdf/1810.08462.pdf
@@ -95,12 +102,16 @@
 4 https://arxiv.org/pdf/2011.03247.pdf
 4 https://arxiv.org/pdf/2304.01101.pdf
 4 https://isprs-archives.copernicus.org/articles/XLII-2/565/2018/isprs-archives-XLII-2-565-2018.pdf
+4 https://openaccess.thecvf.com/content/CVPR2022/papers/Park_Dual_Task_Learning_by_Leveraging_Both_Dense_Correspondence_and_Mis-Correspondence_CVPR_2022_paper.pdf
+4 https://openaccess.thecvf.com/content/WACV2024/papers/Lee_Semi-Supervised_Scene_Change_Detection_by_Distillation_From_Feature-Metric_Alignment_WACV_2024_paper.pdf
 3 https://arxiv.org/pdf/2103.14314.pdf
 3 https://arxiv.org/pdf/2201.01293.pdf
 3 https://arxiv.org/pdf/2203.00948.pdf
 3 https://arxiv.org/pdf/2212.01287.pdf
 3 https://arxiv.org/pdf/2404.03425.pdf
 3 https://arxiv.org/pdf/2406.13606.pdf
+3 https://openaccess.thecvf.com/content/WACV2024/papers/Naylor_Implicit_Neural_Representation_for_Change_Detection_WACV_2024_paper.pdf
+3 https://openaccess.thecvf.com/content_iccv_2015/papers/Feng_Fine-Grained_Change_Detection_ICCV_2015_paper.pdf
 3 https://www.mdpi.com/1424-8220/18/2/448/pdf?version=1517646882
 3 https://www.mdpi.com/2072-4292/15/5/1414/pdf?version=1678024547
 3 https://www.mdpi.com/2220-9964/10/3/127/pdf?version=1614657168
