@@ -2,17 +2,17 @@
 <!-- 98 https://link.springer.com/content/pdf/10.1007/s41064-021-00148-x.pdf -->
 <!-- 94 https://arxiv.org/pdf/2403.13430.pdf -->
 <!-- 89 https://www.mdpi.com/2072-4292/11/6/729/pdf?version=1553678170 -->
-81 https://link.springer.com/content/pdf/10.1007/s12145-019-00380-5.pdf
+<!-- 81 https://link.springer.com/content/pdf/10.1007/s12145-019-00380-5.pdf -->
 <!-- 71 https://www.mdpi.com/2072-4292/6/9/7911/pdf?version=1409551638 -->
 <!-- 66 https://arxiv.org/pdf/2403.11735.pdf -->
 <!-- 64 https://arxiv.org/pdf/2404.02668.pdf -->
 <!-- 60 https://www.sciencedirect.com/science/article/pii/S0924271623000163/pdfft -->
 <!-- 57 https://isprs-archives.copernicus.org/articles/XLI-B3/693/2016/isprs-archives-XLI-B3-693-2016.pdf -->
 <!-- 55 https://www.mdpi.com/2072-4292/14/14/3297/pdf?version=1657678483 -->
-53 https://www.sciencedirect.com/science/article/pii/S0924271616305305/pdfft
-51 https://www.mdpi.com/2072-4292/12/18/2952/pdf?version=1599819122
-49 https://www.sciencedirect.com/science/article/pii/S0924271616000502/pdfft
-48 https://arxiv.org/pdf/2108.07002.pdf
+<!-- 53 https://www.sciencedirect.com/science/article/pii/S0924271616305305/pdfft -->
+<!-- 51 https://www.mdpi.com/2072-4292/12/18/2952/pdf?version=1599819122 -->
+<!-- 49 https://www.sciencedirect.com/science/article/pii/S0924271616000502/pdfft -->
+<!-- 48 https://arxiv.org/pdf/2108.07002.pdf -->
 48 https://www.sciencedirect.com/science/article/pii/S0034425712000570/pdfft
 48 https://openaccess.thecvf.com/content/ICCV2021/papers/Zheng_Change_Is_Everywhere_Single-Temporal_Supervised_Object_Change_Detection_in_Remote_ICCV_2021_paper.pdf
 45 https://www.mdpi.com/2072-4292/2/5/1217/pdf?version=1403129175
