@@ -2,9 +2,11 @@ from typing import List
 import os
 from urllib.request import urlopen
 from urllib.parse import urljoin
+import bs4
 from bs4 import BeautifulSoup
 import re
 import argparse
+from utils.soup import get_soup
 
 
 class GetPaperList:
@@ -21,7 +23,7 @@ class GetPaperList:
         2021: 1660,
         2022: 2074,
         2023: 2353,
-        2024: 2715,
+        2024: 2716,
     }
 
     papers_count_iccv = {
@@ -69,71 +71,100 @@ class GetPaperList:
     # assume this file is located under a directory ("Scraper") that is in parallel to "Machine-Learning-Knowledge-Base"
     paper_lists_root = "../Machine-Learning-Knowledge-Base/paper-collections/deep-learning/_paper_lists_"
 
-    def get_urls_cvf(
-        self,
-        conference: str = None,
-        year: int = None,
-    ) -> List[str]:
+    # ==================================================
+    # CVF
+    # ==================================================
+
+    @staticmethod
+    def _get_urls_cvf_conference(conference: str, year: int) -> List[str]:
         base_url = f"https://openaccess.thecvf.com/{conference.upper()}{year}"
-        page = urlopen(base_url)
-        html = page.read().decode("utf-8")
-        if ".pdf" in html:
+        soup = get_soup(base_url)
+        if len(soup.findAll(name='dt')):
             return [base_url]
-        soup = BeautifulSoup(html, "html.parser")
-        content = soup.find(name='div', id="content")
-        urls = content.findAll('a')
-        if "day=all" in urls[-1]['href']:
-            urls = urls[-1:]
-        urls = [re.sub(pattern=".py", repl="", string=url['href']) for url in urls]
-        return [urljoin(base_url, url) for url in urls]
+        result = soup.find(name='div', id="content").findAll('a')
+        if "day=all" in result[-1]['href']:
+            result = result[-1:]
+        result = list(map(lambda x: x['href'], result))
+        result = list(map(lambda x: re.sub(pattern=".py", repl="", string=x), result))
+        result = list(map(lambda x: urljoin(base_url, x), result))
+        return result
 
-    def get_url_neurips(self, year: int = None):
-        return f"https://papers.nips.cc/paper_files/paper/{year}"
+    @staticmethod
+    def _get_urls_cvf_workshop(year: int) -> List[str]:
+        base_url = f"https://openaccess.thecvf.com/CVPR{year}_workshops/menu"
+        soup = get_soup(base_url)
+        result = soup.findAll(name='dd')
+        result = list(map(lambda x: x.findAll(name='a'), result))
+        assert all([len(x) == 1 for x in result])
+        result = list(map(lambda x: x[0]['href'], result))
+        result = list(map(lambda x: urljoin(base_url, x), result))
+        result = list(map(lambda x: re.sub(pattern=".py", repl="", string=x), result))
+        return result
 
-    def get_papers_cvf(
-        self,
-        conference: str = None,
-        year: int = None,
-    ) -> None:
-        urls = self.get_urls_cvf(conference, year)
-        papers = []
+    @staticmethod
+    def _get_papers_cvf(urls: List[str]) -> List[bs4.element.Tag]:
+        result = []
         for url in urls:
-            page = urlopen(url)
-            html = page.read().decode("utf-8")
-            soup = BeautifulSoup(html, "html.parser")
-            papers += soup.findAll(name='dt', class_="ptitle")
+            soup = get_soup(url)
+            result += soup.findAll(name='dt', attrs={'class': "ptitle"})
+        result = list(map(lambda x: x.findAll(name='a'), result))
+        assert all([len(x) == 1 for x in result])
+        result = list(map(lambda x: x[0], result))
+        assert all([type(x) == bs4.element.Tag for x in result])
+        return result
+
+    def get_papers_cvf_conference(self, conference: str, year: int) -> None:
+        urls = self._get_urls_cvf_conference(conference, year)
+        papers = self._get_papers_cvf(urls)
         assert len(papers) == getattr(self, f"papers_count_{conference}")[year], f"len(papers)={len(papers)}"
         filepath = os.path.join(self.paper_lists_root, f"{conference}/{conference}{year}.txt")
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
         with open(filepath, mode='w') as f:
-            for dt in papers:
-                a = dt.find('a')
-                f.write(a.text.strip() + '\n')
-                f.write(urljoin("https://openaccess.thecvf.com", a['href']) + '\n')
+            for a_tag in papers:
+                f.write(a_tag.text.strip() + '\n')
+                f.write(urljoin("https://openaccess.thecvf.com", a_tag['href']) + '\n')
                 f.write('\n')
 
-    def get_papers_cvpr(self, year: int = None):
-        self.get_papers_cvf("cvpr", year)
+    def get_papers_cvprw(self, year: int):
+        urls = self._get_urls_cvf_workshop(year)
+        papers = self._get_papers_cvf(urls)
+        filepath = os.path.join(self.paper_lists_root, f"cvprw/cvprw{year}.txt")
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        with open(filepath, mode='w') as f:
+            for a_tag in papers:
+                f.write(a_tag.text.strip() + '\n')
+                f.write(urljoin("https://openaccess.thecvf.com", a_tag['href']) + '\n')
+                f.write('\n')
 
-    def get_papers_iccv(self, year: int = None):
-        self.get_papers_cvf("iccv", year)
+    def get_papers_cvpr(self, year: int):
+        self.get_papers_cvf_conference("cvpr", year)
 
-    def get_papers_eccv(self, year: int = None):
-        self.get_papers_cvf("eccv", year)
+    def get_papers_iccv(self, year: int):
+        self.get_papers_cvf_conference("iccv", year)
 
-    def get_papers_accv(self, year: int = None):
-        self.get_papers_cvf("accv", year)
+    def get_papers_eccv(self, year: int):
+        self.get_papers_cvf_conference("eccv", year)
 
-    def get_papers_wacv(self, year: int = None):
-        self.get_papers_cvf("wacv", year)
+    def get_papers_accv(self, year: int):
+        self.get_papers_cvf_conference("accv", year)
 
-    def get_papers_neurips(self, year: int = None):
+    def get_papers_wacv(self, year: int):
+        self.get_papers_cvf_conference("wacv", year)
+
+    # ==================================================
+    # NeurIPS
+    # ==================================================
+
+    def get_url_neurips(self, year: int):
+        return f"https://papers.nips.cc/paper_files/paper/{year}"
+
+    def get_papers_neurips(self, year: int):
         url = self.get_url_neurips(year)
-        page = urlopen(url)
-        html = page.read().decode("utf-8")
-        soup = BeautifulSoup(html, "html.parser")
+        soup = get_soup(url)
         papers = soup.findAll(name='a', title="paper title")
         assert len(papers) == self.papers_count_neurips[year], f"len(papers)={len(papers)}"
         filepath = os.path.join(self.paper_lists_root, f"neurips/neurips{year}.txt")
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
         with open(filepath, mode='w') as f:
             for a in papers:
                 f.write(a.text.strip() + '\n')
@@ -143,9 +174,9 @@ class GetPaperList:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--conference', type=str)
+    parser.add_argument('-v', '--venue', type=str)
     parser.add_argument('-y', '--year', type=int)
     args = parser.parse_args()
     getter = GetPaperList()
-    method = getattr(getter, f"get_papers_{args.conference}")
+    method = getattr(getter, f"get_papers_{args.venue}")
     method(args.year)
