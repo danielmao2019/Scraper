@@ -1,9 +1,7 @@
-from typing import List
+from typing import List, Optional
 import os
-from urllib.request import urlopen
 from urllib.parse import urljoin
 import bs4
-from bs4 import BeautifulSoup
 import re
 import argparse
 from utils.soup import get_soup
@@ -76,6 +74,13 @@ class GetPaperList:
     # ==================================================
 
     @staticmethod
+    def _get_urls_cvf_post_processing(result: List[str], base_url: str) -> List[str]:
+        result = list(map(lambda x: x['href'], result))
+        result = list(map(lambda x: urljoin(base_url, x), result))
+        result = list(map(lambda x: re.sub(pattern=".py", repl="", string=x), result))
+        return result
+
+    @staticmethod
     def _get_urls_cvf_conference(conference: str, year: int) -> List[str]:
         base_url = f"https://openaccess.thecvf.com/{conference.upper()}{year}"
         soup = get_soup(base_url)
@@ -84,63 +89,67 @@ class GetPaperList:
         result = soup.find(name='div', id="content").findAll('a')
         if "day=all" in result[-1]['href']:
             result = result[-1:]
-        result = list(map(lambda x: x['href'], result))
-        result = list(map(lambda x: re.sub(pattern=".py", repl="", string=x), result))
-        result = list(map(lambda x: urljoin(base_url, x), result))
+        result = GetPaperList._get_urls_cvf_post_processing(result, base_url)
         return result
 
     @staticmethod
-    def _get_urls_cvf_workshop(year: int) -> List[str]:
-        base_url = f"https://openaccess.thecvf.com/CVPR{year}_workshops/menu"
+    def _get_urls_cvf_workshop(workshop: str, year: int) -> List[str]:
+        base_url = f"https://openaccess.thecvf.com/{workshop[:-1].upper()}{year}_workshops/menu"
         soup = get_soup(base_url)
         result = soup.findAll(name='dd')
         result = list(map(lambda x: x.findAll(name='a'), result))
         assert all([len(x) == 1 for x in result])
-        result = list(map(lambda x: x[0]['href'], result))
-        result = list(map(lambda x: urljoin(base_url, x), result))
-        result = list(map(lambda x: re.sub(pattern=".py", repl="", string=x), result))
+        result = list(map(lambda x: x[0], result))
+        result = GetPaperList._get_urls_cvf_post_processing(result, base_url)
         return result
 
     @staticmethod
-    def _get_papers_cvf(urls: List[str]) -> List[bs4.element.Tag]:
-        result = []
+    def _get_papers_cvf(urls: List[str], filepath: str, expected_count: Optional[int] = None) -> None:
+        # get papers
+        papers = []
         for url in urls:
             soup = get_soup(url)
-            result += soup.findAll(name='dt', attrs={'class': "ptitle"})
-        result = list(map(lambda x: x.findAll(name='a'), result))
-        assert all([len(x) == 1 for x in result])
-        result = list(map(lambda x: x[0], result))
-        assert all([type(x) == bs4.element.Tag for x in result])
-        return result
+            papers += soup.findAll(name='dt', attrs={'class': "ptitle"})
+        papers = list(map(lambda x: x.findAll(name='a'), papers))
+        assert all([len(x) == 1 for x in papers])
+        papers = list(map(lambda x: x[0], papers))
+        assert all([type(x) == bs4.element.Tag for x in papers])
+        # sanity check
+        if expected_count is not None:
+            assert len(papers) == expected_count
+        # save to disk
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        with open(filepath, mode='w') as f:
+            for a_tag in papers:
+                f.write(a_tag.text.strip() + '\n')
+                f.write(urljoin("https://openaccess.thecvf.com", a_tag['href']) + '\n')
+                f.write('\n')
 
     def get_papers_cvf_conference(self, conference: str, year: int) -> None:
-        urls = self._get_urls_cvf_conference(conference, year)
-        papers = self._get_papers_cvf(urls)
-        assert len(papers) == getattr(self, f"papers_count_{conference}")[year], f"len(papers)={len(papers)}"
-        filepath = os.path.join(self.paper_lists_root, f"{conference}/{conference}{year}.txt")
-        os.makedirs(os.path.dirname(filepath), exist_ok=True)
-        with open(filepath, mode='w') as f:
-            for a_tag in papers:
-                f.write(a_tag.text.strip() + '\n')
-                f.write(urljoin("https://openaccess.thecvf.com", a_tag['href']) + '\n')
-                f.write('\n')
+        self._get_papers_cvf(
+            urls=self._get_urls_cvf_conference(conference, year),
+            filepath=os.path.join(self.paper_lists_root, f"{conference}/{conference}{year}.txt"),
+            expected_count=getattr(self, f"papers_count_{conference}")[year],
+        )
 
-    def get_papers_cvprw(self, year: int):
-        urls = self._get_urls_cvf_workshop(year)
-        papers = self._get_papers_cvf(urls)
-        filepath = os.path.join(self.paper_lists_root, f"cvprw/cvprw{year}.txt")
-        os.makedirs(os.path.dirname(filepath), exist_ok=True)
-        with open(filepath, mode='w') as f:
-            for a_tag in papers:
-                f.write(a_tag.text.strip() + '\n')
-                f.write(urljoin("https://openaccess.thecvf.com", a_tag['href']) + '\n')
-                f.write('\n')
+    def get_papers_cvf_workshop(self, workshop: str, year: int):
+        self._get_papers_cvf(
+            urls=self._get_urls_cvf_workshop(workshop, year),
+            filepath=os.path.join(self.paper_lists_root, f"{workshop}/{workshop}{year}.txt"),
+            expected_count=None,
+        )
 
     def get_papers_cvpr(self, year: int):
         self.get_papers_cvf_conference("cvpr", year)
 
+    def get_papers_cvprw(self, year: int):
+        self.get_papers_cvf_workshop("cvprw", year)
+
     def get_papers_iccv(self, year: int):
         self.get_papers_cvf_conference("iccv", year)
+
+    def get_papers_iccvw(self, year: int):
+        self.get_papers_cvf_workshop("iccvw", year)
 
     def get_papers_eccv(self, year: int):
         self.get_papers_cvf_conference("eccv", year)
