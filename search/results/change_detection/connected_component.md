@@ -1,0 +1,13 @@
+29 https://arxiv.org/pdf/2208.09870.pdf
+16 https://www.mdpi.com/2072-4292/7/12/15867/pdf?version=1450358052
+9 https://isprs-annals.copernicus.org/articles/IV-2-W5/453/2019/isprs-annals-IV-2-W5-453-2019.pdf
+8 https://isprs-annals.copernicus.org/articles/II-3-W5/393/2015/isprsannals-II-3-W5-393-2015.pdf
+8 https://www.mdpi.com/2072-4292/7/10/14119/pdf?version=1445950298
+5 https://www.mdpi.com/2072-4292/12/10/1680/pdf?version=1590487245
+5 https://www.mdpi.com/2072-4292/6/11/10733/pdf?version=1415270125
+3 https://isprs-archives.copernicus.org/articles/XLI-B3/693/2016/isprs-archives-XLI-B3-693-2016.pdf
+3 https://www.mdpi.com/2072-4292/13/13/2629/pdf?version=1625476082
+2 https://arxiv.org/pdf/2108.02800.pdf
+2 https://www.mdpi.com/2072-4292/8/12/1030/pdf?version=1481970263
+2 https://www.sciencedirect.com/science/article/pii/S0924271623000163/pdfft
+1 https://arxiv.org/pdf/2305.05813.pdf
