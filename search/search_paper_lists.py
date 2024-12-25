@@ -33,7 +33,9 @@ def main(output_dir: str, keywords: List[str]) -> None:
     files: List[str] = []
     for conf in ['cvpr', 'iccv', 'neurips']:
         files += sorted(glob.glob(os.path.join(PAPER_LISTS_ROOT, conf, "*.txt")), reverse=True)
+    os.makedirs(name=os.path.join("results", output_dir), exist_ok=True)
     # initialization
+    results: Dict[str, List[Tuple[int, str]]] = {kw: [] for kw in keywords}
     failures: List[str] = []
     # main loop
     for filepath in files:
@@ -45,7 +47,6 @@ def main(output_dir: str, keywords: List[str]) -> None:
         urls = filter(lambda x: x[1] != "", urls)
         urls = sorted(set(urls), key=lambda x: x[0])
         # search
-        results: Dict[str, List[Tuple[int, str]]] = {kw: [] for kw in keywords}
         for url in tqdm.tqdm(urls, desc=os.path.basename(filepath).split('.')[0]):
             html_url, pdf_url = url
             try:
@@ -57,15 +58,14 @@ def main(output_dir: str, keywords: List[str]) -> None:
             except Exception as e:
                 print(e)
                 failures.append(url)
-        # save to disk
-        for kw in keywords:
-            output_name = re.sub(pattern=' ', repl='_', string=kw) + '_' + os.path.basename(filepath).split('.')[0] + ".md"
-            os.makedirs(name=os.path.join("results", output_dir), exist_ok=True)
-            with open(os.path.join("results", output_dir, output_name), mode='w') as f:
-                f.write("".join(list(map(
-                    lambda x: f"count={x[0]}\n" + x[1],
-                    sorted(results[kw], key=lambda x: x[0], reverse=True),
-                ))))
+    # save to disk
+    for kw in keywords:
+        output_name = re.sub(pattern=' ', repl='_', string=kw) + ".md"
+        with open(os.path.join("results", output_dir, output_name), mode='w') as f:
+            f.write("".join(list(map(
+                lambda x: f"count={x[0]}\n" + x[1],
+                sorted(results[kw], key=lambda x: x[0], reverse=True),
+            ))))
     # logging
     print(f"Failure cases:")
     print('\n'.join(failures))
