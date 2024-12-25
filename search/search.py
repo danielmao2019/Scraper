@@ -6,6 +6,9 @@ import re
 import tqdm
 import hashlib
 import fitz  # PyMuPDF
+import sys
+sys.path.append("..")
+from scraper.scrape import scrape
 
 
 def _url2text_wget(url: str) -> str:
@@ -108,15 +111,14 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
     print(f"Found {len(all_pdf_urls)} pdf urls.")
     # search relevant documents
     failures: List[str] = []
-    results: Dict[str, List[Tuple[int, str]]] = {
-        kw: [] for kw in keywords
-    }
+    results: Dict[str, List[Tuple[int, str]]] = {kw: [] for kw in keywords}
     for url in tqdm.tqdm(all_pdf_urls):
         try:
             counts: Dict[str, int] = search_in_file(url=url, keywords=keywords)
+            info: str = scrape(url)
             for kw in keywords:
                 if counts[kw] > 0:
-                    results[kw].append((counts[kw], url))
+                    results[kw].append((counts[kw], info))
         except Exception as e:
             print(e)
             print(f"{url=}")
@@ -127,7 +129,7 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
         os.makedirs(name=os.path.join("results", output_dir), exist_ok=True)
         with open(os.path.join("results", output_dir, output_name), mode='w') as f:
             f.write("".join(list(map(
-                lambda x: str(x[0]) + ' ' + x[1] + '\n',
+                lambda x: x[1] + '\n' + f"    Count: {x[0]}",
                 sorted(results[kw], key=lambda x: x[0], reverse=True),
             ))))
     # logging
