@@ -13,15 +13,15 @@
 <!-- 51 https://www.mdpi.com/2072-4292/12/18/2952/pdf?version=1599819122 -->
 <!-- 49 https://www.sciencedirect.com/science/article/pii/S0924271616000502/pdfft -->
 <!-- 48 https://arxiv.org/pdf/2108.07002.pdf -->
-48 https://www.sciencedirect.com/science/article/pii/S0034425712000570/pdfft
-48 https://openaccess.thecvf.com/content/ICCV2021/papers/Zheng_Change_Is_Everywhere_Single-Temporal_Supervised_Object_Change_Detection_in_Remote_ICCV_2021_paper.pdf
-45 https://www.mdpi.com/2072-4292/2/5/1217/pdf?version=1403129175
-44 https://arxiv.org/pdf/2305.05813.pdf
-43 https://www.mdpi.com/2072-4292/14/7/1552/pdf?version=1648046350
-42 https://arxiv.org/pdf/2204.12535.pdf
-42 https://isprs-archives.copernicus.org/articles/XLIII-B3-2022/1377/2022/isprs-archives-XLIII-B3-2022-1377-2022.pdf
-42 https://www.sciencedirect.com/science/article/pii/S0924271623000394/pdfft
-39 https://www.mdpi.com/2072-4292/14/4/1048/pdf?version=1645533833
+<!-- 48 https://www.sciencedirect.com/science/article/pii/S0034425712000570/pdfft -->
+<!-- 48 https://openaccess.thecvf.com/content/ICCV2021/papers/Zheng_Change_Is_Everywhere_Single-Temporal_Supervised_Object_Change_Detection_in_Remote_ICCV_2021_paper.pdf -->
+<!-- 45 https://www.mdpi.com/2072-4292/2/5/1217/pdf?version=1403129175 -->
+<!-- 44 https://arxiv.org/pdf/2305.05813.pdf -->
+<!-- 43 https://www.mdpi.com/2072-4292/14/7/1552/pdf?version=1648046350 -->
+<!-- 42 https://arxiv.org/pdf/2204.12535.pdf -->
+<!-- 42 https://isprs-archives.copernicus.org/articles/XLIII-B3-2022/1377/2022/isprs-archives-XLIII-B3-2022-1377-2022.pdf -->
+<!-- 42 https://www.sciencedirect.com/science/article/pii/S0924271623000394/pdfft -->
+<!-- 39 https://www.mdpi.com/2072-4292/14/4/1048/pdf?version=1645533833 -->
 38 https://link.springer.com/content/pdf/10.1007/978-981-13-7025-0_18.pdf
 38 https://www.sciencedirect.com/science/article/pii/S0303243421001720/pdfft
 37 https://openaccess.thecvf.com/content/ICCV2023/papers/Bernhard_MapFormer_Boosting_Change_Detection_by_Using_Pre-change_Information_ICCV_2023_paper.pdf
