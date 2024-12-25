@@ -1,2 +1,0 @@
-1 https://openaccess.thecvf.com/content/CVPR2023/papers/Feng_Dynamic_Generative_Targeted_Attacks_With_Pattern_Injection_CVPR_2023_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2014/papers/Swears_Complex_Activity_Recognition_2014_CVPR_paper.pdf
