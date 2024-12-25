@@ -1,0 +1,16 @@
+6 https://openaccess.thecvf.com/content_CVPR_2019/papers/Matejek_Biologically-Constrained_Graphs_for_Global_Connectomics_Reconstruction_CVPR_2019_paper.pdf
+2 https://openaccess.thecvf.com/content_cvpr_2013/papers/Palou_Hierarchical_Video_Representation_2013_CVPR_paper.pdf
+2 https://openaccess.thecvf.com/content_cvpr_2016/papers/Taniai_Joint_Recovery_of_CVPR_2016_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2022/papers/Bailoni_GASP_a_Generalized_Framework_for_Agglomerative_Clustering_of_Signed_Graphs_CVPR_2022_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2023/papers/Wei_TAPS3D_Text-Guided_3D_Textured_Shape_Generation_From_Pseudo_Supervision_CVPR_2023_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2024/papers/Chang_Hierarchical_Histogram_Threshold_Segmentation_-_Auto-terminating_High-detail_Oversegmentation_CVPR_2024_paper.pdf
+1 https://openaccess.thecvf.com/content_CVPR_2019/papers/Meirovitch_Cross-Classification_Clustering_An_Efficient_Multi-Object_Tracking_Technique_for_3-D_Instance_CVPR_2019_paper.pdf
+1 https://openaccess.thecvf.com/content_CVPR_2020/papers/Wan_Super-BPD_Super_Boundary-to-Pixel_Direction_for_Fast_Image_Segmentation_CVPR_2020_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Pont-Tuset_Measures_and_Meta-Measures_2013_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Taylor_Towards_Fast_and_2013_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Weiss_SCALPEL_Segmentation_Cascades_2013_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Yan_Hierarchical_Saliency_Detection_2013_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2014/papers/Arbelaez_Multiscale_Combinatorial_Grouping_2014_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2015/papers/Jiang_Matching_Bags_of_2015_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2015/papers/Xiao_Complexity-Adaptive_Distance_Metric_2015_CVPR_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhu_A_Non-Local_Low-Rank_CVPR_2017_paper.pdf
