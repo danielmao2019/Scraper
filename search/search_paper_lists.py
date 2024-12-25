@@ -1,8 +1,15 @@
 from typing import Tuple, List, Dict
+import glob
 import os
 import re
 import tqdm
 from search import search_in_file
+import sys
+sys.path.append("..")
+from scraper.scrape import scrape
+
+
+PAPER_LISTS_ROOT: str = "/home/d_mao/repos/Machine-Learning-Knowledge-Base/paper-collections/deep-learning/_paper_lists_"
 
 
 def html2pdf(url: str) -> str:
@@ -22,25 +29,31 @@ def html2pdf(url: str) -> str:
     return result
 
 
-def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
+def main(output_dir: str, keywords: List[str]) -> None:
+    files: List[str] = []
+    for conf in ['cvpr', 'iccv', 'neurips']:
+        files += sorted(glob.glob(os.path.join(PAPER_LISTS_ROOT, conf, "*.txt")), reverse=True)
+    # initialization
     failures: List[str] = []
-    # get list of pdf urls
-    for filepath in sorted(files, reverse=True):
+    # main loop
+    for filepath in files:
+        # get pdf urls from paper list
         with open(filepath, mode='r') as f:
             html_urls = re.findall(pattern=r"https.+\.html", string=f.read())
         pdf_urls = [html2pdf(url) for url in html_urls]
-        pdf_urls = filter(lambda x: x != "", pdf_urls)
-        pdf_urls = sorted(set(pdf_urls))
+        urls: List[Tuple[str, str]] = list(zip(html_urls, pdf_urls))
+        urls = filter(lambda x: x[1] != "", urls)
+        urls = sorted(set(urls), key=lambda x: x[0])
         # search
-        results: Dict[str, List[Tuple[int, str]]] = {
-            k: [] for k in keywords
-        }
-        for url in tqdm.tqdm(pdf_urls):
+        results: Dict[str, List[Tuple[int, str]]] = {kw: [] for kw in keywords}
+        for url in tqdm.tqdm(urls, desc=os.path.basename(filepath).split('.')[0]):
+            html_url, pdf_url = url
             try:
-                counts: Dict[str, int] = search_in_file(url=url, keywords=keywords)
+                counts: Dict[str, int] = search_in_file(url=pdf_url, keywords=keywords)
+                info: str = scrape(html_url)
                 for kw in keywords:
                     if counts[kw] > 0:
-                        results[kw].append((counts[kw], url))
+                        results[kw].append((counts[kw], info))
             except Exception as e:
                 print(e)
                 failures.append(url)
@@ -50,7 +63,7 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
             os.makedirs(name=os.path.join("results", output_dir), exist_ok=True)
             with open(os.path.join("results", output_dir, output_name), mode='w') as f:
                 f.write("".join(list(map(
-                    lambda x: str(x[0]) + ' ' + x[1] + '\n',
+                    lambda x: f"count={x[0]}\n" + x[1],
                     sorted(results[kw], key=lambda x: x[0], reverse=True),
                 ))))
     # logging
@@ -61,8 +74,7 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--files', nargs='+', default=[])
     parser.add_argument('-d', '--output-dir', type=str)
     parser.add_argument('-k', '--keywords', nargs='+', default=[])
     args = parser.parse_args()
-    main(files=args.files, output_dir=args.output_dir, keywords=args.keywords)
+    main(output_dir=args.output_dir, keywords=args.keywords)
