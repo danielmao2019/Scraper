@@ -1,0 +1,5 @@
+2 https://openaccess.thecvf.com/content/CVPR2024/papers/Xie_DiffusionTrack_Point_Set_Diffusion_Model_for_Visual_Object_Tracking_CVPR_2024_paper.pdf
+2 https://openaccess.thecvf.com/content/CVPR2024/papers/Zhang_SAFDNet_A_Simple_and_Effective_Network_for_Fully_Sparse_3D_CVPR_2024_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_Image-to-Image_Matching_via_Foundation_Models_A_New_Perspective_for_Open-Vocabulary_CVPR_2024_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2023/papers/Yeh_Meta-Personalizing_Vision-Language_Models_To_Find_Named_Instances_in_Video_CVPR_2023_paper.pdf
+1 https://openaccess.thecvf.com/content/ICCV2023/papers/Miao_Spectrum-guided_Multi-granularity_Referring_Video_Object_Segmentation_ICCV_2023_paper.pdf

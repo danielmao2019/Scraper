@@ -1,0 +1,2 @@
+2 https://openaccess.thecvf.com/content_cvpr_2017/papers/Li_Sequential_Person_Recognition_CVPR_2017_paper.pdf
+1 https://openaccess.thecvf.com/content_cvpr_2017/papers/Tang_Multiple_Instance_Detection_CVPR_2017_paper.pdf
