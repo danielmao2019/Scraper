@@ -25,12 +25,12 @@ def html2pdf(url: str) -> str:
 def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
     failures: List[str] = []
     # get list of pdf urls
-    for filepath in files:
+    for filepath in sorted(files, reverse=True):
         with open(filepath, mode='r') as f:
             html_urls = re.findall(pattern=r"https.+\.html", string=f.read())
         pdf_urls = [html2pdf(url) for url in html_urls]
         pdf_urls = filter(lambda x: x != "", pdf_urls)
-        pdf_urls = sorted(set(pdf_urls), reverse=True)
+        pdf_urls = sorted(set(pdf_urls))
         # search
         results: Dict[str, List[Tuple[int, str]]] = {
             k: [] for k in keywords
