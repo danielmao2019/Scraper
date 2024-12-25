@@ -1,0 +1,4 @@
+6 https://openaccess.thecvf.com/content_iccv_2013/papers/Ulusoy_Dynamic_Probabilistic_Volumetric_2013_ICCV_paper.pdf
+2 https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_Living_Scenes_Multi-object_Relocalization_and_Reconstruction_in_Changing_3D_Environments_CVPR_2024_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2024/papers/Liu_A_Category_Agnostic_Model_for_Visual_Rearrangment_CVPR_2024_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2023/papers/Wu_Pix2map_Cross-Modal_Retrieval_for_Inferring_Street_Maps_From_Images_CVPR_2023_paper.pdf

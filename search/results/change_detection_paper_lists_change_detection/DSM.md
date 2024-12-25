@@ -1,0 +1,6 @@
+4 https://openaccess.thecvf.com/content_CVPR_2020/papers/Christie_Learning_Geocentric_Object_Pose_in_Oblique_Monocular_Images_CVPR_2020_paper.pdf
+3 https://openaccess.thecvf.com/content/CVPR2023/papers/Zhu_Probability-Based_Global_Cross-Modal_Upsampling_for_Pansharpening_CVPR_2023_paper.pdf
+1 https://openaccess.thecvf.com/content/ICCV2021/papers/Manas_Seasonal_Contrast_Unsupervised_Pre-Training_From_Uncurated_Remote_Sensing_Data_ICCV_2021_paper.pdf
+1 https://openaccess.thecvf.com/content/CVPR2021/papers/Li_Temporal_Action_Segmentation_From_Timestamp_Supervision_CVPR_2021_paper.pdf
+1 https://openaccess.thecvf.com/content/ICCV2023/papers/Li_Large_Selective_Kernel_Network_for_Remote_Sensing_Object_Detection_ICCV_2023_paper.pdf
+1 https://openaccess.thecvf.com/content_iccv_2015/papers/Zheng_Minimal_Solvers_for_ICCV_2015_paper.pdf
