@@ -1,21 +1,200 @@
-6 https://openaccess.thecvf.com/content_CVPR_2019/papers/Matejek_Biologically-Constrained_Graphs_for_Global_Connectomics_Reconstruction_CVPR_2019_paper.pdf
-2 https://openaccess.thecvf.com/content_cvpr_2013/papers/Palou_Hierarchical_Video_Representation_2013_CVPR_paper.pdf
-2 https://openaccess.thecvf.com/content_cvpr_2016/papers/Taniai_Joint_Recovery_of_CVPR_2016_paper.pdf
-1 https://openaccess.thecvf.com/content/CVPR2022/papers/Bailoni_GASP_a_Generalized_Framework_for_Agglomerative_Clustering_of_Signed_Graphs_CVPR_2022_paper.pdf
-1 https://openaccess.thecvf.com/content/CVPR2023/papers/Wei_TAPS3D_Text-Guided_3D_Textured_Shape_Generation_From_Pseudo_Supervision_CVPR_2023_paper.pdf
-1 https://openaccess.thecvf.com/content/CVPR2024/papers/Chang_Hierarchical_Histogram_Threshold_Segmentation_-_Auto-terminating_High-detail_Oversegmentation_CVPR_2024_paper.pdf
-1 https://openaccess.thecvf.com/content/ICCV2021/papers/Baee_MEDIRL_Predicting_the_Visual_Attention_of_Drivers_via_Maximum_Entropy_ICCV_2021_paper.pdf
-1 https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Partition_Speeds_Up_Learning_Implicit_Neural_Representations_Based_on_Exponential-Increase_ICCV_2023_paper.pdf
-1 https://openaccess.thecvf.com/content_CVPR_2019/papers/Meirovitch_Cross-Classification_Clustering_An_Efficient_Multi-Object_Tracking_Technique_for_3-D_Instance_CVPR_2019_paper.pdf
-1 https://openaccess.thecvf.com/content_CVPR_2020/papers/Wan_Super-BPD_Super_Boundary-to-Pixel_Direction_for_Fast_Image_Segmentation_CVPR_2020_paper.pdf
-1 https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_TORNADO_A_Spatio-Temporal_ICCV_2017_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Pont-Tuset_Measures_and_Meta-Measures_2013_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Taylor_Towards_Fast_and_2013_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Weiss_SCALPEL_Segmentation_Cascades_2013_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2013/papers/Yan_Hierarchical_Saliency_Detection_2013_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2014/papers/Arbelaez_Multiscale_Combinatorial_Grouping_2014_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2015/papers/Jiang_Matching_Bags_of_2015_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2015/papers/Xiao_Complexity-Adaptive_Distance_Metric_2015_CVPR_paper.pdf
-1 https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhu_A_Non-Local_Low-Rank_CVPR_2017_paper.pdf
-1 https://openaccess.thecvf.com/content_iccv_2015/papers/Teo_Detection_and_Segmentation_ICCV_2015_paper.pdf
-1 https://openaccess.thecvf.com/content_iccv_2015/papers/Varas_Multiresolution_Hierarchy_Co-Clustering_ICCV_2015_paper.pdf
+count=6
+* Biologically-Constrained Graphs for Global Connectomics Reconstruction
+    [[abs-CVPR](https://openaccess.thecvf.com/content_CVPR_2019/html/Matejek_Biologically-Constrained_Graphs_for_Global_Connectomics_Reconstruction_CVPR_2019_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_CVPR_2019/papers/Matejek_Biologically-Constrained_Graphs_for_Global_Connectomics_Reconstruction_CVPR_2019_paper.pdf)]
+    * Title: Biologically-Constrained Graphs for Global Connectomics Reconstruction
+    * Year: `2019`
+    * Authors: Brian Matejek,  Daniel Haehn,  Haidong Zhu,  Donglai Wei,  Toufiq Parag,  Hanspeter Pfister
+    * Abstract: Most current state-of-the-art connectome reconstruction pipelines have two major steps: initial pixel-based segmentation with affinity prediction and watershed transform, and refined segmentation by merging over-segmented regions. These methods rely only on local context and are typically agnostic to the underlying biology. Since a few merge errors can lead to several incorrectly merged neuronal processes, these algorithms are currently tuned towards over-segmentation producing an overburden of costly proofreading. We propose a third step for connectomics reconstruction pipelines to refine an over-segmentation using both local and global context with an emphasis on adhering to the underlying biology. We first extract a graph from an input segmentation where nodes correspond to segment labels and edges indicate potential split errors in the over-segmentation. In order to increase throughput and allow for large-scale reconstruction, we employ biologically inspired geometric constraints based on neuron morphology to reduce the number of nodes and edges. Next, two neural networks learn these neuronal shapes to further aid the graph construction process. Lastly, we reformulate the region merging problem as a graph partitioning one to leverage global context. We demonstrate the performance of our approach on four real-world connectomics datasets with an average variation of information improvement of 21.3%.
+count=2
+* Joint Recovery of Dense Correspondence and Cosegmentation in Two Images
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2016/html/Taniai_Joint_Recovery_of_CVPR_2016_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2016/papers/Taniai_Joint_Recovery_of_CVPR_2016_paper.pdf)]
+    * Title: Joint Recovery of Dense Correspondence and Cosegmentation in Two Images
+    * Year: `2016`
+    * Authors: Tatsunori Taniai, Sudipta N. Sinha, Yoichi Sato
+    * Abstract: We propose a new technique to jointly recover cosegmentation and dense per-pixel correspondence in two images. Our method parameterizes the correspondence field using piecewise similarity transformations and recovers a mapping between the estimated common "foreground" regions in the two images allowing them to be precisely aligned. Our formulation is based on a hierarchical Markov random field model with segmentation and transformation labels. The hierarchical structure uses nested image regions to constrain inference across multiple scales. Unlike prior hierarchical methods which assume that the structure is given, our proposed iterative technique dynamically recovers the structure as a variable along with the labeling. This joint inference is performed in an energy minimization framework using iterated graph cuts. We evaluate our method on a new dataset of 400 image pairs with manually obtained ground truth, where it outperforms state-of-the-art methods designed specifically for either cosegmentation or correspondence estimation.
+count=2
+* Hierarchical Video Representation with Trajectory Binary Partition Tree
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/html/Palou_Hierarchical_Video_Representation_2013_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/papers/Palou_Hierarchical_Video_Representation_2013_CVPR_paper.pdf)]
+    * Title: Hierarchical Video Representation with Trajectory Binary Partition Tree
+    * Year: `2013`
+    * Authors: Guillem Palou, Philippe Salembier
+    * Abstract: As early stage of video processing, we introduce an iterative trajectory merging algorithm that produces a regionbased and hierarchical representation of the video sequence, called the Trajectory Binary Partition Tree (BPT). From this representation, many analysis and graph cut techniques can be used to extract partitions or objects that are useful in the context of specific applications. In order to define trajectories and to create a precise merging algorithm, color and motion cues have to be used. Both types of informations are very useful to characterize objects but present strong differences of behavior in the spatial and the temporal dimensions. On the one hand, scenes and objects are rich in their spatial color distributions, but these distributions are rather stable over time. Object motion, on the other hand, presents simple structures and low spatial variability but may change from frame to frame. The proposed algorithm takes into account this key difference and relies on different models and associated metrics to deal with color and motion information. We show that the proposed algorithm outperforms existing hierarchical video segmentation algorithms and provides more stable and precise regions.
+count=1
+* Hierarchical Histogram Threshold Segmentation - Auto-terminating High-detail Oversegmentation
+    [[abs-CVPR](https://openaccess.thecvf.com/content/CVPR2024/html/Chang_Hierarchical_Histogram_Threshold_Segmentation_-_Auto-terminating_High-detail_Oversegmentation_CVPR_2024_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content/CVPR2024/papers/Chang_Hierarchical_Histogram_Threshold_Segmentation_-_Auto-terminating_High-detail_Oversegmentation_CVPR_2024_paper.pdf)]
+    * Title: Hierarchical Histogram Threshold Segmentation - Auto-terminating High-detail Oversegmentation
+    * Year: `2024`
+    * Authors: Thomas V. Chang, Simon Seibt, Bartosz von Rymon Lipinski
+    * Abstract: Superpixels play a crucial role in image processing by partitioning an image into clusters of pixels with similar visual attributes. This facilitates subsequent image processing tasks offering computational advantages over the manipulation of individual pixels. While numerous oversegmentation techniques have emerged in recent years many rely on predefined initialization and termination criteria. In this paper a novel top-down superpixel segmentation algorithm called Hierarchical Histogram Threshold Segmentation (HHTS) is introduced. It eliminates the need for initialization and implements auto-termination outperforming state-of-the-art methods w.r.t boundary recall. This is achieved by iteratively partitioning individual pixel segments into foreground and background and applying intensity thresholding across multiple color channels. The underlying iterative process constructs a superpixel hierarchy that adapts to local detail distributions until color information exhaustion. Experimental results demonstrate the superiority of the proposed approach in terms of boundary adherence while maintaining competitive runtime performance on the BSDS500 and NYUV2 datasets. Furthermore an application of HHTS in refining machine learning-based semantic segmentation masks produced by the Segment Anything Foundation Model (SAM) is presented.
+count=1
+* TAPS3D: Text-Guided 3D Textured Shape Generation From Pseudo Supervision
+    [[abs-CVPR](https://openaccess.thecvf.com/content/CVPR2023/html/Wei_TAPS3D_Text-Guided_3D_Textured_Shape_Generation_From_Pseudo_Supervision_CVPR_2023_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content/CVPR2023/papers/Wei_TAPS3D_Text-Guided_3D_Textured_Shape_Generation_From_Pseudo_Supervision_CVPR_2023_paper.pdf)]
+    * Title: TAPS3D: Text-Guided 3D Textured Shape Generation From Pseudo Supervision
+    * Year: `2023`
+    * Authors: Jiacheng Wei, Hao Wang, Jiashi Feng, Guosheng Lin, Kim-Hui Yap
+    * Abstract: In this paper, we investigate an open research task of generating controllable 3D textured shapes from the given textual descriptions. Previous works either require ground truth caption labeling or extensive optimization time. To resolve these issues, we present a novel framework, TAPS3D, to train a text-guided 3D shape generator with pseudo captions. Specifically, based on rendered 2D images, we retrieve relevant words from the CLIP vocabulary and construct pseudo captions using templates. Our constructed captions provide high-level semantic supervision for generated 3D shapes. Further, in order to produce fine-grained textures and increase geometry diversity, we propose to adopt low-level image regularization to enable fake-rendered images to align with the real ones. During the inference phase, our proposed model can generate 3D textured shapes from the given text without any additional optimization. We conduct extensive experiments to analyze each of our proposed components and show the efficacy of our framework in generating high-fidelity 3D textured and text-relevant shapes.
+count=1
+* GASP, a Generalized Framework for Agglomerative Clustering of Signed Graphs and Its Application to Instance Segmentation
+    [[abs-CVPR](https://openaccess.thecvf.com/content/CVPR2022/html/Bailoni_GASP_a_Generalized_Framework_for_Agglomerative_Clustering_of_Signed_Graphs_CVPR_2022_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content/CVPR2022/papers/Bailoni_GASP_a_Generalized_Framework_for_Agglomerative_Clustering_of_Signed_Graphs_CVPR_2022_paper.pdf)]
+    * Title: GASP, a Generalized Framework for Agglomerative Clustering of Signed Graphs and Its Application to Instance Segmentation
+    * Year: `2022`
+    * Authors: Alberto Bailoni, Constantin Pape, Nathan Hütsch, Steffen Wolf, Thorsten Beier, Anna Kreshuk, Fred A. Hamprecht
+    * Abstract: We propose a theoretical framework that generalizes simple and fast algorithms for hierarchical agglomerative clustering to weighted graphs with both attractive and repulsive interactions between the nodes. This framework defines GASP, a Generalized Algorithm for Signed graph Partitioning, and allows us to explore many combinations of different linkage criteria and cannot-link constraints. We prove the equivalence of existing clustering methods to some of those combinations and introduce new algorithms for combinations that have not been studied before. We study both theoretical and empirical properties of these combinations and prove that some of these define an ultrametric on the graph. We conduct a systematic comparison of various instantiations of GASP on a large variety of both synthetic and existing signed clustering problems, in terms of accuracy but also efficiency and robustness to noise. Lastly, we show that some of the algorithms included in our framework, when combined with the predictions from a CNN model, result in a simple bottom-up instance segmentation pipeline. Going all the way from pixels to final segments with a simple procedure, we achieve state-of-the-art accuracy on the CREMI 2016 EM segmentation benchmark without requiring domain-specific superpixels.
+count=1
+* Super-BPD: Super Boundary-to-Pixel Direction for Fast Image Segmentation
+    [[abs-CVPR](https://openaccess.thecvf.com/content_CVPR_2020/html/Wan_Super-BPD_Super_Boundary-to-Pixel_Direction_for_Fast_Image_Segmentation_CVPR_2020_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wan_Super-BPD_Super_Boundary-to-Pixel_Direction_for_Fast_Image_Segmentation_CVPR_2020_paper.pdf)]
+    * Title: Super-BPD: Super Boundary-to-Pixel Direction for Fast Image Segmentation
+    * Year: `2020`
+    * Authors: Jianqiang Wan,  Yang Liu,  Donglai Wei,  Xiang Bai,  Yongchao Xu
+    * Abstract: Image segmentation is a fundamental vision task and still remains a crucial step for many applications. In this paper, we propose a fast image segmentation method based on a novel super boundary-to-pixel direction (super-BPD) and a customized segmentation algorithm with super-BPD. Precisely, we define BPD on each pixel as a two-dimensional unit vector pointing from its nearest boundary to the pixel. In the BPD, nearby pixels from different regions have opposite directions departing from each other, and nearby pixels in the same region have directions pointing to the other or each other (i.e., around medial points). We make use of such property to partition image into super-BPDs, which are novel informative superpixels with robust direction similarity for fast grouping into segmentation regions. Extensive experimental results on BSDS500 and Pascal Context demonstrate the accuracy and efficiency of the proposed super-BPD in segmenting images. Specifically, we achieve comparable or superior performance with MCG while running at 25fps vs 0.07fps. Super-BPD also exhibits a noteworthy transferability to unseen scenes.
+count=1
+* Cross-Classification Clustering: An Efficient Multi-Object Tracking Technique for 3-D Instance Segmentation in Connectomics
+    [[abs-CVPR](https://openaccess.thecvf.com/content_CVPR_2019/html/Meirovitch_Cross-Classification_Clustering_An_Efficient_Multi-Object_Tracking_Technique_for_3-D_Instance_CVPR_2019_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_CVPR_2019/papers/Meirovitch_Cross-Classification_Clustering_An_Efficient_Multi-Object_Tracking_Technique_for_3-D_Instance_CVPR_2019_paper.pdf)]
+    * Title: Cross-Classification Clustering: An Efficient Multi-Object Tracking Technique for 3-D Instance Segmentation in Connectomics
+    * Year: `2019`
+    * Authors: Yaron Meirovitch,  Lu Mi,  Hayk Saribekyan,  Alexander Matveev,  David Rolnick,  Nir Shavit
+    * Abstract: Pixel-accurate tracking of objects is a key element in many computer vision applications, often solved by iterated individual object tracking or instance segmentation followed by object matching. Here we introduce cross-classification clustering (3C), a technique that simultaneously tracks complex, interrelated objects in an image stack. The key idea in cross-classification is to efficiently turn a clustering problem into a classification problem by running a logarithmic number of independent classifications per image, letting the cross-labeling of these classifications uniquely classify each pixel to the object labels. We apply the 3C mechanism to achieve state-of-the-art accuracy in connectomics -- the nanoscale mapping of neural tissue from electron microscopy volumes. Our reconstruction system increases scalability by an order of magnitude over existing single-object tracking methods (such as flood-filling networks). This scalability is important for the deployment of connectomics pipelines, since currently the best performing techniques require computing infrastructures that are beyond the reach of most laboratories. Our algorithm may offer benefits in other domains that require pixel-accurate tracking of multiple objects, such as segmentation of videos and medical imagery.
+count=1
+* A Non-Local Low-Rank Framework for Ultrasound Speckle Reduction
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2017/html/Zhu_A_Non-Local_Low-Rank_CVPR_2017_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhu_A_Non-Local_Low-Rank_CVPR_2017_paper.pdf)]
+    * Title: A Non-Local Low-Rank Framework for Ultrasound Speckle Reduction
+    * Year: `2017`
+    * Authors: Lei Zhu, Chi-Wing Fu, Michael S. Brown, Pheng-Ann Heng
+    * Abstract: `Speckle' refers to the granular patterns that occur in ultrasound images due to wave interference. Speckle removal can greatly improve the visibility of the underlying structures in an ultrasound image and enhance subsequent post processing. We present a novel framework for speckle removal based on low-rank non-local filtering. Our approach works by first computing a guidance image that assists in the selection of candidate patches for non-local filtering in the face of significant speckles. The candidate patches are further refined using a low-rank minimization estimated using a truncated weighted nuclear norm (TWNN) and structured sparsity. We show that the proposed filtering framework produces results that outperform state-of-the-art methods both qualitatively and quantitatively. This framework also provides better segmentation results when used for pre-processing ultrasound images.
+count=1
+* Matching Bags of Regions in RGBD images
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2015/html/Jiang_Matching_Bags_of_2015_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2015/papers/Jiang_Matching_Bags_of_2015_CVPR_paper.pdf)]
+    * Title: Matching Bags of Regions in RGBD images
+    * Year: `2015`
+    * Authors: Hao Jiang
+    * Abstract: We study the new problem of matching regions between a pair of RGBD images given a large set of overlapping region proposals. These region proposals do not have a tree hierarchy and are treated as bags of regions. Matching RGBD images using bags of region candidates with unstructured relations is a challenging combinatorial problem. We propose a linear formulation, which optimizes the region selection and matching simultaneously so that the matched regions have similar color histogram, shape, and small overlaps, the selected regions have a small number and overall low concavity, and they tend to cover both of the images. We efficiently compute the lower bound by solving a sequence of min-cost bipartite matching problems via Lagrangian relaxation and we obtain the global optimum using branch and bound. Our experiments show that the proposed method is fast, accurate, and robust against cluttered scenes.
+count=1
+* Complexity-Adaptive Distance Metric for Object Proposals Generation
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2015/html/Xiao_Complexity-Adaptive_Distance_Metric_2015_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2015/papers/Xiao_Complexity-Adaptive_Distance_Metric_2015_CVPR_paper.pdf)]
+    * Title: Complexity-Adaptive Distance Metric for Object Proposals Generation
+    * Year: `2015`
+    * Authors: Yao Xiao, Cewu Lu, Efstratios Tsougenis, Yongyi Lu, Chi-Keung Tang
+    * Abstract: Distance metric plays a key role in grouping superpixels to produce object proposals for object detection. We observe that existing distance metrics work primarily for low complexity cases. In this paper, we develop a novel distance metric for grouping two superpixels in high-complexity scenarios. Combining them, a complexity-adaptive distance measure is produced that achieves improved grouping in different levels of complexity. Our extensive experimentation shows that our method can achieve good results in the PASCAL VOC 2012 dataset surpassing the latest state-of-the-art methods.
+count=1
+* Multiscale Combinatorial Grouping
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2014/html/Arbelaez_Multiscale_Combinatorial_Grouping_2014_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2014/papers/Arbelaez_Multiscale_Combinatorial_Grouping_2014_CVPR_paper.pdf)]
+    * Title: Multiscale Combinatorial Grouping
+    * Year: `2014`
+    * Authors: Pablo Arbelaez, Jordi Pont-Tuset, Jonathan T. Barron, Ferran Marques, Jitendra Malik
+    * Abstract: We propose a unified approach for bottom-up hierarchical image segmentation and object candidate generation for recognition, called Multiscale Combinatorial Grouping (MCG). For this purpose, we first develop a fast normalized cuts algorithm. We then propose a high-performance hierarchical segmenter that makes effective use of multiscale information. Finally, we propose a grouping strategy that combines our multiscale regions into highly-accurate object candidates by exploring efficiently their combinatorial space. We conduct extensive experiments on both the BSDS500 and on the PASCAL 2012 segmentation datasets, showing that MCG produces state-of-the-art contours, hierarchical regions and object candidates.
+count=1
+* Measures and Meta-Measures for the Supervised Evaluation of Image Segmentation
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/html/Pont-Tuset_Measures_and_Meta-Measures_2013_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/papers/Pont-Tuset_Measures_and_Meta-Measures_2013_CVPR_paper.pdf)]
+    * Title: Measures and Meta-Measures for the Supervised Evaluation of Image Segmentation
+    * Year: `2013`
+    * Authors: Jordi Pont-Tuset, Ferran Marques
+    * Abstract: This paper tackles the supervised evaluation of image segmentation algorithms. First, it surveys and structures the measures used to compare the segmentation results with a ground truth database; and proposes a new measure: the precision-recall for objects and parts. To compare the goodness of these measures, it defines three quantitative meta-measures involving six state of the art segmentation methods. The meta-measures consist in assuming some plausible hypotheses about the results and assessing how well each measure reflects these hypotheses. As a conclusion, this paper proposes the precision-recall curves for boundaries and for objects-and-parts as the tool of choice for the supervised evaluation of image segmentation. We make the datasets and code of all the measures publicly available.
+count=1
+* Towards Fast and Accurate Segmentation
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/html/Taylor_Towards_Fast_and_2013_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/papers/Taylor_Towards_Fast_and_2013_CVPR_paper.pdf)]
+    * Title: Towards Fast and Accurate Segmentation
+    * Year: `2013`
+    * Authors: Camillo J. Taylor
+    * Abstract: In this paper we explore approaches to accelerating segmentation and edge detection algorithms based on the gPb framework. The paper characterizes the performance of a simple but effective edge detection scheme which can be computed rapidly and offers performance that is competitive with the pB detector. The paper also describes an approach for computing a reduced order normalized cut that captures the essential features of the original problem but can be computed in less than half a second on a standard computing platform.
+count=1
+* SCALPEL: Segmentation Cascades with Localized Priors and Efficient Learning
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/html/Weiss_SCALPEL_Segmentation_Cascades_2013_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/papers/Weiss_SCALPEL_Segmentation_Cascades_2013_CVPR_paper.pdf)]
+    * Title: SCALPEL: Segmentation Cascades with Localized Priors and Efficient Learning
+    * Year: `2013`
+    * Authors: David Weiss, Ben Taskar
+    * Abstract: We propose SCALPEL, a flexible method for object segmentation that integrates rich region-merging cues with midand high-level information about object layout, class, and scale into the segmentation process. Unlike competing approaches, SCALPEL uses a cascade of bottom-up segmentation models that is capable of learning to ignore boundaries early on, yet use them as a stopping criterion once the object has been mostly segmented. Furthermore, we show how such cascades can be learned efficiently. When paired with a novel method that generates better localized shape priors than our competitors, our method leads to a concise, accurate set of segmentation proposals; these proposals are more accurate on the PASCAL VOC2010 dataset than state-of-the-art methods that use re-ranking to filter much larger bags of proposals. The code for our algorithm is available online.
+count=1
+* Hierarchical Saliency Detection
+    [[abs-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/html/Yan_Hierarchical_Saliency_Detection_2013_CVPR_paper.html)]
+    [[pdf-CVPR](https://openaccess.thecvf.com/content_cvpr_2013/papers/Yan_Hierarchical_Saliency_Detection_2013_CVPR_paper.pdf)]
+    * Title: Hierarchical Saliency Detection
+    * Year: `2013`
+    * Authors: Qiong Yan, Li Xu, Jianping Shi, Jiaya Jia
+    * Abstract: When dealing with objects with complex structures, saliency detection confronts a critical problem namely that detection accuracy could be adversely affected if salient foreground or background in an image contains small-scale high-contrast patterns. This issue is common in natural images and forms a fundamental challenge for prior methods. We tackle it from a scale point of view and propose a multi-layer approach to analyze saliency cues. The final saliency map is produced in a hierarchical model. Different from varying patch sizes or downsizing images, our scale-based region handling is by finding saliency values optimally in a tree model. Our approach improves saliency detection on many images that cannot be handled well traditionally. A new dataset is also constructed.
+count=1
+* Partition Speeds Up Learning Implicit Neural Representations Based on Exponential-Increase Hypothesis
+    [[abs-ICCV](https://openaccess.thecvf.com/content/ICCV2023/html/Liu_Partition_Speeds_Up_Learning_Implicit_Neural_Representations_Based_on_Exponential-Increase_ICCV_2023_paper.html)]
+    [[pdf-ICCV](https://openaccess.thecvf.com/content/ICCV2023/papers/Liu_Partition_Speeds_Up_Learning_Implicit_Neural_Representations_Based_on_Exponential-Increase_ICCV_2023_paper.pdf)]
+    * Title: Partition Speeds Up Learning Implicit Neural Representations Based on Exponential-Increase Hypothesis
+    * Year: `2023`
+    * Authors: Ke Liu, Feng Liu, Haishuai Wang, Ning Ma, Jiajun Bu, Bo Han
+    * Abstract: Implicit neural representations (INRs) aim to learn a continuous function (i.e., a neural network) to represent an image, where the input and output of the function are pixel coordinates and RGB/Gray values, respectively. However, images tend to consist of many objects whose colors are not perfectly consistent, resulting in the challenge that image is actually a discontinuous piecewise function and cannot be well estimated by a continuous function. In this paper, we empirically investigate that if a neural network is enforced to fit a discontinuous piecewise function to reach a fixed small error, the time costs will increase exponentially with respect to the boundaries in the spatial domain of the target signal. We name this phenomenon the exponential-increase hypothesis. Under the exponential-increase hypothesis, learning INRs for images with many objects will converge very slowly. To address this issue, we first prove that partitioning a complex signal into several sub-regions and utilizing piecewise INRs to fit that signal can significantly speed up the convergence. Based on this fact, we introduce a simple partition mechanism to boost the performance of two INR methods for image reconstruction: one for learning INRs, and the other for learning-to-learn INRs. In both cases, we partition an image into different sub-regions and dedicate smaller networks for each part. In addition, we further propose two partition rules based on regular grids and semantic segmentation maps, respectively. Extensive experiments validate the effectiveness of the proposed partitioning methods in terms of learning INR for a single image (ordinary learning framework) and the learning-to-learn framework.
+count=1
+* MEDIRL: Predicting the Visual Attention of Drivers via Maximum Entropy Deep Inverse Reinforcement Learning
+    [[abs-ICCV](https://openaccess.thecvf.com/content/ICCV2021/html/Baee_MEDIRL_Predicting_the_Visual_Attention_of_Drivers_via_Maximum_Entropy_ICCV_2021_paper.html)]
+    [[pdf-ICCV](https://openaccess.thecvf.com/content/ICCV2021/papers/Baee_MEDIRL_Predicting_the_Visual_Attention_of_Drivers_via_Maximum_Entropy_ICCV_2021_paper.pdf)]
+    * Title: MEDIRL: Predicting the Visual Attention of Drivers via Maximum Entropy Deep Inverse Reinforcement Learning
+    * Year: `2021`
+    * Authors: Sonia Baee, Erfan Pakdamanian, Inki Kim, Lu Feng, Vicente Ordonez, Laura Barnes
+    * Abstract: Inspired by human visual attention, we propose a novel inverse reinforcement learning formulation using Maximum Entropy Deep Inverse Reinforcement Learning (MEDIRL) for predicting the visual attention of drivers in accident-prone situations. MEDIRL predicts fixation locations that lead to maximal rewards by learning a task-sensitive reward function from eye fixation patterns recorded from attentive drivers. Additionally, we introduce EyeCar, a new driver attention dataset in accident-prone situations. We conduct comprehensive experiments to evaluate our proposed model on three common benchmarks: (DR(eye)VE, BDD-A, DADA-2000), and our EyeCar dataset. Results indicate that MEDIRL outperforms existing models for predicting attention and achieves state-of-the-art performance. We present extensive ablation studies to provide more insights into different features of our proposed model.
+count=1
+* TORNADO: A Spatio-Temporal Convolutional Regression Network for Video Action Proposal
+    [[abs-ICCV](https://openaccess.thecvf.com/content_iccv_2017/html/Zhu_TORNADO_A_Spatio-Temporal_ICCV_2017_paper.html)]
+    [[pdf-ICCV](https://openaccess.thecvf.com/content_ICCV_2017/papers/Zhu_TORNADO_A_Spatio-Temporal_ICCV_2017_paper.pdf)]
+    * Title: TORNADO: A Spatio-Temporal Convolutional Regression Network for Video Action Proposal
+    * Year: `2017`
+    * Authors: Hongyuan Zhu, Romain Vial, Shijian Lu
+    * Abstract: Given a video clip, action proposal aims to quickly generate a number of spatio-temporal tubes that enclose candidate human activities. Recently, the regression-based object detectors and long-term recurrent convolutional network (LRCN) have demonstrated superior performance in human action detection and recognition. However, the regression-based detectors performs inference without considering the temporal context among neighboring frames, and the LRCN using global visual percepts lacks the capability to capture local temporal dynamics. In this paper, we present a novel framework called TORNADO for human action proposal detection in un-trimmed video clips. Specifically, we propose a spatial-temporal convolutional network that combines the advantages of regression-based detector and LRCN by empowering Convolutional LSTM with regression capability. Our approach consists of a temporal convolutional regression network (T-CRN) and a spatial regression network (S-CRN) which are trained end-to-end on both RGB and OpticalFlow streams. They fuse appearance, motion and temporal contexts to regress the bounding boxes of candidate human actions simultaneously in 28 FPS. The action proposals are constructed by solving dynamic programming with peak trimming of the generated action boxes. Extensive experiments on the challenging UCF-101 and UCF-Sports datasets show that our method achieves superior performance as compared with the state-of-the-arts.
+count=1
+* Detection and Segmentation of 2D Curved Reflection Symmetric Structures
+    [[abs-ICCV](https://openaccess.thecvf.com/content_iccv_2015/html/Teo_Detection_and_Segmentation_ICCV_2015_paper.html)]
+    [[pdf-ICCV](https://openaccess.thecvf.com/content_iccv_2015/papers/Teo_Detection_and_Segmentation_ICCV_2015_paper.pdf)]
+    * Title: Detection and Segmentation of 2D Curved Reflection Symmetric Structures
+    * Year: `2015`
+    * Authors: Ching L. Teo, Cornelia Fermuller, Yiannis Aloimonos
+    * Abstract: Symmetry, as one of the key components of Gestalt theory, provides an important mid-level cue that serves as input to higher visual processes such as segmentation. In this work, we propose a complete approach that links the detection of curved reflection symmetries to produce symmetry-constrained segments of structures/regions in real images with clutter. For curved reflection symmetry detection, we leverage on patch-based symmetric features to train a Structured Random Forest classifier that detects multiscaled curved symmetries in 2D images. Next, using these curved symmetries, we modulate a novel symmetry-constrained foreground-background segmentation by their symmetry scores so that we enforce global symmetrical consistency in the final segmentation. This is achieved by imposing a pairwise symmetry prior that encourages symmetric pixels to have the same labels over a MRF-based representation of the input image edges, and the final segmentation is obtained via graph-cuts. Experimental results over four publicly available datasets containing annotated symmetric structures: 1) SYMMAX-300, 2) BSD-Parts, 3) Weizmann Horse and 4) NY-roads demonstrate the approach's applicability to different environments with state-of-the-art performance.
+count=1
+* Multiresolution Hierarchy Co-Clustering for Semantic Segmentation in Sequences With Small Variations
+    [[abs-ICCV](https://openaccess.thecvf.com/content_iccv_2015/html/Varas_Multiresolution_Hierarchy_Co-Clustering_ICCV_2015_paper.html)]
+    [[pdf-ICCV](https://openaccess.thecvf.com/content_iccv_2015/papers/Varas_Multiresolution_Hierarchy_Co-Clustering_ICCV_2015_paper.pdf)]
+    * Title: Multiresolution Hierarchy Co-Clustering for Semantic Segmentation in Sequences With Small Variations
+    * Year: `2015`
+    * Authors: David Varas, Monica Alfaro, Ferran Marques
+    * Abstract: This paper presents a co-clustering technique that, given a collection of images and their hierarchies, clusters nodes from these hierarchies to obtain a coherent multiresolution representation of the image collection. We formalize the co-clustering as Quadratic Semi-Assignment Problem and solve it with a linear programming relaxation approach that makes effective use of information from hierarchies. Initially, we address the problem of generating an optimal, coherent partition per image and, afterwards, we extend this method to a multiresolution framework. Finally, we particularize this framework to an iterative multiresolution video segmentation algorithm in sequences with small variations. We evaluate the algorithm on the Video Occlusion/Object Boundary Detection Dataset, showing that it produces state-of-the-art results in these scenarios.
+count=1
+* Hierarchical Open-vocabulary Universal Image Segmentation
+    [[abs-NeurIPS](https://papers.nips.cc/paper_files/paper/2023/hash/43663f64775ae439ec52b64305d219d3-Abstract-Conference.html)]
+    [[pdf-NeurIPS](https://papers.nips.cc/paper_files/paper/2023/file/43663f64775ae439ec52b64305d219d3-Paper-Conference.pdf)]
+    * Title: Hierarchical Open-vocabulary Universal Image Segmentation
+    * Year: `2023`
+    * Authors: Xudong Wang, Shufan Li, Konstantinos Kallidromitis, Yusuke Kato, Kazuki Kozuka, Trevor Darrell
+    * Abstract: Open-vocabulary image segmentation aims to partition an image into semantic regions according to arbitrary text descriptions. However, complex visual scenes can be naturally decomposed into simpler parts and abstracted at multiple lev4 els of granularity, introducing inherent segmentation ambiguity. Unlike existing methods that typically sidestep this ambiguity and treat it as an external factor, our approach actively incorporates a hierarchical representation encompassing different semantic-levels into the learning process. We propose a decoupled text-image fusion mechanism and representation learning modules for both “things” and “stuff”. Additionally, we systematically examine the differences that exist in the textual and visual features between these types of categories. Our resulting model, named HIPIE, tackles HIerarchical, oPen-vocabulary, and unIvErsal segmentation tasks within a unified framework. Benchmarked on diverse datasets, e.g., ADE20K,COCO, Pascal-VOC Part, and RefCOCO/RefCOCOg, HIPIE achieves the state-of14 the-art results at various levels of image comprehension, including semantic-level (e.g., semantic segmentation), instance-level (e.g., panoptic/referring segmentationand object detection), as well as part-level (e.g., part/subpart segmentation) tasks.
+count=1
+* Nearly Tight Bounds For Differentially Private Multiway Cut
+    [[abs-NeurIPS](https://papers.nips.cc/paper_files/paper/2023/hash/4e8f257e054abd24c550d55e57cec274-Abstract-Conference.html)]
+    [[pdf-NeurIPS](https://papers.nips.cc/paper_files/paper/2023/file/4e8f257e054abd24c550d55e57cec274-Paper-Conference.pdf)]
+    * Title: Nearly Tight Bounds For Differentially Private Multiway Cut
+    * Year: `2023`
+    * Authors: Mina Dalirrooyfard, Slobodan Mitrovic, Yuriy Nevmyvaka
+    * Abstract: Finding min $s$-$t$ cuts in graphs is a basic algorithmic tool, with applications in image segmentation, community detection, reinforcement learning, and data clustering. In this problem, we are given two nodes as terminals and the goal is to remove the smallest number of edges from the graph so that these two terminals are disconnected. We study the complexity of differential privacy for the min $s$-$t$ cut problem and show nearly tight lower and upper bounds where we achieve privacy at no cost for running time efficiency. We also develop a differentially private algorithm for the multiway $k$-cut problem, in which we are given $k$ nodes as terminals that we would like to disconnect. As a function of $k$, we obtain privacy guarantees that are exponentially more efficient than applying the advanced composition theorem to known algorithms for multiway $k$-cut. Finally, we empirically evaluate the approximation of our differentially private min $s$-$t$ cut algorithm and show that it almost matches the quality of the output of non-private ones.
+count=1
+* Annotator: A Generic Active Learning Baseline for LiDAR Semantic Segmentation
+    [[abs-NeurIPS](https://papers.nips.cc/paper_files/paper/2023/hash/976cc04f0cbaad7790ce0d665e44f90f-Abstract-Conference.html)]
+    [[pdf-NeurIPS](https://papers.nips.cc/paper_files/paper/2023/file/976cc04f0cbaad7790ce0d665e44f90f-Paper-Conference.pdf)]
+    * Title: Annotator: A Generic Active Learning Baseline for LiDAR Semantic Segmentation
+    * Year: `2023`
+    * Authors: Binhui Xie, Shuang Li, Qingju Guo, Chi Liu, Xinjing Cheng
+    * Abstract: Active learning, a label-efficient paradigm, empowers models to interactively query an oracle for labeling new data. In the realm of LiDAR semantic segmentation, the challenges stem from the sheer volume of point clouds, rendering annotation labor-intensive and cost-prohibitive. This paper presents Annotator, a general and efficient active learning baseline, in which a voxel-centric online selection strategy is tailored to efficiently probe and annotate the salient and exemplar voxel girds within each LiDAR scan, even under distribution shift. Concretely, we first execute an in-depth analysis of several common selection strategies such as Random, Entropy, Margin, and then develop voxel confusion degree (VCD) to exploit the local topology relations and structures of point clouds. Annotator excels in diverse settings, with a particular focus on active learning (AL), active source-free domain adaptation (ASFDA), and active domain adaptation (ADA). It consistently delivers exceptional performance across LiDAR semantic segmentation benchmarks, spanning both simulation-to-real and real-to-real scenarios. Surprisingly, Annotator exhibits remarkable efficiency, requiring significantly fewer annotations, e.g., just labeling five voxels per scan in the SynLiDAR → SemanticKITTI task. This results in impressive performance, achieving 87.8% fully-supervised performance under AL, 88.5% under ASFDA, and 94.4% under ADA. We envision that Annotator will offer a simple, general, and efficient solution for label-efficient 3D applications.
+count=1
+* Quantifying Statistical Significance of Neural Network-based Image Segmentation by Selective Inference
+    [[abs-NeurIPS](https://papers.nips.cc/paper_files/paper/2022/hash/cd706106802dbea2068efd7031c3b420-Abstract-Conference.html)]
+    [[pdf-NeurIPS](https://papers.nips.cc/paper_files/paper/2022/file/cd706106802dbea2068efd7031c3b420-Paper-Conference.pdf)]
+    * Title: Quantifying Statistical Significance of Neural Network-based Image Segmentation by Selective Inference
+    * Year: `2022`
+    * Authors: Vo Nguyen Le Duy, Shogo Iwazaki, Ichiro Takeuchi
+    * Abstract: Although a vast body of literature relates to image segmentation methods that use deep neural networks (DNNs), less attention has been paid to assessing the statistical reliability of segmentation results. In this study, we interpret the segmentation results as hypotheses driven by DNN (called DNN-driven hypotheses) and propose a method to quantify the reliability of these hypotheses within a statistical hypothesis testing framework. To this end, we introduce a conditional selective inference (SI) framework---a new statistical inference framework for data-driven hypotheses that has recently received considerable attention---to compute exact (non-asymptotic) valid p-values for the segmentation results. To use the conditional SI framework for DNN-based segmentation, we develop a new SI algorithm based on the homotopy method, which enables us to derive the exact (non-asymptotic) sampling distribution of DNN-driven hypothesis. We conduct several experiments to demonstrate the performance of the proposed method.
