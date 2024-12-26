@@ -36,7 +36,7 @@ def main(output_dir: str, keywords: List[str]) -> None:
     os.makedirs(name=os.path.join("results", output_dir), exist_ok=True)
     # initialization
     results: Dict[str, List[Tuple[int, str]]] = {kw: [] for kw in keywords}
-    failures: List[str] = []
+    failures: List[Tuple[str, str]] = []
     # main loop
     for filepath in files:
         # get pdf urls from paper list
@@ -68,7 +68,7 @@ def main(output_dir: str, keywords: List[str]) -> None:
             ))))
     # logging
     print(f"Failure cases:")
-    print('\n'.join(failures))
+    print('\n'.join(list(map(lambda x: x[0]+'\n'+x[1], failures))))
 
 
 if __name__ == "__main__":
