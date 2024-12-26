@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Tuple, List, Optional
 import os
 from urllib.parse import urljoin
 import bs4
@@ -180,12 +180,37 @@ class GetPaperList:
                 f.write(urljoin(url, a['href']) + '\n')
                 f.write('\n')
 
+    def get_papers_automation_in_construction(self, vol: int) -> None:
+        base_url = "https://journals.scholarsportal.info/browse/09265805/"
+        if vol == 168:
+            urls = ['v168ipart_a', 'v168ipart_b']
+        else:
+            urls = [f"v{vol}icomplete"]
+        urls = list(map(lambda x: urljoin(base_url, x), urls))
+        all_papers: List[Tuple[str, str]] = []
+        for url in urls:
+            soup = get_soup(url, method='selenium')
+            papers = soup.findAll(name='div', attrs={'class': "journal-result"})
+            papers = list(map(lambda x: (
+                x.find(name='span', attrs={'class': "article-title"}).text.strip(),
+                x.find('a')['href'],
+            ), papers))
+            all_papers += papers
+        # save to disk
+        filepath = os.path.join(self.paper_lists_root, f"automation_in_construction/automation_in_construction{vol}.txt")
+        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+        with open(filepath, mode='w') as f:
+            for paper in all_papers:
+                f.write(paper[0] + '\n')
+                f.write(paper[1] + '\n')
+                f.write('\n')
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--venue', type=str)
-    parser.add_argument('-y', '--year', type=int)
+    parser.add_argument('-i', '--index', type=int)
     args = parser.parse_args()
     getter = GetPaperList()
     method = getattr(getter, f"get_papers_{args.venue}")
-    method(args.year)
+    method(args.index)

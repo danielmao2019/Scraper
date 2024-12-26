@@ -1,3 +1,4 @@
+from typing import Optional
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import ssl
@@ -61,19 +62,13 @@ def get_soup_with_selenium(url: str):
         driver.quit()
 
 
-def get_soup_with_api(api_key: str, article_id: str):
-    url = f"https://api.elsevier.com/content/article/pii/{article_id}"
-    headers = {
-        'Accept': 'application/json',
-        'X-ELS-APIKey': api_key,
-    }
-    response = requests.get(url, headers=headers)
-    response.raise_for_status()
-    return response.json()  # Return raw JSON data (not soup)
-
-
-def get_soup(url: str, api_key: str = None, article_id: str = None):
+def get_soup(url: str, method: Optional[str] = None):
     assert type(url) == str, f"type(url)={type(url)}"
+    if method is not None:
+        assert type(method) == str, f"{type(method)=}"
+        assert method in ['urllib', 'requests', 'selenium'], f"{method=}"
+        return globals()[f"get_soup_with_{method}"](url)
+
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36',
     }
@@ -106,13 +101,6 @@ def get_soup(url: str, api_key: str = None, article_id: str = None):
         return get_soup_with_selenium(url)
     except Exception as e3:
         print(f"Failed with Selenium: {e3}")
-
-    # Try Elsevier API (requires api_key and article_id)
-    if api_key and article_id:
-        try:
-            return get_soup_with_api(api_key, article_id)
-        except Exception as e4:
-            print(f"Failed with Elsevier API: {e4}")
 
     # Raise an error if all approaches fail
     raise RuntimeError("Failed to fetch the page using all methods.")
