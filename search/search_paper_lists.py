@@ -4,9 +4,7 @@ import os
 import re
 import tqdm
 from search import search_in_file
-import sys
-sys.path.append("..")
-from scraper.scrape import scrape
+from scrape import scrape
 
 
 PAPER_LISTS_ROOT: str = "/home/d_mao/repos/Machine-Learning-Knowledge-Base/paper-collections/deep-learning/_paper_lists_"

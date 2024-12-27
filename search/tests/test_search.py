@@ -1,7 +1,7 @@
 import pytest
 import sys
-sys.path.append("..")
-from search import search_in_file
+sys.path.append("../..")
+from search.search_in_file import search_in_file
 
 
 @pytest.mark.parametrize("url, keyword, count", [
