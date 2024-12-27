@@ -106,10 +106,11 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
     for filepath in sum([sorted(glob.glob(f)) for f in files], start=[]):
         with open(filepath, mode='r', encoding='utf-8') as f:
             content += f.read()
-    html_urls: List[str] = re.findall(pattern=r"\[abs-[^\]]*\]\((http.+)\)", string=content)
-    pdf_urls: List[str] = re.findall(pattern=r"\[pdf-[^\]]*\]\((http.+)\)", string=content)
+    html_urls: List[str] = re.findall(pattern=r"\[abs-[^\]]*\]\(([^\)]*)\)", string=content)
+    pdf_urls: List[str] = re.findall(pattern=r"\[pdf-[^\]]*\]\(([^\)]*)\)", string=content)
     assert len(html_urls) == len(pdf_urls)
     urls: List[Tuple[str, str]] = sorted(list(zip(html_urls, pdf_urls)), key=lambda x: x[0])
+    urls = list(filter(lambda x: x[0] != "" and x[1] != "", urls))
     print(f"Found {len(urls)} urls.")
     # search relevant documents
     failures: List[str] = []
