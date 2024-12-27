@@ -106,23 +106,25 @@ def main(files: List[str], output_dir: str, keywords: List[str]) -> None:
     for filepath in sum([sorted(glob.glob(f)) for f in files], start=[]):
         with open(filepath, mode='r', encoding='utf-8') as f:
             content += f.read()
-    all_pdf_urls = re.findall(pattern=r"\[pdf-.+\]\((http.+)\)", string=content)
-    all_pdf_urls = sorted(set(all_pdf_urls))
-    print(f"Found {len(all_pdf_urls)} pdf urls.")
+    html_urls: List[str] = re.findall(pattern=r"\[abs-[^\]]*\]\((http.+)\)", string=content)
+    pdf_urls: List[str] = re.findall(pattern=r"\[pdf-[^\]]*\]\((http.+)\)", string=content)
+    assert len(html_urls) == len(pdf_urls)
+    urls: List[Tuple[str, str]] = sorted(list(zip(html_urls, pdf_urls)), key=lambda x: x[0])
+    print(f"Found {len(urls)} urls.")
     # search relevant documents
     failures: List[str] = []
     results: Dict[str, List[Tuple[int, str]]] = {kw: [] for kw in keywords}
-    for url in tqdm.tqdm(all_pdf_urls):
+    for url in tqdm.tqdm(urls):
         try:
-            counts: Dict[str, int] = search_in_file(url=url, keywords=keywords)
-            info: str = scrape(url)
+            counts: Dict[str, int] = search_in_file(url=url[1], keywords=keywords)
+            info: str = scrape(url[0])
             for kw in keywords:
                 if counts[kw] > 0:
                     results[kw].append((counts[kw], info))
         except Exception as e:
             print(e)
             print(f"{url=}")
-            failures.append(url)
+            failures.append(url[0]+'\n'+url[1])
     # save to disk
     for kw in keywords:
         output_name = re.sub(pattern=' ', repl='_', string=kw) + ".md"
