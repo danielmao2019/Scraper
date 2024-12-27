@@ -77,6 +77,7 @@ def get_soup(url: str, method: Optional[str] = None):
         url.startswith("https://dl.acm.org/doi") or
         url.startswith("https://ieeexplore.ieee.org") or
         url.startswith("https://www.researchgate.net") or
+        url.startswith("https://journals.scholarsportal.info") or
         url.startswith("https://www.sciencedirect.com")
     ):
         try:

@@ -50,6 +50,16 @@ from search import search_in_file
         "object based",
         20,
     ),
+    (
+        "https://journals.scholarsportal.info/details/09265805/v124icomplete/nfp_abcdwacopc.xml",
+        "change detection",
+        34,
+    ),
+    (
+        "https://journals.scholarsportal.info/details/09265805/v124icomplete/nfp_abcdwacopc.xml",
+        "amodal",
+        8,
+    ),
 ])
 def test_search(url: str, keyword: str, count: int) -> None:
     result = search_in_file(url, [keyword])
