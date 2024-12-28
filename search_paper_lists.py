@@ -29,7 +29,7 @@ def html2pdf(url: str) -> str:
     return result
 
 
-def main(venues: List[str], output_dir: str, keywords: List[str]) -> None:
+def main(venues: List[str], output_dir: str, keywords: List[str], no_scrape: bool) -> None:
     # initialization
     if len(venues) == 0:
         venues = ['cvpr', 'iccv', 'neurips', 'automation_in_construction']
@@ -56,7 +56,7 @@ def main(venues: List[str], output_dir: str, keywords: List[str]) -> None:
                     for kw in keywords:
                         if counts[kw] > 0:
                             if info is None:
-                                info = scrape(html_url)
+                                info = html_url if no_scrape else scrape(html_url)
                             result[kw].append((counts[kw], info))
                 except Exception as e:
                     print(e)
@@ -81,5 +81,6 @@ if __name__ == "__main__":
     parser.add_argument('-v', '--venues', nargs='+', default=[])
     parser.add_argument('-d', '--output-dir', type=str)
     parser.add_argument('-k', '--keywords', nargs='+', default=[])
+    parser.add_argument('--no-scrape', action='store_true')
     args = parser.parse_args()
-    main(venues=args.venues, output_dir=args.output_dir, keywords=args.keywords)
+    main(venues=args.venues, output_dir=args.output_dir, keywords=args.keywords, no_scrape=args.no_scrape)
