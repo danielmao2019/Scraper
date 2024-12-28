@@ -85,22 +85,23 @@ def _url2text(url: str) -> str:
     os.makedirs(root_dir, exist_ok=True)
     code: str = hashlib.sha256(url.encode('utf-8')).hexdigest()
     filepath = os.path.join(root_dir, code+".txt")
-    if os.path.isfile(filepath) and os.path.getsize(filepath) > 0:
-        try:
-            with open(filepath, mode='r') as f:
-                return f.read()
-        except:
-            pass
-    if url.startswith("https://www.sciencedirect.com"):
-        text = _url2text_elsevier(url)
-    elif url.startswith("https://journals.scholarsportal.info"):
-        text = _url2text_scholarsportal(url)
-    else:
-        text = _url2text_wget(url)
-    assert type(text) == str, f"{type(text)=}"
-    with open(filepath, mode='w') as f:
-        f.write(text)
-    return text
+    try:
+        assert os.path.isfile(filepath), f"File does not exist: {filepath}"
+        assert os.path.getsize(filepath) > 0, f"File empty: {filepath}"
+        with open(filepath, mode='r') as f:
+            return f.read()
+    except Exception as e:
+        print(f"{e=}")
+        if url.startswith("https://www.sciencedirect.com"):
+            text = _url2text_elsevier(url)
+        elif url.startswith("https://journals.scholarsportal.info"):
+            text = _url2text_scholarsportal(url)
+        else:
+            text = _url2text_wget(url)
+        assert type(text) == str, f"{type(text)=}"
+        with open(filepath, mode='w') as f:
+            f.write(text)
+        return text
 
 
 def _keyword2regex(keyword: str) -> str:
