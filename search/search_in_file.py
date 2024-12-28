@@ -12,32 +12,17 @@ def _url2text_wget(url: str) -> str:
     Returns:
         text (str): text in the file from url.
     """
-    filename = hashlib.sha256(url.encode('utf-8')).hexdigest() + ".pdf"
-    os.makedirs(os.path.join("search", "downloads"), exist_ok=True)
-    filepath = os.path.join("search", "downloads", filename)
-    if os.path.isfile(filepath) and os.path.getsize(filepath):
-        try:
-            text = ""
-            pdf_document = fitz.open(filepath)
-            for page in pdf_document:
-                text += page.get_text() + "\n"
-            pdf_document.close()
-            return text
-        except:
-            pass
-    else:
-        time.sleep(4)  # avoid CAPTCHA
-        cmd = f'wget "{url}" --output-document "{filepath}" --quiet'
-        os.system(cmd)
-        try:
-            text = ""
-            pdf_document = fitz.open(filepath)
-            for page in pdf_document:
-                text += page.get_text() + "\n"
-            pdf_document.close()
-            return text
-        except Exception as e:
-            raise RuntimeError(f"{e} {url=}")
+    # download pdf
+    time.sleep(4)  # avoid CAPTCHA
+    cmd = f'wget "{url}" --output-document tmp.pdf --quiet'
+    os.system(cmd)
+    # extract text
+    text = ""
+    pdf_doc = fitz.open("tmp.pdf")
+    for page in pdf_doc:
+        text += page.get_text() + "\n"
+    pdf_doc.close()
+    return text
 
 
 def _url2text_elsevier(url: str) -> str:
@@ -96,14 +81,26 @@ def _url2text_scholarsportal(url: str) -> str:
 
 
 def _url2text(url: str) -> str:
+    root_dir = os.path.join("search", "downloads")
+    os.makedirs(root_dir, exist_ok=True)
+    code: str = hashlib.sha256(url.encode('utf-8')).hexdigest()
+    filepath = os.path.join(root_dir, code+".txt")
+    if os.path.isfile(filepath) and os.path.getsize(filepath) > 0:
+        try:
+            with open(filepath, mode='r') as f:
+                return f.read()
+        except:
+            pass
     if url.startswith("https://www.sciencedirect.com"):
-        result = _url2text_elsevier(url)
+        text = _url2text_elsevier(url)
     elif url.startswith("https://journals.scholarsportal.info"):
-        result = _url2text_scholarsportal(url)
+        text = _url2text_scholarsportal(url)
     else:
-        result = _url2text_wget(url)
-    assert type(result) == str, f"{type(result)=}"
-    return result
+        text = _url2text_wget(url)
+    assert type(text) == str, f"{type(text)=}"
+    with open(filepath, mode='w') as f:
+        f.write(text)
+    return text
 
 
 def _keyword2regex(keyword: str) -> str:
