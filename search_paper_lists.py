@@ -52,9 +52,11 @@ def main(venues: List[str], output_dir: str, keywords: List[str]) -> None:
                 html_url, pdf_url = url
                 try:
                     counts: Dict[str, int] = search_in_file(url=pdf_url, keywords=keywords)
-                    info: str = scrape(html_url)
+                    info = None
                     for kw in keywords:
                         if counts[kw] > 0:
+                            if info is None:
+                                info = scrape(html_url)
                             result[kw].append((counts[kw], info))
                 except Exception as e:
                     print(e)
