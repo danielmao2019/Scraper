@@ -25,7 +25,7 @@ def scrape_acl(url: str) -> Dict[str, str]:
     abstract = ""
     return {
         'title': title,
-        'abs_url': url,
+        'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "ACL",
         'pub_year': year,

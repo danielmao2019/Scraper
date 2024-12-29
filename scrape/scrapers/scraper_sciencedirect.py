@@ -36,7 +36,7 @@ def scrape_sciencedirect(url: str) -> Dict[str, str]:
     abstract = data['dc:description']
     return {
         'title': title,
-        'abs_url': url,
+        'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': pub_name,
         'pub_year': pub_year,

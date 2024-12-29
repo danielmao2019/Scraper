@@ -24,7 +24,7 @@ def scrape_robotics(url: str) -> Dict[str, str]:
     abstract = abstract[0].text
     return {
         'title': title,
-        'abs_url': url,
+        'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': pub_name,
         'pub_year': pub_year,

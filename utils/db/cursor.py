@@ -9,17 +9,3 @@ def init(config_path: Optional[str] = "/home/d_mao/.config/amazon_rds.json"):
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
     return conn, cursor
-
-
-def execute(conn, cursor, query: str) -> None:
-    try:
-        cursor.execute(query)
-        conn.commit()
-        print("Table `papers` created successfully (if it did not already exist).")
-
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-    finally:
-        if conn.is_connected():
-            cursor.close()
-            conn.close()

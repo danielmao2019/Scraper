@@ -26,16 +26,17 @@ def _post_process_abstract(abstract):
 
 def compile_markdown(
     title: str = None,
-    abs_url: str = None,
+    html_url: str = None,
     pdf_url: str = None,
     pub_name: str = None,
     pub_year: str = None,
     authors: str = None,
     abstract: str = None,
+    **kwargs,
 ) -> str:
     string = ""
     string += f"* {mapping.get(title, title)}\n"
-    string += f"{INDENT}[[abs-{pub_name}]({abs_url})]\n"
+    string += f"{INDENT}[[abs-{pub_name}]({html_url})]\n"
     string += f"{INDENT}[[pdf-{pub_name}]({pdf_url})]\n"
     string += f"{INDENT}* Title: {title}\n"
     string += f"{INDENT}* Year: {_post_process_year(pub_year)}\n"

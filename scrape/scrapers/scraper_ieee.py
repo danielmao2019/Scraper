@@ -22,7 +22,7 @@ def scrape_ieee(url: str) -> Dict[str, str]:
     # return
     return {
         'title': title,
-        'abs_url': url,
+        'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "IEEE",
         'pub_year': year,

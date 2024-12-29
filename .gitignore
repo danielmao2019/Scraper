@@ -1,5 +1,5 @@
 venv
 __pycache__
 temp_*.md
-scraped_papers_*.md
+scraped_papers.md
 elsapy-*.log

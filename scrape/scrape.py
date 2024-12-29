@@ -1,8 +1,9 @@
+from typing import Dict, Union, Optional
 from scrape import scrapers
 from scrape import utils
 
 
-def scrape(url: str) -> str:
+def scrape(url: str, compile: Optional[bool] = True) -> Union[Dict[str, str], str]:
     info_dict = None
     if url.startswith("https://arxiv.org"):
         info_dict = scrapers.scrape_arxiv(url)
@@ -47,6 +48,9 @@ def scrape(url: str) -> str:
     if url.startswith("https://www.tandfonline.com"):
         info_dict = scrapers.scrape_tandfonline(url)
     if info_dict is not None:
-        return utils.compile_markdown(**info_dict)
+        if compile:
+            return utils.compile_markdown(**info_dict)
+        else:
+            return info_dict
     else:
         raise ValueError(f"No scraper implemented for {url}.")
