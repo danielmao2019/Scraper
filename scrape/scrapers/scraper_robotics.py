@@ -27,7 +27,7 @@ def scrape_robotics(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': pub_name,
-        'pub_year': pub_year,
+        'pub_date': pub_year,
         'authors': authors,
         'abstract': abstract,
     }

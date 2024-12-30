@@ -7,7 +7,7 @@ import fitz  # PyMuPDF
 from scrape import utils
 
 
-def _url2text_wget(url: str) -> str:
+def _extract_text_wget(url: str) -> str:
     """
     Returns:
         text (str): text in the file from url.
@@ -25,7 +25,7 @@ def _url2text_wget(url: str) -> str:
     return text
 
 
-def _url2text_elsevier(url: str) -> str:
+def _extract_text_elsevier(url: str) -> str:
     # get Elsevier client
     from elsapy.elsclient import ElsClient
     config = {
@@ -44,7 +44,7 @@ def _url2text_elsevier(url: str) -> str:
     return text
 
 
-def _url2text_scholarsportal(url: str) -> str:
+def _extract_text_scholarsportal(url: str) -> str:
     soup = utils.soup.get_soup(url)
     # get title
     title = soup.findAll(name='title')
@@ -80,7 +80,7 @@ def _url2text_scholarsportal(url: str) -> str:
     return '\n'.join([title, keywords, abstract, body])
 
 
-def _url2text(url: str) -> str:
+def extract_text(url: str) -> str:
     root_dir = os.path.join("search", "downloads")
     os.makedirs(root_dir, exist_ok=True)
     code: str = hashlib.sha256(url.encode('utf-8')).hexdigest()
@@ -93,11 +93,11 @@ def _url2text(url: str) -> str:
     except Exception as e:
         print(f"{e=}")
         if url.startswith("https://www.sciencedirect.com"):
-            text = _url2text_elsevier(url)
+            text = _extract_text_elsevier(url)
         elif url.startswith("https://journals.scholarsportal.info"):
-            text = _url2text_scholarsportal(url)
+            text = _extract_text_scholarsportal(url)
         else:
-            text = _url2text_wget(url)
+            text = _extract_text_wget(url)
         assert type(text) == str, f"{type(text)=}"
         with open(filepath, mode='w') as f:
             f.write(text)
@@ -123,7 +123,7 @@ def search_in_file(url: str, keywords: List[str]) -> Dict[str, int]:
     assert type(keywords) == list, f"{type(keywords)=}"
     assert all([type(k) == str and k != ""] for k in keywords)
     # extract lines
-    text = _url2text(url)
+    text = extract_text(url)
     # search for keyword
     counts = {
         kw: len(re.findall(pattern=_keyword2regex(kw), string=text, flags=re.IGNORECASE))

@@ -28,7 +28,7 @@ def scrape_neurips(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "NeurIPS",
-        'pub_year': year,
+        'pub_date': year,
         'authors': authors,
         'abstract': abstract,
     }

@@ -5,7 +5,8 @@ from .code_names_mapping import mapping
 INDENT = ' ' * 4
 
 
-def _post_process_year(year: str) -> str:
+def _post_process_date(year: str) -> str:
+    assert type(year) == str, f"{type(year)=}"
     _year = re.findall(pattern=r"\d{4}", string=year)
     assert len(_year) == 1, f"{year=}, {_year=}"
     assert int(_year[0]), f"{_year=}"
@@ -29,7 +30,7 @@ def compile_markdown(
     html_url: str = None,
     pdf_url: str = None,
     pub_name: str = None,
-    pub_year: str = None,
+    pub_date: str = None,
     authors: str = None,
     abstract: str = None,
     **kwargs,
@@ -39,7 +40,7 @@ def compile_markdown(
     string += f"{INDENT}[[abs-{pub_name}]({html_url})]\n"
     string += f"{INDENT}[[pdf-{pub_name}]({pdf_url})]\n"
     string += f"{INDENT}* Title: {title}\n"
-    string += f"{INDENT}* Year: {_post_process_year(pub_year)}\n"
+    string += f"{INDENT}* Year: {_post_process_date(pub_date)}\n"
     string += f"{INDENT}* Authors: {authors}\n"
     string += f"{INDENT}* Abstract: {_post_process_abstract(abstract)}\n"
     return string

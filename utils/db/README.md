@@ -35,9 +35,9 @@ Now add `database` to `config.json`:
 USE `machine-learning-knowledge-base`
 SHOW TABLES;
 CREATE TABLE IF NOT EXISTS papers (
-    id VARCHAR(255) PRIMARY KEY,
+    id TEXT,
     code_names JSON,
-    title TEXT,
+    title VARCHAR(255) PRIMARY KEY,
     urls JSON,
     pub_name TEXT,
     pub_date TEXT,

@@ -28,7 +28,7 @@ def scrape_aaai(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "AAAI",
-        'pub_year': pub_year,
+        'pub_date': pub_year,
         'authors': authors,
         'abstract': abstract,
     }

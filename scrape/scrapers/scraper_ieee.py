@@ -16,7 +16,7 @@ def scrape_ieee(url: str) -> Dict[str, str]:
     # extract from json
     title = json_dict['title']
     pdf_url = urljoin(url, json_dict['pdfUrl'])
-    year = json_dict['publicationYear']
+    year = json_dict['publicationDate']
     authors = ", ".join([a['name'] for a in json_dict['authors']])
     abstract = json_dict['abstract']
     # return
@@ -25,7 +25,7 @@ def scrape_ieee(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "IEEE",
-        'pub_year': year,
+        'pub_date': year,
         'authors': authors,
         'abstract': abstract,
     }

@@ -27,7 +27,7 @@ def scrape_jmlr(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "JMLR",
-        'pub_year': pub_year,
+        'pub_date': pub_year,
         'authors': authors,
         'abstract': abstract,
     }
