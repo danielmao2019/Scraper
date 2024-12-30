@@ -20,7 +20,7 @@ def scrape_or_query(url: str, cursor: mysql.connector.cursor_cext.CMySQLCursor) 
 
     # Query to check if the HTML URL exists in the `urls.html` array
     same_html_query = """
-    SELECT * 
+    SELECT id
     FROM `papers`
     WHERE JSON_CONTAINS(urls->'$.html', %s)
     """
@@ -53,7 +53,7 @@ def scrape_or_query(url: str, cursor: mysql.connector.cursor_cext.CMySQLCursor) 
 
         # Check if a record with the same title exists
         same_title_query = """
-        SELECT * 
+        SELECT id
         FROM `papers`
         WHERE title = %s
         """
