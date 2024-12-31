@@ -1,7 +1,8 @@
-from typing import Tuple, List, Dict, Any
+from typing import Tuple, List, Dict, Union, Optional
 import os
 import json
 import jsbeautifier
+from concurrent.futures import ThreadPoolExecutor
 import logging
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
 import mysql.connector
@@ -10,7 +11,7 @@ import search
 import utils
 
 
-def scrape_or_query(url: str, cursor: mysql.connector.cursor_cext.CMySQLCursor) -> Dict[str, Any]:
+def scrape_or_query(url: str, cursor: mysql.connector.cursor_cext.CMySQLCursor) -> str:
     result = {key: None for key in [
         'id', 'code_names', 'title', 'urls',
         'pub_name', 'pub_date', 'authors', 'abstract',
@@ -117,38 +118,71 @@ def scrape_or_query(url: str, cursor: mysql.connector.cursor_cext.CMySQLCursor) 
     return scrape.utils.compile_markdown(**result)
 
 
-def main(urls: List[str]):
+def scrape_task(url: str, idx: int, total: int, cursor) -> Tuple[str, Union[str, Exception]]:
+    """Helper function to scrape a single URL."""
+    try:
+        logging.info(f"[{idx+1}/{total}] Scraping {url}")
+        result = scrape_or_query(url=url, cursor=cursor)
+        return (url, result)  # Success
+    except Exception as err:
+        return (url, err)  # Failure
+
+
+def main(urls: List[str], num_workers: Optional[int] = 1) -> None:
     """
     Arguments:
         urls (List[str]): A list of html urls to scrape from.
+        num_workers (int): Number of threads to use for processing. Default is 1.
     """
-    assert type(urls) == list, f"{type(urls)=}"
-    assert all(map(lambda x: type(x) == str, urls))
+    assert isinstance(urls, list), f"{type(urls)=}"
+    assert all(isinstance(x, str) for x in urls)
+    
     urls_unique: List[str] = []
     for url in urls:
         if url not in urls_unique:
             urls_unique.append(url)
     if len(urls_unique) != len(urls):
         logging.info(f"Provided list contains duplicates. Reduced to {len(urls_unique)} papers.")
-    # connect to db
+
+    # Connect to the database
     conn, cursor = utils.db.init()
-    # iterate through unique url list and scrape each
-    filepath = os.path.join("scrape", "scraped_papers.md")
+
+    successes: List[Tuple[str, str]] = []
     failures: List[Tuple[str, str]] = []
-    with open(filepath, mode='w', encoding='utf8') as f:
-        for idx, url in enumerate(urls_unique):
-            logging.info(f"[{idx+1}/{len(urls_unique)}] Scraping {url}")
-            try:
-                f.write(scrape_or_query(url=url, cursor=cursor))
-            except Exception as e:
-                failures.append((url, str(e)))
-            conn.commit()
+
+    # Thread pool for parallel processing
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        tasks = [
+            executor.submit(scrape_task, url, idx, len(urls_unique), cursor)
+            for idx, url in enumerate(urls_unique)
+        ]
+
+        for future in tasks:
+            url, result = future.result()
+            if isinstance(result, str):  # Success (result contains scraped data)
+                successes.append((url, result))
+            else:  # Failure (result contains error message)
+                assert isinstance(result, Exception)
+                failures.append((url, str(result)))
+
+    # Commit and close the database connection
+    conn.commit()
     if conn.is_connected():
         cursor.close()
         conn.close()
-    logging.info(f"Process terminated.")
+
+    # Write results to the file once
+    filepath = os.path.join("scrape", "scraped_papers.md")
+    with open(filepath, mode='w', encoding='utf8') as f:
+        for _, result in successes:
+            f.write(result)
+
+    # Log failures to log.json
     with open("log.json", mode='w') as f:
         f.write(jsbeautifier.beautify(json.dumps(failures), jsbeautifier.default_options()))
+
+    # Log the process termination
+    logging.info("Process terminated.")
 
 
 if __name__ == "__main__":
