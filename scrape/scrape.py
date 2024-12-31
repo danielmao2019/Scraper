@@ -21,7 +21,7 @@ def scrape(url: str, compile: Optional[bool] = True) -> Union[Dict[str, str], st
         info_dict = scrapers.scrape_ieee(url)
     if url.startswith("https://isprs"):
         info_dict = scrapers.scrape_isprs(url)
-    if url.startswith("https://www.jmlr.org") or url.startswith("https://jmlr.org/"):
+    if url.startswith("https://www.jmlr.org") or url.startswith("https://jmlr.org"):
         info_dict = scrapers.scrape_jmlr(url)
     if url.startswith("https://www.mdpi.com"):
         info_dict = scrapers.scrape_mdpi(url)

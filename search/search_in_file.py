@@ -22,6 +22,7 @@ def _extract_text_wget(url: str) -> str:
     for page in pdf_doc:
         text += page.get_text() + "\n"
     pdf_doc.close()
+    os.system("rm tmp.pdf")
     return text
 
 
@@ -102,31 +103,3 @@ def extract_text(url: str) -> str:
         with open(filepath, mode='w') as f:
             f.write(text)
         return text
-
-
-def _keyword2regex(keyword: str) -> str:
-    result = "(?:\s+|\s*-\s*)".join([
-        "-?\n?".join(list(w)) for w in keyword.split(' ')
-    ])
-    return result
-
-
-def search_in_file(url: str, keywords: List[str]) -> Dict[str, int]:
-    """
-    Args:
-        url (str): the url of the pdf file to search within.
-        keywords (List[str]): the keywords to search within the file.
-    Returns:
-        counts (List[int]): the count of instances of each keyword in the file.
-    """
-    # input checks
-    assert type(keywords) == list, f"{type(keywords)=}"
-    assert all([type(k) == str and k != ""] for k in keywords)
-    # extract lines
-    text = extract_text(url)
-    # search for keyword
-    counts = {
-        kw: len(re.findall(pattern=_keyword2regex(kw), string=text, flags=re.IGNORECASE))
-        for kw in keywords
-    }
-    return counts
