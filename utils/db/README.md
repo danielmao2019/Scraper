@@ -47,3 +47,7 @@ CREATE TABLE IF NOT EXISTS papers (
     comments JSON
 );
 ```
+
+## Future Work
+
+1. Batched processing.
