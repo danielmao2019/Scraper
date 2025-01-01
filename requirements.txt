@@ -3,4 +3,4 @@ elsapy
 beautifulsoup4
 requests
 pymupdf
-mysql-connector-python
+psycopg2-binary

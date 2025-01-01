@@ -1,4 +1,5 @@
 from typing import List
+import re
 import os
 import logging
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
@@ -25,7 +26,6 @@ def main(output_dir: str, keywords: List[str]) -> None:
     assert isinstance(keywords, list) and all(isinstance(k, str) for k in keywords), \
         "Keywords must be a list of strings (regular expressions)."
 
-    # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
     # Connect to the database
@@ -35,37 +35,33 @@ def main(output_dir: str, keywords: List[str]) -> None:
         logging.info(f"Processing keyword: {keyword}")
 
         # Use SQL to find matches and count occurrences
-        query = f"""
+        query = """
             WITH
-
-            `match-count` AS (
+            paper_matches AS (
                 SELECT 
                     title, urls, pub_name, pub_date, authors, abstract,
                     REGEXP_COUNT(full_text, %s) AS match_count
-                FROM `papers`
+                FROM papers
             )
             SELECT 
                 title, urls, pub_name, pub_date, authors, abstract,
                 match_count
-            FROM `match-count`
+            FROM paper_matches
             WHERE match_count > 0
             ORDER BY match_count DESC;
         """
         matched_papers = utils.db.execute(cursor, query, (_keyword2regex(keyword),))
 
         # Write results to a markdown file
-        output_filepath = os.path.join(output_dir, f"{keyword}.md")
+        output_filepath = os.path.join(output_dir, f"{re.sub(pattern=' ', repl='_', string=keyword)}.md")
         with open(output_filepath, mode='w', encoding='utf8') as f:
             for paper in matched_papers:
-                f.write(compile_markdown(**paper))  # Add spacing between entries
+                f.write(compile_markdown(**paper))
 
         logging.info(f"Results for keyword '{keyword}' written to {output_filepath}")
 
-    # Close the database connection
-    if conn.is_connected():
-        cursor.close()
-        conn.close()
-
+    cursor.close()
+    conn.close()
     logging.info("Keyword search completed.")
 
 

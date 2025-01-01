@@ -1,118 +1,120 @@
-from typing import Tuple, List, Dict, Union, Optional
+from typing import Tuple, List, Dict, Any, Union
 import os
 import json
 import jsbeautifier
 from concurrent.futures import ThreadPoolExecutor
 import logging
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(message)s', level=logging.INFO)
-import mysql.connector
+import psycopg2
 import scrape
 import search
 import utils
 
 
-def scrape_or_query(url: str, cursor: mysql.connector.cursor_cext.CMySQLCursor) -> str:
+def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
     result = {key: None for key in [
         'id', 'code_names', 'title', 'urls',
         'pub_name', 'pub_date', 'authors', 'abstract',
-        'full_text', 'comments',
+        'comments',
     ]}
-    result['id'] = ""
 
-    # Query to check if the HTML URL exists in the `urls.html` array
+    # Query to check if the HTML URL exists in the `urls->html` array
     same_html_query = """
-    SELECT id
-    FROM `papers`
-    WHERE JSON_CONTAINS(urls->'$.html', %s)
+        SELECT code_names, title, urls, pub_name, pub_date, authors, abstract, comments,
+            full_text IS NULL AS missing_full_text
+        FROM papers WHERE urls->'html' ? %s
     """
-    same_html_record = utils.db.execute(cursor, same_html_query, (json.dumps(url),))
+    same_html_record = utils.db.execute(cursor, same_html_query, (url,))
 
     if same_html_record:
-        # If the HTML URL already exists, return the record
+        # Cleanup existing record
         assert len(same_html_record) == 1, f"{same_html_record=}"
         same_html_record = same_html_record[0]
+        missing_full_text = same_html_record['missing_full_text']
+        del same_html_record['missing_full_text']
+
+        # Update result using existing record
+        assert set(same_html_record.keys()).issubset(set(result.keys()))
         result.update(same_html_record)
-        if same_html_record['full_text'] is None:
+
+        # Complete full-text scraping
+        if missing_full_text:
             urls = json.loads(same_html_record['urls'])
-            urls = list(zip(urls['html'], urls['pdf']))
-            urls = list(filter(lambda x: x[0] == url, urls))
+            urls = [(html, pdf) for html, pdf in zip(urls['html'], urls['pdf']) if html == url]
             assert len(urls) == 1, f"{urls=}"
             try:
-                result['full_text'] = search.extract_text(urls[0][1])
+                full_text = search.extract_text(urls[0][1])
             except Exception as e:
                 print(e)
-            update_full_text = """
-            UPDATE `papers`
-            SET full_text = %s
-            WHERE title = %s
-            """
-            utils.db.execute(cursor, update_full_text, (result['full_text'], same_html_record['title']))
+            update_full_text = "UPDATE papers SET full_text = %s WHERE title = %s"
+            utils.db.execute(cursor, update_full_text, (full_text, same_html_record['title']))
 
     else:
         # If no record exists with the same HTML URL, scrape the new record
-        scraped_record: Dict[str, str] = scrape.scrape(url, compile=False)
+        scraped_record: Dict[str, Any] = scrape.scrape(url, compile=False)
 
         # Check if a record with the same title exists
         same_title_query = """
-        SELECT id
-        FROM `papers`
-        WHERE title = %s
+            SELECT code_names, title, urls, pub_name, pub_date, authors, abstract, comments,
+                full_text IS NULL AS missing_full_text
+            FROM papers WHERE title = %s
         """
         same_title_record = utils.db.execute(cursor, same_title_query, (scraped_record['title'],))
 
         if same_title_record:
-            # If a record with the same title exists, update its `urls` field
+            # Cleanup existing record
             assert len(same_title_record) == 1, f"{same_title_record=}"
             same_title_record = same_title_record[0]
-            urls = json.loads(same_title_record['urls'])  # Load the existing URLs as a Python dict
-            # Add the new URLs to the respective arrays, ensuring no duplicates
-            urls['html'] = urls['html'] + [scraped_record['html_url']]
-            urls['pdf'] = urls['pdf'] + [scraped_record['pdf_url']]
-            result.update(same_title_record)
-            result['urls'] = urls  # Reflect the updated URLs in the result
+            missing_full_text = same_title_record['missing_full_text']
+            del same_title_record['missing_full_text']
+            same_title_record['urls']['html'].append(scraped_record['html_url'])
+            same_title_record['urls']['pdf'].append(scraped_record['pdf_url'])
 
-            # Update the `urls` field in the database
-            update_urls = """
-            UPDATE `papers`
-            SET urls = %s
-            WHERE title = %s
-            """
+            # Update result using existing record
+            assert set(same_title_record.keys()).issubset(set(result.keys()))
+            result.update(same_title_record)
+
+            # Update database with additional urls
+            update_urls = "UPDATE papers SET urls = %s WHERE title = %s"
             utils.db.execute(cursor, update_urls, (json.dumps(urls), same_title_record['title']))
 
-            # check full-text
-            if same_title_record['full_text'] is None:
+            # Complete full-text scraping
+            if missing_full_text:
                 try:
-                    result['full_text'] = search.extract_text(scraped_record['pdf_url'])
+                    full_text = search.extract_text(scraped_record['pdf_url'])
                 except Exception as e:
                     print(e)
-                update_full_text = """
-                UPDATE `papers`
-                SET full_text = %s
-                WHERE title = %s
-                """
-                utils.db.execute(cursor, update_full_text, (result['full_text'], same_title_record['title']))
+                update_full_text = "UPDATE papers SET full_text = %s WHERE title = %s"
+                utils.db.execute(cursor, update_full_text, (full_text, same_title_record['title']))
+
         else:
-            # Insert the new record if no matching title is found
+            # Cleanup scraped record
             html_url = scraped_record['html_url']
             pdf_url = scraped_record['pdf_url']
             del scraped_record['html_url'], scraped_record['pdf_url']
+            scraped_record['urls'] = {'html': [html_url], 'pdf': [pdf_url]}
+
+            # Update result with scraped record
+            assert set(scraped_record.keys()).issubset(set(result.keys()))
             result.update(scraped_record)
-            result['urls'] = {'html': [html_url], 'pdf': [pdf_url]}
+
+            # Complete full-text scraping
             try:
-                result['full_text'] = search.extract_text(pdf_url)
+                full_text = search.extract_text(pdf_url)
             except Exception as e:
                 print(e)
+
+            # Update database with scraped record
             insert_query = """
-            INSERT INTO `papers` (
-                id, code_names, title, urls, pub_name, pub_date, authors, 
-                abstract, full_text, comments
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO papers (
+                    id, code_names, title, urls, pub_name, pub_date, authors, 
+                    abstract, full_text, comments
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             utils.db.execute(cursor, insert_query, (
-                result['id'], json.dumps(result['code_names']), result['title'],
-                json.dumps(result['urls']), result['pub_name'], result['pub_date'],
-                json.dumps(result['authors']), result['abstract'],
-                result['full_text'], json.dumps(result['comments']),
+                result['id'], result['code_names'], result['title'], json.dumps(result['urls']),
+                result['pub_name'], result['pub_date'], result['authors'], result['abstract'],
+                result['full_text'], result['comments'],
             ))
 
     return scrape.utils.compile_markdown(**result)
@@ -128,15 +130,16 @@ def scrape_task(url: str, idx: int, total: int, cursor) -> Tuple[str, Union[str,
         return (url, err)  # Failure
 
 
-def main(urls: List[str], num_workers: Optional[int] = 1) -> None:
+def main(urls: List[str], num_workers: int) -> None:
     """
     Arguments:
         urls (List[str]): A list of html urls to scrape from.
-        num_workers (int): Number of threads to use for processing. Default is 1.
+        num_workers (int): Number of threads to use for processing.
     """
     assert isinstance(urls, list), f"{type(urls)=}"
     assert all(isinstance(x, str) for x in urls)
-    
+    assert isinstance(num_workers, int), f"{type(num_workers)=}"
+
     urls_unique: List[str] = []
     for url in urls:
         if url not in urls_unique:
@@ -165,11 +168,9 @@ def main(urls: List[str], num_workers: Optional[int] = 1) -> None:
                 assert isinstance(result, Exception)
                 failures.append((url, str(result)))
 
-    # Commit and close the database connection
-    conn.commit()
-    if conn.is_connected():
-        cursor.close()
-        conn.close()
+    # Close the database connection
+    cursor.close()
+    conn.close()
 
     # Write results to the file once
     filepath = os.path.join("scrape", "scraped_papers.md")
@@ -187,4 +188,8 @@ def main(urls: List[str], num_workers: Optional[int] = 1) -> None:
 
 if __name__ == "__main__":
     from scrape.papers_to_scrape import papers_to_scrape
-    main(urls=papers_to_scrape)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-n', '--num-workers', type=int, default=1)
+    args = parser.parse_args()
+    main(urls=papers_to_scrape, num_workers=args.num_workers)

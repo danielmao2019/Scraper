@@ -1,7 +1,5 @@
-from typing import List, Dict
 import os
 import time
-import re
 import hashlib
 import fitz  # PyMuPDF
 from scrape import utils
@@ -14,15 +12,16 @@ def _extract_text_wget(url: str) -> str:
     """
     # download pdf
     time.sleep(4)  # avoid CAPTCHA
-    cmd = f'wget "{url}" --output-document tmp.pdf --quiet'
+    filename = time.time()
+    cmd = f'wget "{url}" --output-document {filename} --quiet'
     os.system(cmd)
     # extract text
     text = ""
-    pdf_doc = fitz.open("tmp.pdf")
+    pdf_doc = fitz.open(filename)
     for page in pdf_doc:
         text += page.get_text() + "\n"
     pdf_doc.close()
-    os.system("rm tmp.pdf")
+    os.system(f"rm {filename}")
     return text
 
 

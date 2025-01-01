@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List, Dict, Union, Optional
 import re
 from .code_names_mapping import mapping
 
@@ -6,13 +6,16 @@ from .code_names_mapping import mapping
 INDENT = ' ' * 4
 
 
-def _post_process_date(year: str) -> str:
-    assert type(year) == str, f"{type(year)=}"
-    _year = re.findall(pattern=r"\d{4}", string=year)
-    assert len(_year) == 1, f"{year=}, {_year=}"
+def _post_process_date(date: Union[str, int]) -> str:
+    if isinstance(date, int):
+        date = str(date)
+    assert isinstance(date, str)
+    assert type(date) == str, f"{type(date)=}"
+    _year = re.findall(pattern=r"\d{4}", string=date)
+    assert len(_year) == 1, f"{date=}, {_year=}"
     assert int(_year[0]), f"{_year=}"
-    year = re.sub(pattern=r"(\d{4})", repl=r"`\1`", string=year)
-    return year
+    date = re.sub(pattern=r"(\d{4})", repl=r"`\1`", string=date)
+    return date
 
 
 def _post_process_abstract(abstract):
@@ -66,7 +69,7 @@ def compile_markdown(
     html_url: Optional[str] = None,
     pdf_url: Optional[str] = None,
     pub_name: str = None,
-    pub_date: str = None,
+    pub_date: Union[str, int] = None,
     authors: List[str] = None,
     abstract: str = None,
     **kwargs,
