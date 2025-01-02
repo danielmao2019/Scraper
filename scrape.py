@@ -46,6 +46,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
                 full_text = search.extract_text(urls[0][1])
             except Exception as e:
                 print(e)
+                full_text = None
             update_full_text = "UPDATE papers SET full_text = %s WHERE title = %s"
             utils.db.execute(cursor, update_full_text, (full_text, same_html_record['title']))
 
@@ -76,7 +77,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
 
             # Update database with additional urls
             update_urls = "UPDATE papers SET urls = %s WHERE title = %s"
-            utils.db.execute(cursor, update_urls, (json.dumps(urls), same_title_record['title']))
+            utils.db.execute(cursor, update_urls, (json.dumps(same_title_record['urls']), same_title_record['title']))
 
             # Complete full-text scraping
             if missing_full_text:
@@ -84,6 +85,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
                     full_text = search.extract_text(scraped_record['pdf_url'])
                 except Exception as e:
                     print(e)
+                    full_text = None
                 update_full_text = "UPDATE papers SET full_text = %s WHERE title = %s"
                 utils.db.execute(cursor, update_full_text, (full_text, same_title_record['title']))
 
@@ -103,6 +105,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
                 full_text = search.extract_text(pdf_url)
             except Exception as e:
                 print(e)
+                full_text = None
 
             # Update database with scraped record
             insert_query = """
@@ -114,7 +117,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
             utils.db.execute(cursor, insert_query, (
                 result['id'], result['code_names'], result['title'], json.dumps(result['urls']),
                 result['pub_name'], result['pub_date'], result['authors'], result['abstract'],
-                result['full_text'], result['comments'],
+                full_text, result['comments'],
             ))
 
     return scrape.utils.compile_markdown(**result)

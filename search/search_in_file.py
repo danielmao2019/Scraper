@@ -89,7 +89,9 @@ def extract_text(url: str) -> str:
         assert os.path.isfile(filepath), f"File does not exist: {filepath}"
         assert os.path.getsize(filepath) > 0, f"File empty: {filepath}"
         with open(filepath, mode='r') as f:
-            return f.read()
+            text = f.read()
+        text = text.replace('\x00', '')
+        return text
     except Exception as e:
         print(f"{e=}")
         if url.startswith("https://www.sciencedirect.com"):
@@ -99,6 +101,7 @@ def extract_text(url: str) -> str:
         else:
             text = _extract_text_wget(url)
         assert type(text) == str, f"{type(text)=}"
+        text = text.replace('\x00', '')
         with open(filepath, mode='w') as f:
             f.write(text)
         return text
