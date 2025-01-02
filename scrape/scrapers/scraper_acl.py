@@ -1,9 +1,9 @@
-from typing import Dict
+from typing import Dict, Any
 import re
 from scrape import utils
 
 
-def scrape_acl(url: str) -> Dict[str, str]:
+def scrape_acl(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -15,12 +15,12 @@ def scrape_acl(url: str) -> Dict[str, str]:
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]['content']
     # get pub year
-    year = re.findall(pattern=r'year = "(\d+)"', string=str(soup))
-    assert len(year) == 1
-    year = year[0]
+    pub_date = re.findall(pattern=r'year = "(\d+)"', string=str(soup))
+    assert len(pub_date) == 1
+    pub_date = pub_date[0]
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': 'citation_author'})
-    authors = ', '.join([a['content'] for a in authors])
+    authors = list(map(lambda x: x['content'], authors))
     # get abstract
     abstract = ""
     return {
@@ -28,7 +28,7 @@ def scrape_acl(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "ACL",
-        'pub_date': year,
+        'pub_date': pub_date,
         'authors': authors,
         'abstract': abstract,
     }

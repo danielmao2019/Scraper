@@ -1,8 +1,8 @@
-from typing import List, Dict
+from typing import List, Dict, Any
 from scrape import utils
 
 
-def scrape_acm(url: str) -> Dict[str, str]:
+def scrape_acm(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get pdf url
@@ -29,9 +29,9 @@ def scrape_acm(url: str) -> Dict[str, str]:
         assert len(pub_name) == 1
         pub_name = pub_name[0]['content']
     # get pub year
-    pub_year = soup.findAll(name='span', attrs={'class': "core-date-published"})
-    assert len(pub_year) == 1
-    pub_year = pub_year[0].text.strip()
+    pub_date = soup.findAll(name='span', attrs={'class': "core-date-published"})
+    assert len(pub_date) == 1
+    pub_date = pub_date[0].text.strip()
     # get authors
     authors_list: List[str] = [
         first_name.get_text(strip=True) + ' ' + last_name.get_text(strip=True)
@@ -44,7 +44,6 @@ def scrape_acm(url: str) -> Dict[str, str]:
     for author in authors_list:
         if author not in authors:
             authors.append(author)
-    authors: str = ', '.join(authors)
     # get abstract
     abstract = utils.soup.extract_abstract(soup)
     # return
@@ -53,7 +52,7 @@ def scrape_acm(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': pub_name,
-        'pub_date': pub_year,
+        'pub_date': pub_date,
         'authors': authors,
         'abstract': abstract,
     }

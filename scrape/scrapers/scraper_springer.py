@@ -1,11 +1,11 @@
-from typing import Dict
+from typing import Dict, Any
 import requests
 import re
 import json
 from scrape import utils
 
 
-def scrape_springer(url: str) -> Dict[str, str]:
+def scrape_springer(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # construct json
@@ -27,7 +27,7 @@ def scrape_springer(url: str) -> Dict[str, str]:
     r = requests.get(pdf_url)
     assert r.status_code == 200, f"r.status_code={r.status_code}, pdf_url={pdf_url}"
     # get authors
-    authors = ", ".join(a['name'] for a in json_dict['author'])
+    authors = list(map(lambda x: x['name'], json_dict['author']))
     # get publisher
     pub_name = json_dict['isPartOf']['name']
     pub_name = re.findall(pattern="([A-Z]+) \d+", string=pub_name)
@@ -38,7 +38,7 @@ def scrape_springer(url: str) -> Dict[str, str]:
     else:
         assert 0
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get abstract
     abstract = json_dict['description']
     # return

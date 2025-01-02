@@ -1,14 +1,8 @@
-from typing import Dict
+from typing import Dict, Any
 from scrape import utils
 
 
-def process_author(author: str) -> str:
-    author = author.split(", ")
-    author = author[1] + ' ' + author[0]
-    return author
-
-
-def scrape_asce(url: str) -> Dict[str, str]:
+def scrape_asce(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -36,10 +30,9 @@ def scrape_asce(url: str) -> Dict[str, str]:
         assert all([x == pub_name[0] for x in pub_name]), f"{pub_name=}"
         pub_name = pub_name[0]
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
-    authors = soup.findAll('meta', attrs={'name': "citation_author"})
-    authors = ", ".join([process_author(author['content']) for author in authors])
+    authors = utils.soup.extract_authors(soup)
     # get abstract
     abstract = utils.soup.extract_abstract(soup)
     # return

@@ -1,7 +1,7 @@
-from typing import Dict
+from typing import Dict, Any
 
 
-def scrape_sciencedirect(url: str) -> Dict[str, str]:
+def scrape_sciencedirect(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     # get Elsevier client
     from elsapy.elsclient import ElsClient
@@ -24,10 +24,10 @@ def scrape_sciencedirect(url: str) -> Dict[str, str]:
     # get title
     title = data['dc:title']
     # get authors
-    authors = ", ".join([
+    authors = [
         a['$'].split(", ")[1] + ' ' + a['$'].split(", ")[0]
         for a in data['dc:creator']
-    ])
+    ]
     # get pub name
     pub_name = data['prism:publicationName']
     # get pub year

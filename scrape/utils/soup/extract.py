@@ -25,10 +25,10 @@ def extract_pub_name(soup) -> str:
     return parsed[0]
 
 # ==================================================
-# pub year
+# pub date
 # ==================================================
 
-def extract_pub_year(soup) -> str:
+def extract_pub_date(soup) -> str:
     extracted: List[str] = []
     for key in ['name', 'property']:
         for val in [
@@ -44,25 +44,38 @@ def extract_pub_year(soup) -> str:
 # authors
 # ==================================================
 
-def _parse_authors_citation_authors(citation_authors) -> str:
+def _format_author(author: str) -> str:
+    if ", " in author:
+        author = author.split(", ")
+        assert len(author) == 2
+        author = author[1] + ' ' + author[0]
+    return author
+
+
+def _parse_citation_authors(citation_authors) -> List[str]:
     assert len(citation_authors) == 1
-    authors = citation_authors[0]['content']
-    authors = ", ".join(filter(lambda x: x.strip(), authors.split(';')))
+    authors = citation_authors[0]['content'].split(';')
+    authors = list(filter(lambda x: x.strip(), authors))
+    authors = list(map(_format_author, authors))
     return authors
 
 
-def _parse_authors_citation_author_list(citation_author_list) -> str:
-    authors = ", ".join([ca['content'] for ca in citation_author_list])
+def _parse_citation_author_list(citation_author_list) -> List[str]:
+    authors = list(map(lambda x: x['content'], citation_author_list))
+    authors = list(map(_format_author, authors))
     return authors
 
 
-def extract_authors(soup) -> str:
+def extract_authors(soup) -> List[str]:
     citation_authors = soup.findAll('meta', {'name': 'citation_authors'})
     if len(citation_authors) > 0:
-        return _parse_authors_citation_authors(citation_authors)
+        return _parse_citation_authors(citation_authors)
     citation_author_list = soup.findAll('meta', {'name': 'citation_author'})
     if len(citation_author_list) > 0:
-        return _parse_authors_citation_author_list(citation_author_list)
+        return _parse_citation_author_list(citation_author_list)
+    citation_author_list = soup.findAll('meta', {'name': 'dc.creator'})
+    if len(citation_author_list) > 0:
+        return _parse_citation_author_list(citation_author_list)
     raise RuntimeError("Cannot parse authors.")
 
 # ==================================================

@@ -1,9 +1,9 @@
-from typing import Dict
+from typing import Dict, Any
 import re
 from scrape import utils
 
 
-def scrape_tandfonline(url: str) -> Dict[str, str]:
+def scrape_tandfonline(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -18,12 +18,10 @@ def scrape_tandfonline(url: str) -> Dict[str, str]:
     # get pub name
     pub_name = utils.soup.extract_pub_name(soup)
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
     authors = soup.findAll(name='meta', attrs={'name': "dc.Creator"})
-    authors = ", ".join([
-        ' '.join(x['content'].split()) for x in authors
-    ])
+    authors = list(map(lambda x: ' '.join(x['content'].split()), authors))
     # get abstract
     h2_tag = soup.find('h2', text=re.compile(r'\bAbstract\b', re.IGNORECASE))
     assert h2_tag, "Abstract heading not found"

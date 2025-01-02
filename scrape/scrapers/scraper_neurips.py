@@ -1,9 +1,9 @@
-from typing import Dict
+from typing import Dict, Any
 import re
 from scrape import utils
 
 
-def scrape_neurips(url: str) -> Dict[str, str]:
+def scrape_neurips(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -14,6 +14,7 @@ def scrape_neurips(url: str) -> Dict[str, str]:
     year = year[0]
     # get authors
     authors = str(soup.findAll(name="p")[1])[6:-8]
+    authors = authors.split(", ")
     # get abstract
     p_idx = 2 + (soup.findAll(name="p")[2].text.strip() == "")
     abstract = soup.findAll(name="p")[p_idx].text.strip()

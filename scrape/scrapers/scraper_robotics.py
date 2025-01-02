@@ -1,8 +1,8 @@
-from typing import Dict
+from typing import Dict, Any
 from scrape import utils
 
 
-def scrape_robotics(url: str) -> Dict[str, str]:
+def scrape_robotics(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get pdf url
@@ -14,10 +14,9 @@ def scrape_robotics(url: str) -> Dict[str, str]:
     # get pub name
     pub_name = utils.soup.extract_pub_name(soup)
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
-    authors = soup.findAll(name='meta', attrs={'name': 'citation_author'})
-    authors = ', '.join([a['content'] for a in authors])
+    authors = utils.soup.extract_authors(soup)
     # get abstract
     abstract = soup.findAll(name='p', attrs={'style': 'text-align: justify;'})
     assert len(abstract) == 1

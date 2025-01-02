@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 import re
 from .code_names_mapping import mapping
 
@@ -61,13 +61,13 @@ def _get_web_name(url: str) -> str:
 
 
 def compile_markdown(
-    title: str = None,
-    urls: Dict[str, Dict[str, List[str]]] = None,
-    html_url: str = None,
-    pdf_url: str = None,
+    title: str,
+    urls: Optional[Dict[str, Dict[str, List[str]]]] = None,
+    html_url: Optional[str] = None,
+    pdf_url: Optional[str] = None,
     pub_name: str = None,
     pub_date: str = None,
-    authors: str = None,
+    authors: List[str] = None,
     abstract: str = None,
     **kwargs,
 ) -> str:
@@ -76,6 +76,7 @@ def compile_markdown(
         kwargs: unused keyword arguments.
     """
     # input checks
+    assert isinstance(authors, list) and all(isinstance(x, str) for x in authors)
     assert (html_url is None) == (pdf_url is None)
     assert (urls is not None) ^ (html_url is not None and pdf_url is not None)
     if html_url is not None and pdf_url is not None:
@@ -96,6 +97,6 @@ def compile_markdown(
     string += f"{INDENT}* Title: {title}\n"
     string += f"{INDENT}* Publisher: {pub_name}\n"
     string += f"{INDENT}* Publication Date: {_post_process_date(pub_date)}\n"
-    string += f"{INDENT}* Authors: {authors}\n"
+    string += f"{INDENT}* Authors: {', '.join(authors)}\n"
     string += f"{INDENT}* Abstract: {_post_process_abstract(abstract)}\n"
     return string

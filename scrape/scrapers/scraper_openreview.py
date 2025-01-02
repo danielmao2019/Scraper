@@ -1,9 +1,9 @@
-from typing import Dict
+from typing import Dict, Any
 import json
 from scrape import utils
 
 
-def scrape_openreview(url: str) -> Dict[str, str]:
+def scrape_openreview(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -26,11 +26,9 @@ def scrape_openreview(url: str) -> Dict[str, str]:
         json_dict = json.loads(json_str)
         json_dict = json_dict['props']['pageProps']['forumNote']
         pub_name = utils.parse_pub_name(json_dict['content']['venue']['value'])
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
-    authors = ", ".join([
-        a['content'] for a in soup.findAll(name='meta', attrs={'name': "citation_author"})
-    ])
+    authors = utils.soup.extract_authors(soup)
     # get abstract
     abstract = soup.findAll(name='meta', attrs={'name': "citation_abstract"})
     assert len(abstract) == 1

@@ -1,8 +1,8 @@
-from typing import Dict
+from typing import Dict, Any
 from scrape import utils
 
 
-def scrape_mdpi(url: str) -> Dict[str, str]:
+def scrape_mdpi(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -14,10 +14,9 @@ def scrape_mdpi(url: str) -> Dict[str, str]:
     # get pub name
     pub_name = utils.soup.extract_pub_name(soup)
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
-    authors = soup.findAll("meta", attrs={'name': "dc.creator"})
-    authors = ', '.join([author['content'] for author in authors])
+    authors = utils.soup.extract_authors(soup)
     # get abstract
     abstract = soup.findAll("meta", attrs={'name': "description"})
     assert len(abstract) == 1

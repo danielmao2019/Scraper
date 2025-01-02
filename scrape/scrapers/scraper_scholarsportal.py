@@ -1,8 +1,8 @@
-from typing import Dict
+from typing import Dict, Any
 from scrape import utils
 
 
-def scrape_scholarsportal(url: str) -> Dict[str, str]:
+def scrape_scholarsportal(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -40,7 +40,6 @@ def scrape_scholarsportal(url: str) -> Dict[str, str]:
     authors = list(map(lambda x: x.find('a'), authors))
     authors = list(map(lambda x: x.text.strip(), authors))
     assert all(authors)
-    authors = ", ".join(authors)
     # get abstract
     abstract = soup.findAll(name='div', attrs={'class': "journal-abstract"})
     assert len(abstract) == 1

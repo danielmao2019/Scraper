@@ -1,10 +1,10 @@
-from typing import Dict
+from typing import Dict, Any
 import re
 from datetime import datetime
 from scrape import utils
 
 
-def scrape_pmlr (url: str) -> Dict[str, str]:
+def scrape_pmlr (url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -14,10 +14,9 @@ def scrape_pmlr (url: str) -> Dict[str, str]:
     assert len(pdf_url) == 1
     pdf_url = pdf_url[0]
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
-    authors = re.findall(pattern="content=\"([^\"]+)\" name=\"citation_author\"", string=soup.__str__())
-    authors = ", ".join(authors)
+    authors = utils.soup.extract_authors(soup)
     # get abstract
     abstract = soup.find('div', class_="abstract").text
     # return

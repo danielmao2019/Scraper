@@ -1,11 +1,11 @@
-from typing import Dict
+from typing import Dict, Any
 from urllib.parse import urljoin
 import re
 import json
 from scrape import utils
 
 
-def scrape_ieee(url: str) -> Dict[str, str]:
+def scrape_ieee(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # construct json
@@ -17,7 +17,7 @@ def scrape_ieee(url: str) -> Dict[str, str]:
     title = json_dict['title']
     pdf_url = urljoin(url, json_dict['pdfUrl'])
     year = json_dict['publicationDate']
-    authors = ", ".join([a['name'] for a in json_dict['authors']])
+    authors = list(map(lambda x: x['name'], json_dict['authors']))
     abstract = json_dict['abstract']
     # return
     return {

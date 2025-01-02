@@ -1,9 +1,9 @@
-from typing import Dict
+from typing import Dict, Any
 import re
 from scrape import utils
 
 
-def scrape_eccv(url: str) -> Dict[str, str]:
+def scrape_eccv(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # generate links
@@ -13,13 +13,14 @@ def scrape_eccv(url: str) -> Dict[str, str]:
     title = soup.find("div", id="papertitle").text.strip()
     # get pub year
     pattern = "eccv_(\d\d\d\d)"
-    year = re.findall(pattern=pattern, string=url)
-    assert len(year) == 1, f"url={url}, pattern={pattern}, year={year}"
-    assert 2000 <= int(year[0]) <= 2030
-    year = year[0]
+    pub_date = re.findall(pattern=pattern, string=url)
+    assert len(pub_date) == 1, f"url={url}, pattern={pattern}, year={pub_date}"
+    assert 2000 <= int(pub_date[0]) <= 2030
+    pub_date = pub_date[0]
     # get authors
     authors = soup.find("div", id="authors").text.strip()
     authors = re.sub(pattern='\n', repl="", string=authors)
+    authors = authors.split(", ")
     # get abstract
     abstract = soup.find("div", id="abstract").text.strip()
     # return
@@ -28,7 +29,7 @@ def scrape_eccv(url: str) -> Dict[str, str]:
         'html_url': url,
         'pdf_url': pdf_url,
         'pub_name': "ECCV",
-        'pub_date': year,
+        'pub_date': pub_date,
         'authors': authors,
         'abstract': abstract,
     }

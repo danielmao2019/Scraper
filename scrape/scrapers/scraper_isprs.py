@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Any
 from scrape import utils
 from bs4 import BeautifulSoup
 
@@ -18,14 +18,7 @@ def _process_abstract(abstract: str) -> str:
     raise RuntimeError("Error processing abstract.")
 
 
-def _process_author(author: str) -> str:
-    author = author.split(", ")
-    assert len(author) == 2
-    author = author[1] + ' ' + author[0]
-    return author
-
-
-def scrape_isprs(url: str) -> Dict[str, str]:
+def scrape_isprs(url: str) -> Dict[str, Any]:
     assert type(url) == str, f"type(url)={type(url)}"
     soup = utils.soup.get_soup(url)
     # get title
@@ -39,10 +32,9 @@ def scrape_isprs(url: str) -> Dict[str, str]:
     # get pub name
     pub_name = "ISPRS"
     # get pub year
-    pub_year = utils.soup.extract_pub_year(soup)
+    pub_year = utils.soup.extract_pub_date(soup)
     # get authors
-    authors = soup.findAll('meta', attrs={'name': "citation_author"})
-    authors = ", ".join([_process_author(author['content']) for author in authors])
+    authors = utils.soup.extract_authors(soup)
     # get abstract
     abstract = soup.findAll('meta', attrs={'name': "citation_abstract"})
     assert len(abstract) == 1
