@@ -39,7 +39,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
 
         # Complete full-text scraping
         if missing_full_text:
-            urls = json.loads(same_html_record['urls'])
+            urls = same_html_record['urls']
             urls = [(html, pdf) for html, pdf in zip(urls['html'], urls['pdf']) if html == url]
             assert len(urls) == 1, f"{urls=}"
             try:
