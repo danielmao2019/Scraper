@@ -14,6 +14,9 @@ def _keyword2regex(keyword: str) -> str:
     return result
 
 
+ROOT_DIR = "search/results"
+
+
 def main(output_dir: str, keywords: List[str]) -> None:
     """
     Searches for keywords in the full_text column of a database table.
@@ -25,7 +28,7 @@ def main(output_dir: str, keywords: List[str]) -> None:
     """
     assert isinstance(keywords, list) and all(isinstance(k, str) for k in keywords), \
         "Keywords must be a list of strings (regular expressions)."
-
+    output_dir = os.path.join(ROOT_DIR, output_dir)
     os.makedirs(output_dir, exist_ok=True)
 
     # Connect to the database
@@ -40,7 +43,7 @@ def main(output_dir: str, keywords: List[str]) -> None:
             paper_matches AS (
                 SELECT 
                     title, urls, pub_name, pub_date, authors, abstract,
-                    REGEXP_COUNT(full_text, %s) AS match_count
+                    REGEXP_COUNT(full_text, %s, 1, 'i') AS match_count
                 FROM papers
             )
             SELECT 
