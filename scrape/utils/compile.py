@@ -79,7 +79,8 @@ def compile_markdown(
         kwargs: unused keyword arguments.
     """
     # input checks
-    assert isinstance(authors, list) and all(isinstance(x, str) for x in authors)
+    assert isinstance(authors, list), f"{type(authors)=}"
+    assert all(isinstance(x, str) for x in authors), f"{[type(x) for x in authors]=}"
     assert (html_url is None) == (pdf_url is None)
     assert (urls is not None) ^ (html_url is not None and pdf_url is not None)
     if html_url is not None and pdf_url is not None:
