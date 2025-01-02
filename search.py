@@ -57,7 +57,8 @@ def process_keyword(keyword: str, output_dir: str, cursor) -> None:
 
     logging.info(f"Results for keyword '{keyword}' written to {output_filepath}")
 
-def main(output_dir: str, keywords: List[str]) -> None:
+
+def main(output_dir: str, keywords: List[str], num_workers: int) -> None:
     """
     Searches for keywords in the full_text column of a database table.
     Writes the results to markdown files for each keyword using multi-threading.
@@ -65,6 +66,7 @@ def main(output_dir: str, keywords: List[str]) -> None:
     Arguments:
         output_dir (str): Directory to store the output markdown files.
         keywords (List[str]): A list of regular expressions representing keywords.
+        num_workers (int): Number of worker threads to use for parallel processing.
     """
     assert isinstance(keywords, list) and all(isinstance(k, str) for k in keywords), \
         "Keywords must be a list of strings (regular expressions)."
@@ -75,7 +77,7 @@ def main(output_dir: str, keywords: List[str]) -> None:
     conn, cursor = utils.db.init()
 
     # Use ThreadPoolExecutor for multi-threaded keyword processing
-    with ThreadPoolExecutor() as executor:
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
         futures = [
             executor.submit(process_keyword, keyword, output_dir, cursor)
             for keyword in keywords
@@ -92,7 +94,8 @@ def main(output_dir: str, keywords: List[str]) -> None:
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--output-dir', type=str)
-    parser.add_argument('-k', '--keywords', nargs='+', default=[])
+    parser.add_argument('-d', '--output-dir', type=str, required=True, help="Directory to store the output markdown files.")
+    parser.add_argument('-k', '--keywords', nargs='+', required=True, help="List of keywords to search in the database.")
+    parser.add_argument('-n', '--num-workers', type=int, default=1, help="Number of worker threads for parallel processing.")
     args = parser.parse_args()
-    main(output_dir=args.output_dir, keywords=args.keywords)
+    main(output_dir=args.output_dir, keywords=args.keywords, num_workers=args.num_workers)
