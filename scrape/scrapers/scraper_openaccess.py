@@ -8,7 +8,12 @@ def scrape_openaccess(url: str) -> Dict[str, Any]:
     # extract
     title = soup.find("div", id="papertitle").text.strip()
     pdf_url = utils.get_pdf_url(url, soup.find("a", string="pdf")['href'])
-    pub_name = utils.parse_pub_name(url.split('/')[-1])
+    # get pub name
+    parse_string = url
+    parse_string = parse_string[len("https://openaccess.thecvf.com/content"):]
+    parse_string = '/'.join(parse_string.split('/')[:-1])
+    pub_name = utils.parse_pub_name(parse_string)
+    # get pub date
     pub_year = utils.soup.extract_pub_date(soup)
     authors = soup.find("div", id="authors").text.strip().split(';')[0]
     authors = authors.split(", ")

@@ -10,7 +10,8 @@ PUB_NAME_MAPPING = {
     'WACV': 'WACV',
     'ICML': 'ICML',
     'ICLR': 'ICLR',
-    'NeurIPS': 'NeurIPS',
+    'NIPS': 'NIPS',
+    'NeurIPS': 'NIPS',
     'SIGGRAPH Asia': 'SIGGRAPH Asia',
     'SIGGRAPH': 'SIGGRAPH',
     'Robotics: Science and Systems': 'RSS',
@@ -27,6 +28,6 @@ def parse_pub_name(string: str) -> str:
         matches = re.findall(
             pattern=pub_name, string=string, flags=re.IGNORECASE,
         )
-        if len(matches) == 1 and matches[0] == pub_name:
+        if len(matches) == 1 and matches[0].lower() == pub_name.lower():
             return PUB_NAME_MAPPING[pub_name]
     raise RuntimeError(f"Cannot parse pub name from \"{string}\".")

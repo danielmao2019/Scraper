@@ -12,7 +12,7 @@ def _extract_text_wget(url: str) -> str:
     """
     # download pdf
     time.sleep(4)  # avoid CAPTCHA
-    filename = time.time()
+    filename = f"{time.time()}.pdf"
     cmd = f'wget "{url}" --output-document {filename} --quiet'
     os.system(cmd)
     # extract text

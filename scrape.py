@@ -28,7 +28,7 @@ def scrape_or_query(url: str, cursor: psycopg2.extensions.cursor) -> str:
 
     if same_html_record:
         # Cleanup existing record
-        assert len(same_html_record) == 1, f"{same_html_record=}"
+        assert len(same_html_record) == 1, f"same_html_record={json.dumps(same_html_record)}"
         same_html_record = same_html_record[0]
         missing_full_text = same_html_record['missing_full_text']
         del same_html_record['missing_full_text']
