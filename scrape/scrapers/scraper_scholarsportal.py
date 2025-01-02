@@ -12,9 +12,10 @@ def scrape_scholarsportal(url: str) -> Dict[str, Any]:
     assert any([title == x.text.strip() for x in soup.findAll(name='span', attrs={'class': "article-title"})])
     # get pdf url
     pdf_url = soup.findAll(name='div', attrs={'class': "download-btn"})
-    assert len(pdf_url) == 1
+    assert len(pdf_url) == 1, f"{pdf_url=}"
     pdf_url = pdf_url[0].find('a')
-    assert "PDF Download" in pdf_url.text.strip()
+    assert "PDF Download" in pdf_url.text.strip() or "Read It Here" == pdf_url.text.strip(), \
+        f"{pdf_url.text.strip()=}"
     pdf_url = pdf_url['href']
     # get pub name
     pub_name = soup.findAll(name='div', attrs={'class': "journal-title"})
@@ -43,7 +44,7 @@ def scrape_scholarsportal(url: str) -> Dict[str, Any]:
     # get abstract
     abstract = soup.findAll(name='div', attrs={'class': "journal-abstract"})
     assert len(abstract) == 1
-    abstract = abstract[0].find('div').find('div').findAll('p')
+    abstract = list(filter(lambda x: x.name == 'p', abstract[0].findAll(name='div')[0].descendants))
     assert len(abstract) == 1
     abstract = abstract[0].text.strip()
     # return
