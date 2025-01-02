@@ -56,7 +56,9 @@ def main(output_dir: str, keywords: List[str]) -> None:
         output_filepath = os.path.join(output_dir, f"{re.sub(pattern=' ', repl='_', string=keyword)}.md")
         with open(output_filepath, mode='w', encoding='utf8') as f:
             for paper in matched_papers:
+                f.write(f"count={paper['match_count']}\n")
                 f.write(compile_markdown(**paper))
+                f.write('\n')
 
         logging.info(f"Results for keyword '{keyword}' written to {output_filepath}")
 
