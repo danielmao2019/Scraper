@@ -43,7 +43,7 @@ def process_keyword(keyword: str, output_dir: str, cursor) -> None:
             match_count
         FROM paper_matches
         WHERE match_count > 0
-        ORDER BY match_count DESC;
+        ORDER BY match_count DESC, (urls->'pdf'->>0) ASC;
     """
     matched_papers = utils.db.execute(cursor, query, (_keyword2regex(keyword),))
 
