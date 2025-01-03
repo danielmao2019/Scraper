@@ -1,0 +1,14 @@
+count=2
+https://journals.scholarsportal.info/details/09265805/v96icomplete/40_mapsobpcaecr.xmlcount=2
+https://journals.scholarsportal.info/details/09265805/v81icomplete/267_ecasoeeoums.xmlcount=2
+https://journals.scholarsportal.info/details/09265805/v133icomplete/nfp_vaourvlsdadl.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v165icomplete/nfp_aidtmfsalgmt.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v161icomplete/nfp_rmiap.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v141icomplete/nfp_uccihwpudt.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v141icomplete/nfp_woapcdpmfspi.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v139icomplete/nfp_gboefrbp.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v126icomplete/nfp_aahmfgovtore.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v124icomplete/nfp_asacobefpc.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v121icomplete/nfp_insbtifcas.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v107icomplete/nfp_dpfuuumg.xmlcount=1
+https://journals.scholarsportal.info/details/09265805/v103icomplete/41_iobagiearaba.xml
