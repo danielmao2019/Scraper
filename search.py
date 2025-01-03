@@ -32,7 +32,7 @@ def process_keyword(filters: List[str], keyword: str, output_dir: str, cursor: p
     logging.info(f"Processing keyword: {keyword}")
 
     # Build the filter query dynamically
-    filter_conditions = " AND ".join(
+    filter_conditions = "WHERE " * len(filters) + " AND ".join(
         ["REGEXP_COUNT(full_text, %s, 1, 'i') > 0"] * len(filters)
     )
 
@@ -41,8 +41,7 @@ def process_keyword(filters: List[str], keyword: str, output_dir: str, cursor: p
             SELECT
                 title, urls, pub_name, pub_date, authors, abstract,
                 REGEXP_COUNT(full_text, %s, 1, 'i') AS match_count
-            FROM papers
-            WHERE {filter_conditions}
+            FROM papers {filter_conditions}
         )
         SELECT
             title, urls, pub_name, pub_date, authors, abstract,
